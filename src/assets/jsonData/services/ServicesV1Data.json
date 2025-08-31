@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "icon": "1.png",
+        "iconLight": "23.png",
+        "title": "Rotoscope",
+        "text": "Isolating characters or objects frame by frame for clean compositing.",
+        "activeClass": ""
+    },
+    {
+        "id": 2,
+        "icon": "2.png",
+        "iconLight": "24.png",
+        "title": "Paint & Prep",
+        "text": "Removing rigs, markers, or unwanted elements to prepare shots for final polish.",
+        "activeClass": "active"
+    },
+    {
+        "id": 3,
+        "icon": "3.png",
+        "iconLight": "25.png",
+        "title": "Matchmove",
+        "text": "Recreating real-world camera motion in 3D for seamless VFX integration.",
+        "activeClass": ""
+    },
+    {
+        "id": 4,
+        "icon": "4.png",
+        "iconLight": "26.png",
+        "title": "Compositing",
+        "text": "Merging multiple layers of ideas into a single cinematic, believable shot.",
+        "activeClass": ""
+    }
+]

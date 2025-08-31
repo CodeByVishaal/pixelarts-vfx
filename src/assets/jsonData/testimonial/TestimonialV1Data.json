@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "review": "Pixel Arts turned our raw footage into something truly cinematic. The compositing work was seamless, and every detail felt carefully crafted. They’re our go-to for high-end visuals.",
+        "name": "Arjun R",
+        "designation": "Film Director",
+        "thumb": "testimonial_3.jpg"
+    },
+    {
+        "id": 2,
+        "review": "The team handled rotoscoping and paint-prep flawlessly for our commercial. The turnaround was quick, the quality unmatched, and the final cut looked stunning on screen.",
+        "name": "Meera S",
+        "designation": "Creative Producer",
+        "thumb": "testimonial_1.jpg"
+    },
+    {
+        "id": 3,
+        "review": "What impressed us most was their eye for detail. From matchmove to cosmetic fixes, Pixel Arts elevated our project far beyond expectations. Absolute professionals.",
+        "name": "Sharmika L",
+        "designation": "VFX Supervisor",
+        "thumb": "testimonial_2.jpg"
+    }
+]

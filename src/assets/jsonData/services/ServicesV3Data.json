@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "activeClass": "out",
+        "icon": "12.png",
+        "iconLight": "31.png",
+        "titleFirst": "Marketing & SEO",
+        "titleLast": "Optimization",
+        "text": "Explained jas something an regular keep dissimilar. Perfect get joy you instrument out reasonably. Again keeps at no meant stuff. Stuff comort for avobe perfection.",
+        "number": "01"
+    },
+    {
+        "id": 2,
+        "activeClass": "",
+        "icon": "13.png",
+        "iconLight": "32.png",
+        "titleFirst": "Mobile App & Web",
+        "titleLast": "Development",
+        "text": "Explained jas something an regular keep dissimilar. Perfect get joy you instrument out reasonably. Again keeps at no meant stuff. Stuff comort for avobe perfection.",
+        "number": "02"
+    },
+    {
+        "id": 3,
+        "activeClass": "",
+        "icon": "15.png",
+        "iconLight": "34.png",
+        "titleFirst": "Access to the",
+        "titleLast": "Latest Technology",
+        "text": "Explained jas something an regular keep dissimilar. Perfect get joy you instrument out reasonably. Again keeps at no meant stuff. Stuff comort for avobe perfection.",
+        "number": "03"
+    }
+]

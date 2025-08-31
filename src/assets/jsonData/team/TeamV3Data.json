@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "thumb": "1.jpg",
+        "name": "Istiak Ahmed",
+        "designation": "CEO & Founder",
+        "text": "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved.",
+        "age": "28",
+        "email": "Istiak@digital.com",
+        "phone": "+44-20-7328-4499"
+    },
+    {
+        "id": 2,
+        "thumb": "7.jpg",
+        "name": "Kevin Martin",
+        "designation": "Product Manager",
+        "text": "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved.",
+        "age": "29",
+        "email": "Kevin@digital.com",
+        "phone": "+44-20-7328-4500"
+    },
+    {
+        "id": 3,
+        "thumb": "3.jpg",
+        "name": "Sarah Albert",
+        "designation": "Financial Consultant",
+        "text": "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved.",
+        "age": "30",
+        "email": "Sarah@digital.com",
+        "phone": "+44-20-7328-4501"
+    },
+    {
+        "id": 4,
+        "thumb": "4.jpg",
+        "name": "Jason Joey",
+        "designation": "Developer",
+        "text": "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved.",
+        "age": "31",
+        "email": "Jason@digital.com",
+        "phone": "+44-20-7328-4502"
+    }
+]

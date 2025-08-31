@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "thumb": "14.jpg",
+        "name": "James Baker",
+        "designation": "Co-Founder, Dixor"
+    },
+    {
+        "id": 2,
+        "thumb": "15.jpg",
+        "name": "Dalton Grant",
+        "designation": "CEO, Validthemes"
+    },
+    {
+        "id": 3,
+        "thumb": "16.jpg",
+        "name": "Ryan Ricketts",
+        "designation": "UX Designer"
+    }
+]

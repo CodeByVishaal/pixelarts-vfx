@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Rank High on Google",
+        "trial": "15 Days Free Trial",
+        "price": 26,
+        "currency": "$",
+        "button_class": "btn btn-sm circle btn-gradient effect",
+        "suitability": "Suitable for beginners",
+        "features": [
+            "Number of inbound links",
+            "Site speed",
+            "Keyword usage",
+            "Automated management",
+            "Enterprise integrations"
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Email-based Advertising",
+        "trial": "15 Days Free Trial",
+        "price": 52,
+        "currency": "$",
+        "button_class": "btn btn-sm circle btn-light effect",
+        "suitability": "Suitable for business",
+        "features": [
+            "Email Newsletter",
+            "Marketing Campaigns",
+            "Traffic Generation",
+            "Local video issuance",
+            "Automated management"
+        ]
+    }
+]

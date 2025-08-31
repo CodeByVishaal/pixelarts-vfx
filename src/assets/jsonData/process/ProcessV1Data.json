@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Pre-Production",
+        "thumb": "5.png",
+        "thumbLight": "27.png",
+        "text": "We collaborate closely with clients to shape the vision. From concept art, storyboarding, and look development to technical planning, every detail is mapped out before production begins."
+    },
+    {
+        "id": 2,
+        "title": "Production",
+        "thumb": "6.png",
+        "thumbLight": "28.png",
+        "text": "Our artists bring ideas to life with 3D modeling, animation, simulations, lighting, and rendering. Using industry-leading tools, we create visuals that push creative and technical boundaries."
+    },
+    {
+        "id": 3,
+        "title": "Post-Production",
+        "thumb": "7.png",
+        "thumbLight": "29.png",
+        "text": "Through advanced compositing, VFX integration, and finishing, we blend digital effects seamlessly into your footage. This stage ensures cinematic polish and storytelling impact."
+    },
+    {
+        "id": 4,
+        "title": "Delivery",
+        "thumb": "8.png",
+        "thumbLight": "30.png",
+        "text": "We provide the final high-quality outputs, optimized for film, commercials, games, or streaming platforms — on time and with uncompromised quality."
+    }
+]

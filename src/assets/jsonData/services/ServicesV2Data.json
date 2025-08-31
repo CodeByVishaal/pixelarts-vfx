@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "activeClass": "active",
+        "icon": "17.png",
+        "subTitle": "Connection",
+        "title": "Perfect UI/UX Designing",
+        "text": "Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
+        "listData": ["Information architecture", "Digital Designer", "Interaction design"],
+        "illustration": "2.png"
+    },
+    {
+        "id": 2,
+        "activeClass": "",
+        "icon": "18.png",
+        "subTitle": "Collaboration",
+        "title": "Social Media Marketing",
+        "text": "Regular indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
+        "listData": ["Content marketing", "Affiliate marketing", "Search engine optimization"],
+        "illustration": "3.png"
+    },
+    {
+        "id": 3,
+        "activeClass": "",
+        "icon": "19.png",
+        "subTitle": "Innovations",
+        "title": "Branding & Stationery",
+        "text": "Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
+        "listData": ["Product branding", "Retail branding", "Service branding"],
+        "illustration": "4.png"
+    }
+]

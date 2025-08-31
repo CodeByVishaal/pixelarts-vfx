@@ -1,0 +1,174 @@
+{
+    "bannerThumb": [
+        {
+            "id": 1,
+            "title": "Photo shooting and editing",
+            "thumbFirst": "16.jpg",
+            "thumbLast": "17.jpg",
+            "thumbFull": "1-full.jpg"
+        },
+        {
+            "id": 2,
+            "title": "Quality pattern design solutions",
+            "thumbFirst": "18.jpg",
+            "thumbLast": "19.jpg",
+            "thumbFull": "2-full.jpg"
+        },
+        {
+            "id": 3,
+            "title": "Blue business cards color",
+            "thumbFirst": "20.jpg",
+            "thumbLast": "21.jpg",
+            "thumbFull": "3-full.jpg"
+        },
+        {
+            "id": 4,
+            "title": "Simple black & white design",
+            "thumbFirst": "22.jpg",
+            "thumbLast": "23.jpg",
+            "thumbFull": "4-full.jpg"
+        },
+        {
+            "id": 5,
+            "title": "Photo shooting and editing",
+            "thumbFirst": "24.jpg",
+            "thumbLast": "25.jpg",
+            "thumbFull": "5-full.jpg"
+        },
+        {
+            "id": 6,
+            "title": "Quality pattern design solutions",
+            "thumbFirst": "26.jpg",
+            "thumbLast": "27.jpg",
+            "thumbFull": "6-full.jpg"
+        },
+        {
+            "id": 7,
+            "title": "Blue business cards color",
+            "thumbFirst": "16.jpg",
+            "thumbLast": "17.jpg",
+            "thumbFull": "1-full.jpg"
+        },
+        {
+            "id": 8,
+            "title": "Simple black & white design",
+            "thumbFirst": "18.jpg",
+            "thumbLast": "19.jpg",
+            "thumbFull": "2-full.jpg"
+        },
+        {
+            "id": 9,
+            "title": "Simple black & white design",
+            "thumbFirst": "20.jpg",
+            "thumbLast": "21.jpg",
+            "thumbFull": "3-full.jpg"
+        },
+        {
+            "id": 10,
+            "title": "Photo shooting and editing",
+            "thumbFirst": "22.jpg",
+            "thumbLast": "23.jpg",
+            "thumbFull": "4-full.jpg"
+        },
+        {
+            "id": 11,
+            "title": "Quality pattern design solutions",
+            "thumbFirst": "24.jpg",
+            "thumbLast": "25.jpg",
+            "thumbFull": "5-full.jpg"
+        },
+        {
+            "id": 12,
+            "title": "Blue business cards color",
+            "thumbFirst": "26.jpg",
+            "thumbLast": "27.jpg",
+            "thumbFull": "6-full.jpg"
+        }
+    ],
+    "bannerInfo": [
+        {
+            "id": 1,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Bran",
+            "titleLast": "ding"
+        },
+        {
+            "id": 2,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Moc",
+            "titleLast": "kup"
+        },
+        {
+            "id": 3,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Des",
+            "titleLast": "ign"
+        },
+        {
+            "id": 4,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Stu",
+            "titleLast": "dio"
+        },
+        {
+            "id": 5,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Mark",
+            "titleLast": "eting"
+        },
+        {
+            "id": 6,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Stra",
+            "titleLast": "tegy"
+        },
+        {
+            "id": 7,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Bran",
+            "titleLast": "ding"
+        },
+        {
+            "id": 8,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Moc",
+            "titleLast": "kup"
+        },
+        {
+            "id": 9,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Des",
+            "titleLast": "ign"
+        },
+        {
+            "id": 10,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Stu",
+            "titleLast": "dio"
+        },
+        {
+            "id": 11,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Mark",
+            "titleLast": "eting"
+        },
+        {
+            "id": 12,
+            "tag": "Marketing",
+            "date": "18 October, 2024",
+            "titleFirst": "Stra",
+            "titleLast": "tegy"
+        }
+    ]
+}

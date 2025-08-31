@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Behance Awards",
+        "icon": "fab fa-behance",
+        "year": 2004,
+        "delay": "0ms"
+    },
+    {
+        "id": 2,
+        "title": "Design Awards",
+        "icon": "fas fa-layer-group",
+        "year": 2010,
+        "delay": "200ms"
+    },
+    {
+        "id": 3,
+        "title": "Coding Awards",
+        "icon": "fas fa-tasks-alt",
+        "year": 2016,
+        "delay": "400ms"
+    },
+    {
+        "id": 4,
+        "title": "Creative Awards",
+        "icon": "fab fa-unsplash",
+        "year": 2022,
+        "delay": "600ms"
+    }
+]

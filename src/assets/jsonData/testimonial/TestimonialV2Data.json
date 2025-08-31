@@ -1,0 +1,166 @@
+{
+    "quoteData": [
+        {
+            "id": 1,
+            "name": "Michel Dark",
+            "designation": "Envato Client",
+            "quote": "Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties practasing why she shewing now remembering."
+        },
+        {
+            "id": 2,
+            "name": "John Doe",
+            "designation": "Business Owner",
+            "quote": "Engagement consultation across various sectors is key to improving efficiency. Strategic thinking often leads to exponential growth when applied correctly. Understanding the customer’s needs creates a winning solution."
+        },
+        {
+            "id": 3,
+            "name": "Anna Smith",
+            "designation": "Creative Director",
+            "quote": "Collaborative efforts within the design team enabled us to come up with innovative solutions. Understanding the nuances of modern trends has really pushed our project outcomes to the next level."
+        },
+        {
+            "id": 4,
+            "name": "James Bond",
+            "designation": "Consultant",
+            "quote": "Through critical thinking and adaptive strategy, we can transform challenges into opportunities. The key to success lies in the execution and alignment of vision across all teams."
+        },
+        {
+            "id": 5,
+            "name": "Michel Dark",
+            "designation": "Envato Client",
+            "quote": "Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties practasing why she shewing now remembering."
+        },
+        {
+            "id": 6,
+            "name": "John Doe",
+            "designation": "Business Owner",
+            "quote": "Engagement consultation across various sectors is key to improving efficiency. Strategic thinking often leads to exponential growth when applied correctly. Understanding the customer’s needs creates a winning solution."
+        },
+        {
+            "id": 7,
+            "name": "Anna Smith",
+            "designation": "Creative Director",
+            "quote": "Collaborative efforts within the design team enabled us to come up with innovative solutions. Understanding the nuances of modern trends has really pushed our project outcomes to the next level."
+        },
+        {
+            "id": 8,
+            "name": "James Bond",
+            "designation": "Consultant",
+            "quote": "Through critical thinking and adaptive strategy, we can transform challenges into opportunities. The key to success lies in the execution and alignment of vision across all teams."
+        },
+        {
+            "id": 9,
+            "name": "Michel Dark",
+            "designation": "Envato Client",
+            "quote": "Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties practasing why she shewing now remembering."
+        },
+        {
+            "id": 10,
+            "name": "John Doe",
+            "designation": "Business Owner",
+            "quote": "Engagement consultation across various sectors is key to improving efficiency. Strategic thinking often leads to exponential growth when applied correctly. Understanding the customer’s needs creates a winning solution."
+        },
+        {
+            "id": 11,
+            "name": "Anna Smith",
+            "designation": "Creative Director",
+            "quote": "Collaborative efforts within the design team enabled us to come up with innovative solutions. Understanding the nuances of modern trends has really pushed our project outcomes to the next level."
+        },
+        {
+            "id": 12,
+            "name": "James Bond",
+            "designation": "Consultant",
+            "quote": "Through critical thinking and adaptive strategy, we can transform challenges into opportunities. The key to success lies in the execution and alignment of vision across all teams."
+        },
+        {
+            "id": 13,
+            "name": "Michel Dark",
+            "designation": "Envato Client",
+            "quote": "Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties practasing why she shewing now remembering."
+        },
+        {
+            "id": 14,
+            "name": "John Doe",
+            "designation": "Business Owner",
+            "quote": "Engagement consultation across various sectors is key to improving efficiency. Strategic thinking often leads to exponential growth when applied correctly. Understanding the customer’s needs creates a winning solution."
+        },
+        {
+            "id": 15,
+            "name": "Anna Smith",
+            "designation": "Creative Director",
+            "quote": "Collaborative efforts within the design team enabled us to come up with innovative solutions. Understanding the nuances of modern trends has really pushed our project outcomes to the next level."
+        },
+        {
+            "id": 16,
+            "name": "James Bond",
+            "designation": "Consultant",
+            "quote": "Through critical thinking and adaptive strategy, we can transform challenges into opportunities. The key to success lies in the execution and alignment of vision across all teams."
+        }
+    ],
+    "navigationData": [
+        {
+            "id": 1,
+            "thumb": "11.jpg"
+        },
+        {
+            "id": 2,
+            "thumb": "12.jpg"
+        },
+        {
+            "id": 3,
+            "thumb": "13.jpg"
+        },
+        {
+            "id": 4,
+            "thumb": "10.jpg"
+        },
+        {
+            "id": 5,
+            "thumb": "11.jpg"
+        },
+        {
+            "id": 6,
+            "thumb": "12.jpg"
+        },
+        {
+            "id": 7,
+            "thumb": "13.jpg"
+        },
+        {
+            "id": 8,
+            "thumb": "10.jpg"
+        },
+        {
+            "id": 9,
+            "thumb": "11.jpg"
+        },
+        {
+            "id": 10,
+            "thumb": "12.jpg"
+        },
+        {
+            "id": 11,
+            "thumb": "13.jpg"
+        },
+        {
+            "id": 12,
+            "thumb": "10.jpg"
+        },
+        {
+            "id": 13,
+            "thumb": "11.jpg"
+        },
+        {
+            "id": 14,
+            "thumb": "12.jpg"
+        },
+        {
+            "id": 15,
+            "thumb": "13.jpg"
+        },
+        {
+            "id": 16,
+            "thumb": "10.jpg"
+        }
+    ]
+}

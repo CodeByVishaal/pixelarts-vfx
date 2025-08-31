@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "category": "Tech",
+        "thumb": "2.png",
+        "website": "access.org"
+    },
+    {
+        "id": 2,
+        "category": "Solution",
+        "thumb": "3.png",
+        "website": "nexttech.it"
+    },
+    {
+        "id": 3,
+        "category": "Brand",
+        "thumb": "4.png",
+        "website": "teamapt.tech"
+    },
+    {
+        "id": 4,
+        "category": "Tech",
+        "thumb": "5.png",
+        "website": "muaast.io"
+    },
+    {
+        "id": 5,
+        "category": "Design",
+        "thumb": "12.png",
+        "website": "wattse.com"
+    }
+]

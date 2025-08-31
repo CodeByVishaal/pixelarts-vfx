@@ -1,0 +1,102 @@
+{
+    "monthlyPlans": [
+        {
+            "id": 1,
+            "title": "Basic Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Number of inbound links",
+                "Site speed",
+                "Keyword usage",
+                "Automated management",
+                "Enterprise integrations"
+            ],
+            "priceOriginal": null,
+            "priceDiscounted": 25,
+            "currency": "USD",
+            "billingCycle": "Monthly"
+        },
+        {
+            "id": 2,
+            "title": "Growth Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Email Newsletter",
+                "Marketing Campaigns",
+                "Traffic Generation",
+                "Local video issuance",
+                "Automated management"
+            ],
+            "priceOriginal": 56,
+            "priceDiscounted": 42,
+            "currency": "USD",
+            "billingCycle": "Monthly"
+        },
+        {
+            "id": 3,
+            "title": "Elite Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Social Media Audit",
+                "Audience Research",
+                "Monthly Report",
+                "5 Social Accounts",
+                "Ad Account Setup"
+            ],
+            "priceOriginal": 60,
+            "priceDiscounted": 52,
+            "currency": "USD",
+            "billingCycle": "Monthly"
+        }
+    ],
+    "yearlyPlans": [
+        {
+            "id": 1,
+            "title": "Basic Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Number of inbound links",
+                "Site speed",
+                "Keyword usage",
+                "Automated management",
+                "Enterprise integrations"
+            ],
+            "priceOriginal": null,
+            "priceDiscounted": 48,
+            "currency": "USD",
+            "billingCycle": "Monthly"
+        },
+        {
+            "id": 2,
+            "title": "Growth Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Email Newsletter",
+                "Marketing Campaigns",
+                "Traffic Generation",
+                "Local video issuance",
+                "Automated management"
+            ],
+            "priceOriginal": 76,
+            "priceDiscounted": 59,
+            "currency": "USD",
+            "billingCycle": "Monthly"
+        },
+        {
+            "id": 3,
+            "title": "Elite Pack",
+            "description": "Cancel or Pause anytime",
+            "features": [
+                "Social Media Audit",
+                "Audience Research",
+                "Monthly Report",
+                "5 Social Accounts",
+                "Ad Account Setup"
+            ],
+            "priceOriginal": 95,
+            "priceDiscounted": 86,
+            "currency": "USD",
+            "billingCycle": "Yearly"
+        }
+    ]
+}

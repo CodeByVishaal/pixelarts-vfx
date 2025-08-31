@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "modal": "modalOne",
+        "thumb": "8.jpg",
+        "thumbFull": "8-full.jpg",
+        "titleFirst": "We craft",
+        "titleLast": "satisfy design",
+        "textFirst": "Dixor specialized in transforming modern & digital",
+        "textLast": "Business with a full site of service",
+        "tags": [
+            "Artificial",
+            "Machine"
+        ]
+    },
+    {
+        "id": 2,
+        "modal": "modalTwo",
+        "thumb": "9.jpg",
+        "thumbFull": "9-full.jpg",
+        "titleFirst": "Creative",
+        "titleLast": "Digital Agency",
+        "textFirst": "Dixor specialized in transforming modern & digital",
+        "textLast": "Business with a full site of service",
+        "tags": [
+            "Ranking",
+            "Growth"
+        ]
+    },
+    {
+        "id": 3,
+        "modal": "modalThree",
+        "thumb": "7.jpg",
+        "thumbFull": "7-full.jpg",
+        "titleFirst": "Digital",
+        "titleLast": "Tech Agency",
+        "textFirst": "Dixor specialized in transforming modern & digital",
+        "textLast": "Business with a full site of service",
+        "tags": [
+            "Design",
+            "Artificial"
+        ]
+    }
+]
