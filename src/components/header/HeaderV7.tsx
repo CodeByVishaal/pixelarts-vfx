@@ -31,7 +31,12 @@ const HeaderV7 = () => {
                 <i className="fa fa-bars" />
               </button>
               <Link className="navbar-brand" to="/">
-                <img src={logoLight} className="logo logo-display" alt="Logo" />
+                <img
+                  className="regular-img object-scale-down"
+                  src={logoLight}
+                  alt="Image Not Found"
+                  style={{ width: "120px", height: "80px" }}
+                />
                 <img
                   src={logoLight}
                   className="logo logo-scrolled"

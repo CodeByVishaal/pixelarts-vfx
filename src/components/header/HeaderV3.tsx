@@ -33,9 +33,10 @@ const HeaderV3 = () => {
                 </button>
                 <Link className="navbar-brand" to="/">
                   <img
+                    className="regular-img object-scale-down"
                     src={logoLight}
-                    className="logo logo-display"
-                    alt="Logo"
+                    alt="Image Not Found"
+                    style={{ width: "120px", height: "80px" }}
                   />
                   <img
                     src={logoLight}

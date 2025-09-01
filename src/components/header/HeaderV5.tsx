@@ -28,7 +28,12 @@ const HeaderV5 = () => {
             <div className="col-xl-2 col-lg-3">
               <div className="navbar-header">
                 <Link className="navbar-brand" to="/">
-                  <img src={logoLight} className="logo" alt="Logo" />
+                  <img
+                    className="regular-img object-scale-down"
+                    src={logoLight}
+                    alt="Image Not Found"
+                    style={{ width: "120px", height: "80px" }}
+                  />
                   <img src={logo} className="logo-dark" alt="Logo" />
                 </Link>
               </div>

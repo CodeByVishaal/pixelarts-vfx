@@ -18,9 +18,10 @@ const FooterV2 = ({ sectionClass }: DataType) => {
               <div className="col-lg-6 footer-item about pr-120 pr-md-15 pr-xs-15">
                 <div className="top">
                   <img
-                    className="regular-img"
+                    className="regular-img object-scale-down"
                     src={logoLight}
                     alt="Image Not Found"
+                    style={{ width: "120px", height: "80px" }}
                   />
                   <img className="light-img" src={logo} alt="Image Not Found" />
                 </div>
