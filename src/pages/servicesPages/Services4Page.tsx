@@ -4,6 +4,7 @@ import DarkClass from "../../components/classes/DarkClass";
 import LayoutV1 from "../../components/layouts/LayoutV1";
 import ServicesV5 from "../../components/services/ServicesV5";
 import ThemeDark from "../../components/switcher/ThemeDark";
+import ImageSlider from "../../components/ImageSlider";
 
 const Services4Page = () => {
   return (
@@ -15,6 +16,7 @@ const Services4Page = () => {
       <LayoutV1>
         <Breadcrumb title="Our Services" breadCrumb="services" />
         <ServicesV5 sectionClass="bg-gray" />
+        <ImageSlider />
         <DarkClass />
         <ThemeDark />
       </LayoutV1>

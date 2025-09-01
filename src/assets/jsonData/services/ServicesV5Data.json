@@ -2,37 +2,31 @@
     {
         "id": 1,
         "number": "01",
-        "title": "Digital Marketing",
-        "thumb": "19.jpg"
+        "title": "Rotoscope",
+        "thumb": "Rotoscope.png"
     },
     {
         "id": 2,
         "number": "02",
-        "title": "Design",
-        "thumb": "35.jpg"
+        "title": "Paint Prep",
+        "thumb": "Paintprep.jpeg"
     },
     {
         "id": 3,
         "number": "03",
-        "title": "Branding Solutions",
-        "thumb": "21.jpg"
+        "title": "Cosmetic Fixes",
+        "thumb": "Cosmetic_Fixes.png"
     },
     {
         "id": 4,
         "number": "04",
-        "title": "Development",
-        "thumb": "33.jpg"
+        "title": "Compositing",
+        "thumb": "Compositing.png"
     },
     {
         "id": 5,
         "number": "05",
-        "title": "Growth Tracking",
-        "thumb": "34.jpg"
-    },
-    {
-        "id": 6,
-        "number": "06",
-        "title": "Consultant",
-        "thumb": "36.jpg"
+        "title": "Matchmove",
+        "thumb": "MatchMove.jpeg"
     }
 ]

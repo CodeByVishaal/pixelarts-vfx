@@ -41,7 +41,6 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
       style={{
         maxWidth: "800px",
         height: "400px",
-        cursor: "col-resize",
         overflow: "hidden",
         userSelect: "none", // 🚫 disable text/image selection
       }}
