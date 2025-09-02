@@ -30,6 +30,7 @@ import { AdminProvider } from "./contexts/AdminContext";
 import AdminDashboard from "./pages/adminpages/AdminDashboard";
 import AdminLogin from "./pages/adminpages/AdminLogin";
 import ProtectedRoute from "./ProtectedRoute";
+import ShowreelPage from "./pages/showreelpages/ShowReelPage";
 
 const Routers = () => {
   return (
@@ -68,6 +69,7 @@ const Routers = () => {
             path="/project-details-light/:id"
             element={<ProjectDetailsLightPage />}
           ></Route>
+          <Route path="/showreel" element={<ShowreelPage />}></Route>
           <Route
             path="/contact-us-light"
             element={<ContactUsLightPage />}
