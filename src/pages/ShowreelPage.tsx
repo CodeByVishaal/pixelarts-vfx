@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import FooterV3 from "../../components/footer/FooterV3";
-import HeaderV1 from "../../components/header/HeaderV1";
-import { useAdmin } from "../../contexts/AdminContext";
+import FooterV3 from "../components/footer/FooterV3";
+import HeaderV1 from "../components/header/HeaderV1";
+import { useAdmin } from "../contexts/AdminContext";
 
-const ShowReelPage = () => {
+const ShowreelPage = () => {
   const { mediaItems } = useAdmin();
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
@@ -406,4 +406,4 @@ const ShowReelPage = () => {
   );
 };
 
-export default ShowReelPage;
+export default ShowreelPage;
