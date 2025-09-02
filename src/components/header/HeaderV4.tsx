@@ -1,11 +1,10 @@
-import FooterSocial from "../social/FooterSocial";
-import logo from "/assets/img/logo.png";
-import logoLight from "/assets/img/logo-light.png";
 import { Link } from "react-router-dom";
-import SidebarMenu from "./SidebarMenu";
+import useSidebarInfo from "../../hooks/useSidebarInfo";
 import useSidebarMenu from "../../hooks/useSidebarMenu";
 import useStickyMenu from "../../hooks/useStickyMenu";
-import useSidebarInfo from "../../hooks/useSidebarInfo";
+import FooterSocial from "../social/FooterSocial";
+import SidebarMenu from "./SidebarMenu";
+import logoLight from "/assets/img/logo-light.png";
 
 const HeaderV4 = () => {
   const { isOpen, openMenu, closeMenu } = useSidebarMenu();
@@ -30,7 +29,6 @@ const HeaderV4 = () => {
                     alt="Image Not Found"
                     style={{ width: "120px", height: "80px" }}
                   />
-                  <img src={logo} className="logo-dark" alt="Logo" />
                 </Link>
               </div>
             </div>

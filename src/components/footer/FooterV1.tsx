@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import NewsletterV2 from "../newsletter/NewsletterV2";
 import FooterSocial from "../social/FooterSocial";
 import logoLight from "/assets/img/pixelart-logo.png";
-import logo from "/assets/img/logo.png";
 
 interface DataType {
   sectionClass?: string;
@@ -23,7 +22,11 @@ const FooterV1 = ({ sectionClass }: DataType) => {
                     alt="Image Not Found"
                     style={{ width: "120px", height: "80px" }}
                   />
-                  <img className="light-img" src={logo} alt="Image Not Found" />
+                  <img
+                    className="light-img"
+                    src={logoLight}
+                    alt="Image Not Found"
+                  />
                 </div>
                 <ul className="address-list">
                   <li>

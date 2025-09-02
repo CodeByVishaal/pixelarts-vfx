@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import logoLight from "/assets/img/pixelart-logo.png";
-import logo from "/assets/img/logo.png";
-import MainMenu from "./MainMenu";
-import useSubMenuToggle from "../../hooks/useSubMenuToggle";
-import useSidebarMenu from "../../hooks/useSidebarMenu";
-import SidebarInfo from "./SidebarInfo";
 import useSidebarInfo from "../../hooks/useSidebarInfo";
+import useSidebarMenu from "../../hooks/useSidebarMenu";
+import useSubMenuToggle from "../../hooks/useSubMenuToggle";
+import MainMenu from "./MainMenu";
+import SidebarInfo from "./SidebarInfo";
+import logoLight from "/assets/img/pixelart-logo.png";
 
 const HeaderV8 = () => {
   const { isOpen, openMenu, closeMenu } = useSidebarMenu();
@@ -49,7 +48,6 @@ const HeaderV8 = () => {
               id="navbar-menu"
             >
               <img className="regular-img" src={logoLight} alt="Logo" />
-              <img className="light-img" src={logo} alt="Logo" />
               <button
                 type="button"
                 className="navbar-toggle"

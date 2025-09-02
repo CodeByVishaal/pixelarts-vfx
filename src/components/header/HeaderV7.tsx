@@ -1,10 +1,9 @@
-import MainMenu from "./MainMenu";
 import { Link } from "react-router-dom";
-import logo from "/assets/img/logo.png";
-import logoLight from "/assets/img/pixelart-logo.png";
 import useSidebarMenu from "../../hooks/useSidebarMenu";
-import useSubMenuToggle from "../../hooks/useSubMenuToggle";
 import useStickyMenu from "../../hooks/useStickyMenu";
+import useSubMenuToggle from "../../hooks/useSubMenuToggle";
+import MainMenu from "./MainMenu";
+import logoLight from "/assets/img/pixelart-logo.png";
 
 const HeaderV7 = () => {
   const { isOpen, openMenu, closeMenu } = useSidebarMenu();
@@ -42,7 +41,6 @@ const HeaderV7 = () => {
                   className="logo logo-scrolled"
                   alt="Logo"
                 />
-                <img src={logo} className="logo-dark" alt="Logo" />
               </Link>
             </div>
             <div
@@ -52,7 +50,6 @@ const HeaderV7 = () => {
               id="navbar-menu"
             >
               <img className="regular-img" src={logoLight} alt="Logo" />
-              <img className="light-img" src={logo} alt="Logo" />
               <button
                 type="button"
                 className="navbar-toggle"

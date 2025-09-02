@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
-import logo from "/assets/img/logo.png";
-import logoLight from "/assets/img/logo-light.png";
-import MainMenuV2 from "./MainMenuV2";
-import HeaderNewsLetter from "./HeaderNewsLetter";
-import SocialShareV3 from "../social/SocialShareV3";
-import useSidebarMenu from "../../hooks/useSidebarMenu";
 import useSidebarInfo from "../../hooks/useSidebarInfo";
-import useSubMenuToggleV2 from "../../hooks/useSubMenuToggleV2";
+import useSidebarMenu from "../../hooks/useSidebarMenu";
 import useStickyMenu from "../../hooks/useStickyMenu";
+import useSubMenuToggleV2 from "../../hooks/useSubMenuToggleV2";
+import SocialShareV3 from "../social/SocialShareV3";
+import HeaderNewsLetter from "./HeaderNewsLetter";
+import MainMenuV2 from "./MainMenuV2";
+import logoLight from "/assets/img/logo-light.png";
 
 const HeaderV5 = () => {
   const { isOpen } = useSidebarMenu();
@@ -34,7 +33,6 @@ const HeaderV5 = () => {
                     alt="Image Not Found"
                     style={{ width: "120px", height: "80px" }}
                   />
-                  <img src={logo} className="logo-dark" alt="Logo" />
                 </Link>
               </div>
             </div>
