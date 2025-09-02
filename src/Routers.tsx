@@ -26,46 +26,69 @@ import TeamLightPage from "./pages/innerPages/TeamLightPage";
 import NotFoundPage from "./pages/innerPages/NotFoundPage";
 import Services4Page from "./pages/servicesPages/Services4Page";
 
+import { AdminProvider } from "./contexts/AdminContext";
+import AdminDashboard from "./pages/adminpages/AdminDashboard";
+import AdminLogin from "./pages/adminpages/AdminLogin";
+import ProtectedRoute from "./ProtectedRoute";
+
 const Routers = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home9 />}></Route>
-        {/* Inner Pages */}
-        <Route path="/about-us" element={<AboutUsPage />}></Route>
-        <Route path="/project" element={<ProjectPage />}></Route>
-        <Route
-          path="/project-details/:id"
-          element={<ProjectDetailsPage />}
-        ></Route>
-        <Route path="/contact-us" element={<ContactUsPage />}></Route>
+      <AdminProvider>
+        <Routes>
+          <Route path="/" element={<Home9 />}></Route>
+          {/* Inner Pages */}
+          <Route path="/about-us" element={<AboutUsPage />}></Route>
+          <Route path="/project" element={<ProjectPage />}></Route>
+          <Route
+            path="/project-details/:id"
+            element={<ProjectDetailsPage />}
+          ></Route>
+          <Route path="/contact-us" element={<ContactUsPage />}></Route>
 
-        {/* Inner Light  */}
-        <Route path="/about-us-light" element={<AboutUsLightPage />}></Route>
-        <Route path="/about-2-light" element={<About2LightPage />}></Route>
-        <Route path="/team-light" element={<TeamLightPage />}></Route>
-        <Route path="/team-2-light" element={<Team2LightPage />}></Route>
-        <Route
-          path="/team-details-light/:id"
-          element={<TeamDetailsLightPage />}
-        ></Route>
-        <Route path="/project-light" element={<ProjectLightPage />}></Route>
-        <Route path="/project-2-light" element={<Project2LightPage />}></Route>
-        <Route path="/project-3-light" element={<Project3LightPage />}></Route>
-        <Route
-          path="/project-details-light/:id"
-          element={<ProjectDetailsLightPage />}
-        ></Route>
-        <Route
-          path="/contact-us-light"
-          element={<ContactUsLightPage />}
-        ></Route>
-        <Route path="/faq-light" element={<FaqLightPage />}></Route>
+          {/* Inner Light  */}
+          <Route path="/about-us-light" element={<AboutUsLightPage />}></Route>
+          <Route path="/about-2-light" element={<About2LightPage />}></Route>
+          <Route path="/team-light" element={<TeamLightPage />}></Route>
+          <Route path="/team-2-light" element={<Team2LightPage />}></Route>
+          <Route
+            path="/team-details-light/:id"
+            element={<TeamDetailsLightPage />}
+          ></Route>
+          <Route path="/project-light" element={<ProjectLightPage />}></Route>
+          <Route
+            path="/project-2-light"
+            element={<Project2LightPage />}
+          ></Route>
+          <Route
+            path="/project-3-light"
+            element={<Project3LightPage />}
+          ></Route>
+          <Route
+            path="/project-details-light/:id"
+            element={<ProjectDetailsLightPage />}
+          ></Route>
+          <Route
+            path="/contact-us-light"
+            element={<ContactUsLightPage />}
+          ></Route>
+          <Route path="/faq-light" element={<FaqLightPage />}></Route>
 
-        <Route path="/services" element={<Services4Page />}></Route>
+          <Route path="/services" element={<Services4Page />}></Route>
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />}></Route>
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          ></Route>
 
-        <Route path="*" element={<NotFoundPage />}></Route>
-      </Routes>
+          <Route path="*" element={<NotFoundPage />}></Route>
+        </Routes>
+      </AdminProvider>
     </>
   );
 };
