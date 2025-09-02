@@ -5,7 +5,7 @@ import FooterV3 from "../../components/footer/FooterV3";
 import HeaderV1 from "../../components/header/HeaderV1";
 import { useAdmin } from "../../contexts/AdminContext";
 
-const ShowreelPage = () => {
+const ShowReelPage = () => {
   const { mediaItems } = useAdmin();
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
@@ -406,4 +406,4 @@ const ShowreelPage = () => {
   );
 };
 
-export default ShowreelPage;
+export default ShowReelPage;
