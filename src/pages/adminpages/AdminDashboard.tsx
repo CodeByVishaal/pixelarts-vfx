@@ -106,55 +106,78 @@ const AdminDashboard = () => {
 
       <div
         className="admin-dashboard"
-        style={{ minHeight: "100vh", backgroundColor: "#f8f9fa" }}
+        style={{ minHeight: "100vh", backgroundColor: "#202020" }}
       >
         {/* Header */}
         <div
           className="dashboard-header"
           style={{
-            backgroundColor: "#0e0f11",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
-            padding: "1rem 2rem",
-            borderBottom: "1px solid #e9ecef",
+            backgroundColor: "#1e1e1e", // softer dark gray
+            padding: "16px 24px",
+            borderBottom: "1px solid #2a2a2a",
             position: "sticky",
             top: 0,
             zIndex: 1000,
           }}
         >
           <div className="d-flex justify-content-between align-items-center flex-wrap">
+            {/* Title */}
             <div>
-              <h2 style={{ margin: 0, color: "#e30513", fontWeight: "600" }}>
+              <h2 style={{ margin: 0, color: "#f5f5f5", fontWeight: "600" }}>
                 Admin Dashboard
               </h2>
-              <p style={{ margin: 0, color: "white", fontSize: "14px" }}>
+              <p style={{ margin: 0, color: "#9ca3af", fontSize: "14px" }}>
                 Manage your media content
               </p>
             </div>
+
+            {/* Actions */}
             <div className="d-flex gap-2 align-items-center flex-wrap">
+              {/* Showreel */}
               <Link
                 to="/showreel"
-                className="btn btn-outline-primary btn-sm"
-                style={{ borderRadius: "8px", padding: "8px 16px" }}
+                className="btn btn-sm"
+                style={{
+                  borderRadius: "8px",
+                  padding: "8px 16px",
+                  backgroundColor: "#2d2d2d",
+                  marginRight: "30px",
+                  color: "#e5e7eb",
+                  border: "1px solid #3b82f6",
+                  textDecoration: "none",
+                }}
               >
                 📺 View Showreel
               </Link>
+
+              {/* Add Media */}
               <button
                 onClick={() => setShowUploadModal(true)}
-                className="btn btn-primary btn-sm"
+                className="btn btn-sm"
                 style={{
                   borderRadius: "8px",
                   padding: "8px 16px",
                   background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
+                  color: "#ffffff",
                   border: "none",
+                  marginRight: "30px",
                 }}
               >
                 ➕ Add Media
               </button>
+
+              {/* Logout */}
               <button
                 onClick={handleLogout}
-                className="btn btn-outline-danger btn-sm"
-                style={{ borderRadius: "8px", padding: "8px 16px" }}
+                className="btn btn-sm"
+                style={{
+                  borderRadius: "8px",
+                  padding: "8px 16px",
+                  backgroundColor: "#ef4444",
+                  color: "#ffffff",
+                  border: "none",
+                }}
               >
                 🚪 Logout
               </button>
@@ -162,7 +185,10 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        <div className="container-fluid py-4">
+        <div
+          style={{ backgroundColor: "#202020" }}
+          className="container-fluid py-4"
+        >
           {/* Stats Cards */}
           <div className="row mb-4">
             {[
@@ -175,7 +201,7 @@ const AdminDashboard = () => {
               {
                 title: "Images",
                 value: stats.images,
-                icon: "🖼️",
+                icon: "🖼",
                 color: "#28a745",
               },
               {
@@ -196,18 +222,33 @@ const AdminDashboard = () => {
                   className="card border-0 h-100"
                   style={{
                     borderRadius: "15px",
-                    boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
+                    boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
+                    backgroundColor: "#202020", // dashboard card base
                     transition: "transform 0.3s ease",
                   }}
                 >
-                  <div className="card-body text-center p-4">
-                    <div className="mb-3" style={{ fontSize: "2.5rem" }}>
+                  <div
+                    className="card-body text-center p-4"
+                    style={{
+                      backgroundColor: "#272727", // inner section
+                      borderRadius: "12px",
+                      boxShadow: "0 4px 10px rgba(0, 0, 0, 0.4)",
+                      border: "1px solid #333",
+                    }}
+                  >
+                    <div
+                      className="mb-3"
+                      style={{
+                        fontSize: "2.5rem",
+                        color: "#7b2ff7", // purple accent for icons
+                      }}
+                    >
                       {stat.icon}
                     </div>
                     <h3
                       className="mb-1"
                       style={{
-                        color: stat.color,
+                        color: stat.color || "#e60000",
                         fontWeight: "700",
                         fontSize: "2rem",
                       }}
@@ -215,8 +256,11 @@ const AdminDashboard = () => {
                       {stat.value}
                     </h3>
                     <p
-                      className="text-muted mb-0"
-                      style={{ fontWeight: "500" }}
+                      className="mb-0"
+                      style={{
+                        fontWeight: "500",
+                        color: "#cccccc", // muted text for dark mode
+                      }}
                     >
                       {stat.title}
                     </p>
@@ -234,15 +278,25 @@ const AdminDashboard = () => {
               boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
             }}
           >
-            <div className="card-body p-4">
+            <div
+              className="card-body p-4"
+              style={{
+                backgroundColor: "#272727", // card background
+                borderRadius: "12px",
+                border: "1px solid #333333", // subtle border
+              }}
+            >
               <div className="row align-items-center">
+                {/* Search Bar */}
                 <div className="col-md-4">
                   <div className="input-group">
                     <span
                       className="input-group-text"
                       style={{
                         borderRadius: "8px 0 0 8px",
-                        border: "2px solid #e1e5e9",
+                        border: "2px solid #7b2ff7",
+                        backgroundColor: "#202020",
+                        color: "#ffffff",
                       }}
                     >
                       🔍
@@ -255,39 +309,57 @@ const AdminDashboard = () => {
                       onChange={(e) => setSearchTerm(e.target.value)}
                       style={{
                         borderRadius: "0 8px 8px 0",
-                        border: "2px solid #e1e5e9",
+                        border: "2px solid #7b2ff7",
                         borderLeft: "none",
+                        backgroundColor: "#202020",
+                        color: "#ffffff",
                       }}
                     />
                   </div>
                 </div>
+
+                {/* Filter Type */}
                 <div className="col-md-3">
                   <select
                     className="form-select"
                     value={filterType}
                     onChange={(e) => setFilterType(e.target.value as any)}
-                    style={{ borderRadius: "8px", border: "2px solid #e1e5e9" }}
+                    style={{
+                      borderRadius: "8px",
+                      border: "2px solid #9f44d3",
+                      backgroundColor: "#202020",
+                      color: "#ffffff",
+                    }}
                   >
                     <option value="all">All Types</option>
                     <option value="image">Images Only</option>
                     <option value="video">Videos Only</option>
                   </select>
                 </div>
+
+                {/* Sort By */}
                 <div className="col-md-3">
                   <select
                     className="form-select"
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
-                    style={{ borderRadius: "8px", border: "2px solid #e1e5e9" }}
+                    style={{
+                      borderRadius: "8px",
+                      border: "2px solid #e60000",
+                      backgroundColor: "#202020",
+                      color: "#ffffff",
+                    }}
                   >
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
                     <option value="title">By Title</option>
                   </select>
                 </div>
+
+                {/* Item Counter */}
                 <div className="col-md-2">
                   <div className="text-end">
-                    <small className="text-muted">
+                    <small style={{ color: "#aaaaaa" }}>
                       {filteredAndSortedItems.length} of {mediaItems.length}
                     </small>
                   </div>
@@ -304,30 +376,45 @@ const AdminDashboard = () => {
               boxShadow: "0 5px 15px rgba(0,0,0,0.08)",
             }}
           >
+            {/* Card Header */}
             <div
-              className="card-header border-0 bg-white"
+              className="card-header border-0"
               style={{
+                backgroundColor: "#272727", // card header bg
                 borderTopLeftRadius: "15px",
                 borderTopRightRadius: "15px",
                 padding: "1.5rem",
+                borderBottom: "1px solid #333333",
               }}
             >
               <div className="d-flex justify-content-between align-items-center">
                 <h4
                   className="mb-0"
-                  style={{ color: "#333", fontWeight: "600" }}
+                  style={{ color: "#ffffff", fontWeight: "600" }}
                 >
                   Media Gallery
                 </h4>
                 <span
-                  className="badge bg-primary"
-                  style={{ fontSize: "12px", padding: "6px 12px" }}
+                  className="badge"
+                  style={{
+                    fontSize: "12px",
+                    padding: "6px 12px",
+                    borderRadius: "8px",
+                    background:
+                      "linear-gradient(135deg, #7b2ff7 0%, #9f44d3 100%)",
+                    color: "#ffffff",
+                  }}
                 >
                   {filteredAndSortedItems.length} items
                 </span>
               </div>
             </div>
-            <div className="card-body" style={{ padding: "1.5rem" }}>
+
+            {/* Card Body */}
+            <div
+              className="card-body"
+              style={{ padding: "1.5rem", backgroundColor: "#202020" }} // main body bg
+            >
               {filteredAndSortedItems.length === 0 ? (
                 <div className="text-center py-5">
                   <div style={{ fontSize: "4rem", opacity: 0.3 }}>
@@ -338,16 +425,23 @@ const AdminDashboard = () => {
                       ? "No matching media found"
                       : "No media uploaded yet"}
                   </h5>
-                  <p className="text-primary">
+                  <p style={{ color: "#aaaaaa" }}>
                     {searchTerm
                       ? "Try adjusting your search or filter criteria"
                       : 'Click "Add Media" to upload your first item'}
                   </p>
                   {searchTerm && (
                     <button
-                      className="btn btn-outline-primary"
+                      className="btn"
                       onClick={() => setSearchTerm("")}
-                      style={{ borderRadius: "20px" }}
+                      style={{
+                        borderRadius: "20px",
+                        border: "1px solid #974fee",
+                        color: "#974fee",
+                        backgroundColor: "transparent",
+                        padding: "6px 14px",
+                        fontWeight: "500",
+                      }}
                     >
                       Clear Search
                     </button>
@@ -363,27 +457,28 @@ const AdminDashboard = () => {
                         style={{
                           borderRadius: "12px",
                           overflow: "hidden",
-                          boxShadow: "0 3px 10px rgba(0,0,0,0.1)",
+                          backgroundColor: "#272727", // card bg for items
+                          boxShadow: "0 3px 10px rgba(0,0,0,0.5)",
                           transition: "all 0.3s ease",
                         }}
                         onMouseEnter={(e) => {
                           (e.currentTarget as HTMLElement).style.transform =
                             "translateY(-5px)";
                           (e.currentTarget as HTMLElement).style.boxShadow =
-                            "0 15px 30px rgba(0,0,0,0.15)";
+                            "0 15px 30px rgba(0,0,0,0.6)";
                         }}
                         onMouseLeave={(e) => {
                           (e.currentTarget as HTMLElement).style.transform =
                             "translateY(0)";
                           (e.currentTarget as HTMLElement).style.boxShadow =
-                            "0 3px 10px rgba(0,0,0,0.1)";
+                            "0 3px 10px rgba(0,0,0,0.5)";
                         }}
                       >
                         <div
                           style={{
                             position: "relative",
                             paddingTop: "60%",
-                            background: "#0e0f11",
+                            background: "#202020", // media preview bg
                             overflow: "hidden",
                           }}
                         >
@@ -402,7 +497,7 @@ const AdminDashboard = () => {
                               }}
                               onError={(e) => {
                                 (e.target as HTMLImageElement).src =
-                                  "https://via.placeholder.com/400x240/667eea/ffffff?text=VFX+Image";
+                                  "https://via.placeholder.com/400x240/7b2ff7/ffffff?text=VFX+Image";
                               }}
                             />
                           ) : (
@@ -440,18 +535,14 @@ const AdminDashboard = () => {
                                   fontSize: "1.5rem",
                                 }}
                               >
-                                ▶️
+                                ▶
                               </div>
                             </>
                           )}
 
                           {/* Type Badge */}
                           <span
-                            className={`badge position-absolute ${
-                              item.type === "image"
-                                ? "bg-success"
-                                : "bg-primary"
-                            }`}
+                            className="badge position-absolute"
                             style={{
                               top: "10px",
                               right: "10px",
@@ -459,6 +550,11 @@ const AdminDashboard = () => {
                               padding: "4px 8px",
                               borderRadius: "12px",
                               fontWeight: "600",
+                              background:
+                                item.type === "image"
+                                  ? "linear-gradient(135deg, #28a745, #3ddc97)"
+                                  : "linear-gradient(135deg, #7b2ff7, #9f44d3)",
+                              color: "#ffffff",
                             }}
                           >
                             {item.type.toUpperCase()}
@@ -472,7 +568,7 @@ const AdminDashboard = () => {
                           <h6
                             className="card-title mb-2"
                             style={{
-                              color: "#333",
+                              color: "#ffffff",
                               fontWeight: "600",
                               fontSize: "1rem",
                               lineHeight: "1.3",
@@ -481,7 +577,7 @@ const AdminDashboard = () => {
                             {item.title}
                           </h6>
                           <p
-                            className="card-text text-muted mb-3"
+                            className="card-text mb-3"
                             style={{
                               fontSize: "13px",
                               lineHeight: "1.4",
@@ -490,6 +586,7 @@ const AdminDashboard = () => {
                               display: "-webkit-box",
                               WebkitLineClamp: 2,
                               WebkitBoxOrient: "vertical",
+                              color: "#aaaaaa",
                             }}
                           >
                             {item.description || "No description available"}
@@ -497,8 +594,7 @@ const AdminDashboard = () => {
 
                           <div className="d-flex justify-content-between align-items-center mb-2">
                             <small
-                              className="text-muted"
-                              style={{ fontSize: "12px" }}
+                              style={{ fontSize: "12px", color: "#999999" }}
                             >
                               {new Date(item.uploadDate).toLocaleDateString(
                                 "en-US",
@@ -512,27 +608,33 @@ const AdminDashboard = () => {
                             <div className="btn-group btn-group-sm">
                               <button
                                 onClick={() => handleEdit(item)}
-                                className="btn btn-outline-primary"
+                                className="btn"
                                 style={{
                                   borderRadius: "6px 0 0 6px",
                                   fontSize: "12px",
                                   padding: "4px 8px",
+                                  border: "1px solid #974fee",
+                                  backgroundColor: "transparent",
+                                  color: "#974fee",
                                 }}
                                 title="Edit"
                               >
-                                ✏️
+                                ✏
                               </button>
                               <button
                                 onClick={() => handleDelete(item.id)}
-                                className="btn btn-outline-danger"
+                                className="btn"
                                 style={{
                                   borderRadius: "0 6px 6px 0",
                                   fontSize: "12px",
                                   padding: "4px 8px",
+                                  border: "1px solid #e60000",
+                                  backgroundColor: "transparent",
+                                  color: "#e60000",
                                 }}
                                 title="Delete"
                               >
-                                🗑️
+                                🗑
                               </button>
                             </div>
                           </div>
