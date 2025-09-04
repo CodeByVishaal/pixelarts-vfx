@@ -38,7 +38,7 @@ const MainMenu = ({ navbarPlacement }: DataType) => {
           </Link>
         </li>
         <li>
-          <Link to="#" className="">
+          <Link to="/showreel" className="">
             Showreel
           </Link>
         </li>

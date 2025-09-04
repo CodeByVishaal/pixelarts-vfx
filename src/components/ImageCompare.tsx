@@ -3,11 +3,13 @@ import React, { useState, useRef } from "react";
 interface ImageCompareProps {
   leftImage: string;
   rightImage: string;
+  height?: string | number;
 }
 
 const ImageCompare: React.FC<ImageCompareProps> = ({
   leftImage,
   rightImage,
+  height = "auto", // default responsive
 }) => {
   const [position, setPosition] = useState(50);
   const [dragging, setDragging] = useState(false);
@@ -21,57 +23,40 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
     setPosition(newX);
   };
 
-  const handleMouseDown = () => setDragging(true);
-  const handleMouseUp = () => setDragging(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (dragging) updatePosition(e.clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (e.touches.length > 0) {
-      updatePosition(e.touches[0].clientX);
-    }
-  };
-
   return (
     <div
       ref={containerRef}
       className="position-relative w-100 mx-auto rounded shadow"
       style={{
-        maxWidth: "800px",
-        height: "400px",
+        width: "100%", // full responsive width
+        height: height === "auto" ? "100%" : height, // dynamic height
+        aspectRatio: "16 / 9", // keeps proportions on resize
         overflow: "hidden",
-        userSelect: "none", // 🚫 disable text/image selection
+        userSelect: "none",
       }}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      onTouchMove={handleTouchMove}
+      onMouseMove={(e) => dragging && updatePosition(e.clientX)}
+      onMouseUp={() => setDragging(false)}
+      onMouseLeave={() => setDragging(false)}
+      onTouchMove={(e) => updatePosition(e.touches[0].clientX)}
     >
       {/* Right Image */}
       <img
         src={rightImage}
         alt="Right"
-        draggable={false} // 🚫 disable image drag ghost
+        draggable={false}
         className="position-absolute top-0 start-0 w-100 h-100"
-        style={{
-          objectFit: "cover",
-          userSelect: "none",
-          pointerEvents: "none",
-        }}
+        style={{ objectFit: "cover", pointerEvents: "none" }}
       />
 
       {/* Left Image */}
       <img
         src={leftImage}
         alt="Left"
-        draggable={false} // 🚫 disable drag
+        draggable={false}
         className="position-absolute top-0 start-0 w-100 h-100"
         style={{
           objectFit: "cover",
           clipPath: `inset(0 ${100 - position}% 0 0)`,
-          userSelect: "none",
           pointerEvents: "none",
         }}
       />
@@ -95,14 +80,13 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
         style={{
           top: "50%",
           left: `${position}%`,
-          width: "40px",
-          height: "40px",
+          width: "30px",
+          height: "30px",
           transform: "translate(-50%, -50%)",
           boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
           cursor: "grab",
-          userSelect: "none",
         }}
-        onMouseDown={handleMouseDown}
+        onMouseDown={() => setDragging(true)}
         onTouchStart={(e) => updatePosition(e.touches[0].clientX)}
       >
         <span className="fw-bold text-muted">↔</span>
