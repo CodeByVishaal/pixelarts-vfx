@@ -8,11 +8,7 @@ interface DataType {
 const ContactV1 = ({ sectionClass }: DataType) => {
   return (
     <>
-      <div
-        className={`contact-area overflow-hidden relative ${
-          sectionClass ? sectionClass : ""
-        }`}
-      >
+      <div className={`contact-area mb-6 ${sectionClass ? sectionClass : ""}`}>
         <div className="container">
           <div className="contact-style-one-items">
             <div className="row">
@@ -21,15 +17,15 @@ const ContactV1 = ({ sectionClass }: DataType) => {
                   <ul className="contact-address">
                     <li>
                       <a className="phone-link" href="tel:+4733378901">
-                        <i className="fas fa-user-headset" /> +4733378901
+                        <i className="fas fa-user-headset" /> +61 432247973
                       </a>
                     </li>
                     <li>
                       <div className="info">
                         <h4>Location</h4>
                         <p>
-                          55 Main Street, The Grand Avenue <br /> 2nd Block, New
-                          York City
+                          13, Tyler crescent Tarneit Vic-3029 Melbourne
+                          Australia
                         </p>
                       </div>
                     </li>

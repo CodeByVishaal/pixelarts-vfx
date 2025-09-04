@@ -14146,9 +14146,9 @@ form.contact-form .form-group textarea:focus {
 }
 
 .maps-area {
-	margin-bottom: -8px;
+	margin-bottom: 0;
 	position: relative;
-	margin-top: -100px;
+	z-index: 1;
 }
 
 .maps-area iframe {
@@ -18770,8 +18770,11 @@ ul.footer-social li a img {
 	}
 
 	.maps-area iframe {
-		min-height: 350px;
-	}
+  width: 100%;
+  height: 450px;       /* good default height */
+  border: 0;
+  display: block;
+}
 
 	/* Footer */
 	.footer-item {
@@ -19698,8 +19701,11 @@ nav.navbar.validnavs .navbar-collapse.collapse.show img.light-img {
 	background: url(/assets/img/shape/5.png);
 }
 
-.contact-area.relative {
-	overflow: inherit !important;
+.contact-area {
+  position: relative;
+  z-index: 2;
+  overflow: visible; /* allow form content */
+  margin-bottom: 40px; /* space before map */
 }
 
 @media only screen and (max-width: 767px) {

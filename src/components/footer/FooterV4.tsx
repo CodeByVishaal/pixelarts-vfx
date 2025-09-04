@@ -31,7 +31,7 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                 <ul className="address-list">
                   <li>
                     <h4>Australia</h4>
-                    <p>Travel World House, Level 7, 17 Jones St, NSW, 2060</p>
+                    <p>13, Tyler crescent Tarneit Vic-3029 Melbourne </p>
                   </li>
                   <li>
                     <h4>Dubai</h4>
@@ -46,7 +46,7 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                       </a>
                     </li>
                     <li>
-                      <a href="tel:+4733378901">+47 333 78 901</a>
+                      <a href="tel:+4733378901">+61 432247973</a>
                     </li>
                   </ul>
                 </div>
