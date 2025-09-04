@@ -56,28 +56,6 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     const savedMediaItems = localStorage.getItem("mediaItems");
     if (savedMediaItems) {
       setMediaItems(JSON.parse(savedMediaItems));
-    } else {
-      // Initialize with some sample data
-      const sampleData: MediaItem[] = [
-        {
-          id: "1",
-          type: "video",
-          url: "https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4",
-          title: "VFX Demo Reel 2024",
-          description: "Our latest visual effects showcase",
-          uploadDate: "2024-01-15",
-        },
-        {
-          id: "2",
-          type: "image",
-          url: "https://via.placeholder.com/800x600/0066cc/ffffff?text=VFX+Project+1",
-          title: "Character Animation",
-          description: "3D character animation project",
-          uploadDate: "2024-01-10",
-        },
-      ];
-      setMediaItems(sampleData);
-      localStorage.setItem("mediaItems", JSON.stringify(sampleData));
     }
   }, []);
 
