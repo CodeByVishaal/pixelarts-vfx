@@ -2,31 +2,51 @@ import React, { useState, useEffect, useRef } from "react";
 import "../assets/css/gallery.css";
 
 const images = [
-  "/assets/img/movieposters/1.jpg",
-  "/assets/img/movieposters/2.jpg",
-  "/assets/img/movieposters/3.jpg",
-  "/assets/img/movieposters/3-1.jpg",
-  "/assets/img/movieposters/4.jpg",
-  "/assets/img/movieposters/5.jpg",
-  "/assets/img/movieposters/6.jpg",
-  "/assets/img/movieposters/6-1.jpg",
-  "/assets/img/movieposters/6-2.jpg",
-  "/assets/img/movieposters/7.jpg",
-  "/assets/img/movieposters/8.jpg",
-  "/assets/img/movieposters/9.jpg",
-  "/assets/img/movieposters/10.jpg",
-  "/assets/img/movieposters/11.jpg",
-  "/assets/img/movieposters/12.jpg",
-  "/assets/img/movieposters/13.jpg",
-  "/assets/img/movieposters/14.jpeg",
-  "/assets/img/movieposters/15.jpg",
-  "/assets/img/movieposters/16.jpg",
-  "/assets/img/movieposters/17.jpg",
-  "/assets/img/movieposters/18.jpg",
-  "/assets/img/movieposters/19.jpg",
+  "/assets/img/posterdesign/1.jpg",
+  "/assets/img/posterdesign/2.jpg",
+  "/assets/img/posterdesign/3.jpg",
+  "/assets/img/posterdesign/4.jpeg",
+  "/assets/img/posterdesign/5.jpg",
+  "/assets/img/posterdesign/6.jpg",
+  "/assets/img/posterdesign/7.jpg",
+  "/assets/img/posterdesign/8.jpg",
+  "/assets/img/posterdesign/9.jpg",
+  "/assets/img/posterdesign/9_1.jpg",
+  "/assets/img/posterdesign/10.jpg",
+  "/assets/img/posterdesign/11.jpg",
+  "/assets/img/posterdesign/12.jpg",
+  "/assets/img/posterdesign/13.jpg",
+  "/assets/img/posterdesign/14.jpg",
+  "/assets/img/posterdesign/15.jpg",
+  "/assets/img/posterdesign/16.jpg",
+  "/assets/img/posterdesign/17.jpg",
+  "/assets/img/posterdesign/18.jpg",
+  "/assets/img/posterdesign/19.jpg",
+  "/assets/img/posterdesign/20.jpg",
+  "/assets/img/posterdesign/21.jpg",
+  "/assets/img/posterdesign/22.jpg",
+  "/assets/img/posterdesign/22_1.jpg",
+  "/assets/img/posterdesign/23.jpg",
+  "/assets/img/posterdesign/24.jpg",
+  "/assets/img/posterdesign/25.jpg",
+  "/assets/img/posterdesign/26.jpg",
+  "/assets/img/posterdesign/27.jpg",
+  "/assets/img/posterdesign/28.jpg",
+  "/assets/img/posterdesign/29.jpg",
+  "/assets/img/posterdesign/30.jpg",
+  "/assets/img/posterdesign/31.jpg",
+  "/assets/img/posterdesign/32.jpg",
+  "/assets/img/posterdesign/32_1.jpg",
+  "/assets/img/posterdesign/33.jpg",
+  "/assets/img/posterdesign/34.jpg",
+  "/assets/img/posterdesign/35.jpg",
+  "/assets/img/posterdesign/36.jpg",
+  "/assets/img/posterdesign/37.jpg",
+  "/assets/img/posterdesign/38.jpg",
+  "/assets/img/posterdesign/39.jpg",
 ];
 
-const MovieGallery: React.FC = () => {
+const PosterDesign: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
   const galleryRef = useRef<HTMLDivElement | null>(null);
@@ -71,7 +91,7 @@ const MovieGallery: React.FC = () => {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <h2 className="text-3xl font-bold text-white mb-8">Movie Projects</h2>
+      <h2 className="text-3xl font-bold text-white mb-8">Poster Designs</h2>
 
       {/* Grid */}
       <div className="gallery-grid">
@@ -137,4 +157,4 @@ const MovieGallery: React.FC = () => {
   );
 };
 
-export default MovieGallery;
+export default PosterDesign;

@@ -3,6 +3,7 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import DarkClass from "../../components/classes/DarkClass";
 import LayoutV1 from "../../components/layouts/LayoutV1";
 import MovieGallery from "../../components/MovieGallery";
+import PosterDesign from "../../components/PosterDesigns";
 import SeriesGallery from "../../components/SeriesGallery";
 import ThemeDark from "../../components/switcher/ThemeDark";
 
@@ -16,6 +17,7 @@ const ProjectPage = () => {
       <LayoutV1>
         <Breadcrumb title="Our Projects" breadCrumb="Projects" />
         <MovieGallery />
+        <PosterDesign />
         <SeriesGallery />
         <DarkClass />
         <ThemeDark />
