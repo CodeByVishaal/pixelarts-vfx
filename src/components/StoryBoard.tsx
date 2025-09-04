@@ -1,128 +1,129 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "../assets/css/gallery.css";
-
-const images = [
-  "/assets/img/storyboard/1.jpg",
-  "/assets/img/storyboard/5.jpg",
-  "/assets/img/storyboard/9.jpg",
-  "/assets/img/storyboard/11.jpg",
-  "/assets/img/storyboard/13.jpg",
-  "/assets/img/storyboard/18.jpg",
-];
-
-const images2 = [
-  "/assets/img/finalout/1.jpg",
-  "/assets/img/finalout/5.jpg",
-  "/assets/img/finalout/9.jpg",
-  "/assets/img/finalout/11.jpg",
-  "/assets/img/finalout/13.jpg",
-  "/assets/img/finalout/18.jpg",
-];
+import ImageCompare from "./ImageCompare";
 
 const StoryBoard: React.FC = () => {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [visible, setVisible] = useState(false);
-  const galleryRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div
-      ref={galleryRef}
-      className={`gallery-container mb-10 text-center transition-all duration-1000 ${
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
-    >
-      {/* Title */}
-      <h2 className="text-3xl font-bold text-white mb-8">Story Board</h2>
-
-      {/* Gallery Grid */}
-      <div className="gallery-grid gap-6 px-6">
-        {images.map((src, idx) => (
-          <div
-            className="thumb transform transition-transform duration-700 hover:scale-105 flex justify-center"
-            key={idx}
-          >
-            <img
-              src={src}
-              alt={`Gallery ${idx}`}
-              className="rounded-lg shadow-lg max-h-60 w-auto object-contain cursor-pointer"
-              onClick={() => setSelected(src)}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selected && (
-        <div
-          className="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setSelected(null)}
-        >
-          <span className="close absolute top-4 right-6 text-4xl text-white cursor-pointer">
-            &times;
-          </span>
-          <img
-            className="modal-content max-w-[80%] max-h-[80vh] w-auto h-auto object-contain rounded-lg shadow-xl"
-            src={selected}
-            alt="Preview"
+    <div className="container my-5">
+      <h2 className="text-center mb-4" style={{ color: "#fff" }}>
+        Story Board
+      </h2>
+      <div className="row g-4">
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/1.jpg"
+            rightImage="/assets/img/finalout/1.jpg"
           />
         </div>
-      )}
-
-      <h2 className="text-3xl font-bold text-white mt-10 mb-8">Final Out</h2>
-
-      {/* Gallery Grid */}
-      <div className="gallery-grid gap-6 px-6">
-        {images2.map((src, idx) => (
-          <div
-            className="thumb transform transition-transform duration-700 hover:scale-105 flex justify-center"
-            key={idx}
-          >
-            <img
-              src={src}
-              alt={`Gallery ${idx}`}
-              className="rounded-lg shadow-lg max-h-60 w-auto object-contain cursor-pointer"
-              onClick={() => setSelected(src)}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selected && (
-        <div
-          className="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setSelected(null)}
-        >
-          <span className="close absolute top-4 right-6 text-4xl text-white cursor-pointer">
-            &times;
-          </span>
-          <img
-            className="modal-content max-w-[80%] max-h-[80vh] w-auto h-auto object-contain rounded-lg shadow-xl"
-            src={selected}
-            alt="Preview"
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/2.jpg"
+            rightImage="/assets/img/finalout/2.jpg"
           />
         </div>
-      )}
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/3.jpg"
+            rightImage="/assets/img/finalout/3.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/4.jpg"
+            rightImage="/assets/img/finalout/4.gif"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/5.jpg"
+            rightImage="/assets/img/finalout/5.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/6.jpg"
+            rightImage="/assets/img/finalout/6.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/7.jpg"
+            rightImage="/assets/img/finalout/7.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/8.jpg"
+            rightImage="/assets/img/finalout/8.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/9.jpg"
+            rightImage="/assets/img/finalout/9.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/10.jpg"
+            rightImage="/assets/img/finalout/10.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/11.jpg"
+            rightImage="/assets/img/finalout/11.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/12.jpg"
+            rightImage="/assets/img/finalout/12.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/13.jpg"
+            rightImage="/assets/img/finalout/13.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/14.jpg"
+            rightImage="/assets/img/finalout/14.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/15.jpg"
+            rightImage="/assets/img/finalout/15.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/16.jpg"
+            rightImage="/assets/img/finalout/16.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/17.jpg"
+            rightImage="/assets/img/finalout/17.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/18.jpg"
+            rightImage="/assets/img/finalout/18.jpg"
+          />
+        </div>
+        <div className="col-lg-4 col-md-6 col-12">
+          <ImageCompare
+            leftImage="/assets/img/storyboard/19.jpg"
+            rightImage="/assets/img/finalout/19.jpg"
+          />
+        </div>
+      </div>
     </div>
   );
 };
