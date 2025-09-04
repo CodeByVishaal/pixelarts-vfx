@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import FooterV3 from "../components/footer/FooterV3";
-import { useAdmin } from "../contexts/AdminContext";
-import LayoutV1 from "../components/layouts/LayoutV1";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 import DarkClass from "../components/classes/DarkClass";
+import LayoutV1 from "../components/layouts/LayoutV1";
+import StoryBoard from "../components/StoryBoard";
+import { useAdmin } from "../contexts/AdminContext";
 
 const ShowreelPage = () => {
   const { mediaItems } = useAdmin();
@@ -356,6 +356,8 @@ const ShowreelPage = () => {
           transform: scale(1.05);
         }
       `}</style>
+        {/* Storyboard Section */}
+        <StoryBoard />
       </LayoutV1>
     </>
   );
