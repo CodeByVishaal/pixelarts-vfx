@@ -153,6 +153,106 @@ router.get("/", verifyToken, requireAdmin, async (req, res) => {
   }
 });
 
+// @desc    Update a media item
+// @route   PUT /api/media/:id
+// @access  Private (admin)
+router.put("/:id", verifyToken, requireAdmin, upload.single("file"), async (req, res) => {
+  try {
+    const media = await Media.findById(req.params.id);
+    
+    if (!media) {
+      return res.status(404).json({
+        success: false,
+        message: "Media not found"
+      });
+    }
+
+    // If a new file is uploaded, update Cloudinary
+    if (req.file) {
+      try {
+        // Delete old file from Cloudinary if it exists
+        if (media.cloudinaryPublicId) {
+          await cloudinary.uploader.destroy(media.cloudinaryPublicId);
+        }
+
+        // Upload new file
+        const streamifier = require("streamifier");
+        const uploadPromise = new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              folder: "pixelarts-media",
+            },
+            (error, result) => {
+              if (error) {
+                console.error("Cloudinary Upload Error:", error);
+                reject(error);
+              } else {
+                resolve(result);
+              }
+            }
+          );
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
+
+        const uploadResult = await uploadPromise;
+
+        // Update media with new file info
+        media.url = uploadResult.secure_url;
+        media.cloudinaryPublicId = uploadResult.public_id;
+        media.type = req.file.mimetype.startsWith("video/") ? "video" : "image";
+        media.fileSize = req.file.size;
+        media.mimeType = req.file.mimetype;
+      } catch (uploadError) {
+        return res.status(500).json({
+          success: false,
+          message: "Failed to upload new file",
+          error: uploadError.message
+        });
+      }
+    }
+
+    // Update other fields
+    if (req.body.title) media.title = req.body.title;
+    if (req.body.description) media.description = req.body.description;
+    if (req.body.category) media.category = req.body.category;
+    if (req.body.tags) media.tags = req.body.tags;
+    if (req.body.isActive !== undefined) media.isActive = req.body.isActive;
+    if (req.body.isFeatured !== undefined) media.isFeatured = req.body.isFeatured;
+
+    // Update metadata and SEO
+    if (req.body.metadata) {
+      media.metadata = {
+        ...media.metadata,
+        ...req.body.metadata,
+        uploadSource: req.file ? "file-upload" : media.metadata.uploadSource
+      };
+    }
+
+    if (req.body.seo) {
+      media.seo = {
+        ...media.seo,
+        ...req.body.seo
+      };
+    }
+
+    // Save updates
+    await media.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Media updated successfully",
+      data: { media }
+    });
+  } catch (error) {
+    console.error("Error updating media:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to update media",
+      error: error.message
+    });
+  }
+});
+
 // @desc    Delete a media item
 // @route   DELETE /api/media/:id
 // @access  Private (admin)

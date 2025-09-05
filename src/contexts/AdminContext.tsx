@@ -274,18 +274,25 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     }
   };
 
-  const updateMediaItem = async (id: string, updatedItem: any) => {
+  const updateMediaItem = async (id: string, updatedItem: FormData | any) => {
     try {
       setLoading(true);
       setError(null);
 
+      let headers: Record<string, string> = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      // If it's not FormData, set Content-Type
+      if (!(updatedItem instanceof FormData)) {
+        headers["Content-Type"] = "application/json";
+        updatedItem = JSON.stringify(updatedItem);
+      }
+
       const response = await fetch(`${API_BASE_URL}/media/${id}`, {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatedItem),
+        headers,
+        body: updatedItem,
       });
 
       const data = await response.json();
