@@ -51,13 +51,15 @@ interface AdminContextType {
   logout: () => void;
   addMediaItem: (formData: FormData | any) => Promise<void>;
   updateMediaItem: (id: string, item: any) => Promise<void>;
-  deleteMediaItem: (id: string) => Promise<void>;
+  deleteMediaItem: (id: string) => Promise<boolean>;
   loading: boolean;
   error: string | null;
   refreshMediaItems: () => Promise<void>;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
+
+
 
 export const useAdmin = () => {
   const context = useContext(AdminContext);
@@ -125,20 +127,25 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
 
       const response = await fetch(`${API_BASE_URL}/media`, {
         headers: {
-          ...(currentToken && { Authorization: `Bearer ${currentToken}` }),
+          Authorization: `Bearer ${currentToken}`,
         },
       });
 
       const data = await response.json();
 
       if (data.success) {
-        // Transform backend data to match frontend interface
-        const transformedItems = data.data.media.map((item: any) => ({
+        // Transform the media items to include both _id and id
+        const transformedMedia = data.data.map((item: any) => ({
           ...item,
-          id: item._id,
+          id: item._id, // Keep both _id and id for compatibility
           uploadDate: new Date(item.createdAt).toLocaleDateString(),
+          // Ensure Cloudinary URL is secure
+          url: item.url?.replace('http://', 'https://'),
+          thumbnailUrl: item.thumbnailUrl?.replace('http://', 'https://')
         }));
-        setMediaItems(transformedItems);
+        setMediaItems(transformedMedia);
+      } else {
+        setError(data.message || "Failed to fetch media items");
       }
     } catch (error) {
       console.error("Error fetching media:", error);
@@ -307,36 +314,36 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     }
   };
 
-  const deleteMediaItem = async (id: string) => {
-    try {
-      setLoading(true);
-      setError(null);
+const deleteMediaItem = async (id: string) => {
+  try {
+    setLoading(true);
+    setError(null);
 
-      const response = await fetch(`${API_BASE_URL}/media/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+    const response = await fetch(`${API_BASE_URL}/media/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (data.success) {
-        setMediaItems((prev) => prev.filter((item) => item.id !== id));
-        toast.success("Media deleted successfully!");
-      } else {
-        throw new Error(data.message);
-      }
-    } catch (error: any) {
-      console.error("Error deleting media:", error);
-      const errorMessage = error.message || "Failed to delete media item";
-      setError(errorMessage);
-      toast.error(errorMessage);
-      throw error;
-    } finally {
-      setLoading(false);
+    if (data.success) {
+      // Update local state by removing the deleted item
+      setMediaItems(prev => prev.filter(item => item._id !== id));
+      return true;
+    } else {
+      throw new Error(data.message || "Failed to delete media");
     }
-  };
+  } catch (error: any) {
+    console.error("Error deleting media:", error);
+    const errorMessage = error.message || "Failed to delete media item";
+    setError(errorMessage);
+    throw error;
+  } finally {
+    setLoading(false);
+  }
+};  
 
   const value: AdminContextType = {
     isAuthenticated,

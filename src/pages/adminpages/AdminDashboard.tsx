@@ -19,6 +19,7 @@ const AdminDashboard = () => {
     addMediaItem,
     updateMediaItem,
     deleteMediaItem,
+    refreshMediaItems,
     loading,
   } = useAdmin();
 
@@ -76,17 +77,16 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteMedia = async (id: string) => {
-    if (
-      window.confirm(
-        "Are you sure you want to delete this media? This action cannot be undone."
-      )
-    ) {
+    if (window.confirm("Are you sure you want to delete this media?")) {
       try {
-        await deleteMediaItem(id);
-        toast.success("Media deleted successfully!");
-      } catch (error) {
-        console.error("Error deleting media:", error);
-        toast.error("Failed to delete media. Please try again.");
+        const success = await deleteMediaItem(id);
+        if (success) {
+          toast.success("Media deleted successfully!");
+        }
+      } catch (error: any) {
+        toast.error(
+          error.message || "Failed to delete media. Please try again."
+        );
       }
     }
   };
@@ -100,6 +100,11 @@ const AdminDashboard = () => {
     setIsUploadModalOpen(false);
     setEditingItem(null);
   };
+
+  useEffect(() => {
+    // Fetch media items when component mounts
+    refreshMediaItems();
+  }, []);
 
   // Filter + search
   const filteredItems = mediaItems.filter((item) => {

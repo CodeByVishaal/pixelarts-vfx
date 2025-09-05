@@ -1,453 +1,195 @@
 const express = require("express");
-const { body, validationResult, query } = require("express-validator");
-const Media = require("../models/Media");
-const {
-  verifyToken,
-  requireAdmin,
-  optionalAuth,
-} = require("../middleware/auth");
-const {
-  upload,
-  handleFileUpload,
-  deleteFromCloudinary,
-  generateVideoThumbnail,
-} = require("../middleware/upload");
-
 const router = express.Router();
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const Media = require("../models/Media");
+const { verifyToken, requireAdmin } = require("../middleware/auth");
 
-// @route   GET /api/media
-// @desc    Get all media (public and admin)
-// @access  Public (with optional auth for admin features)
-router.get(
-  "/",
-  [
-    query("page")
-      .optional()
-      .isInt({ min: 1 })
-      .withMessage("Page must be a positive integer"),
-    query("limit")
-      .optional()
-      .isInt({ min: 1, max: 100 })
-      .withMessage("Limit must be between 1 and 100"),
-    query("type")
-      .optional()
-      .isIn(["image", "video"])
-      .withMessage("Type must be image or video"),
-    query("category")
-      .optional()
-      .isIn(["showreel", "portfolio", "demo", "tutorial", "behind-scenes"]),
-    query("search")
-      .optional()
-      .isLength({ max: 100 })
-      .withMessage("Search term too long"),
-  ],
-  optionalAuth,
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          success: false,
-          message: "Validation failed",
-          errors: errors.array(),
+// Configure multer (in-memory storage)
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// Cloudinary config (make sure these are set in .env)
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// @desc    Create a new media item
+// @route   POST /api/media
+// @access  Private (admin)
+router.post("/", verifyToken, requireAdmin, upload.single("file"), async (req, res) => {
+  try {
+    let fileUrl = req.body.url || null;
+
+    // ✅ If a file is uploaded, push it to Cloudinary
+    if (req.file) {
+      try {
+        // Convert buffer to Cloudinary upload
+        const streamifier = require("streamifier");
+        const uploadPromise = new Promise((resolve, reject) => {
+          const stream = cloudinary.uploader.upload_stream(
+            {
+              folder: "pixelarts-media",
+            },
+            (error, result) => {
+              if (error) {
+                console.error("Cloudinary Upload Error:", error);
+                reject(error);
+              } else {
+                resolve(result);
+              }
+            }
+          );
+          streamifier.createReadStream(req.file.buffer).pipe(stream);
+        });
+
+        const uploadResult = await uploadPromise;
+
+        // Save media record with Cloudinary URL
+        const media = new Media({
+          title: req.body.title,
+          description: req.body.description,
+          type: req.file.mimetype.startsWith("video/") ? "video" : "image",
+          url: uploadResult.secure_url,
+          tags: req.body.tags || [],
+          category: req.body.category || "showreel", // Default to showreel
+          isActive: true,
+          isFeatured: false,
+          sortOrder: 0,
+          viewCount: 0,
+          uploadedBy: req.admin._id, // Set by auth middleware
+          cloudinaryPublicId: uploadResult.public_id,
+          metadata: { 
+            uploadSource: "file-upload", // Changed to valid enum value
+            originalName: req.file.originalname,
+            quality: "high"
+          },
+          seo: { 
+            keywords: req.body.keywords || [],
+            altText: req.body.title // Use title as alt text
+          },
+          fileSize: req.file.size,
+          mimeType: req.file.mimetype
+        });
+
+        await media.save();
+
+        return res.status(201).json({
+          success: true,
+          message: "Media created successfully",
+          data: { media },
+        });
+      } catch (uploadError) {
+        console.error("Cloudinary Upload Error:", uploadError);
+        return res.status(500).json({ 
+          success: false, 
+          message: "Upload to Cloudinary failed",
+          error: uploadError.message
         });
       }
-
-      const {
-        page = 1,
-        limit = 20,
-        type,
-        category,
-        search,
-        featured,
-        sortBy = "createdAt",
-        sortOrder = "desc",
-      } = req.query;
-
-      // Build query
-      const query = { isActive: true };
-
-      if (type) query.type = type;
-      if (category) query.category = category;
-      if (featured !== undefined) query.isFeatured = featured === "true";
-
-      if (search) {
-        query.$or = [
-          { title: { $regex: search, $options: "i" } },
-          { description: { $regex: search, $options: "i" } },
-          { tags: { $in: [new RegExp(search, "i")] } },
-        ];
-      }
-
-      // Sort options
-      const sortOptions = {};
-      sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
-
-      // If sorting by sortOrder field, add createdAt as secondary sort
-      if (sortBy === "sortOrder") {
-        sortOptions.createdAt = -1;
-      }
-
-      // Execute query with pagination
-      const skip = (page - 1) * limit;
-
-      const [media, total] = await Promise.all([
-        Media.find(query)
-          .populate("uploadedBy", "username")
-          .sort(sortOptions)
-          .skip(skip)
-          .limit(parseInt(limit))
-          .lean(),
-        Media.countDocuments(query),
-      ]);
-
-      // Calculate pagination info
-      const totalPages = Math.ceil(total / limit);
-      const hasNextPage = page < totalPages;
-      const hasPrevPage = page > 1;
-
-      res.json({
-        success: true,
-        data: {
-          media,
-          pagination: {
-            currentPage: parseInt(page),
-            totalPages,
-            totalItems: total,
-            itemsPerPage: parseInt(limit),
-            hasNextPage,
-            hasPrevPage,
-          },
+    } else {
+      // ✅ Fallback: no file, maybe just an external URL
+      const media = new Media({
+        title: req.body.title,
+        description: req.body.description,
+        type: req.body.type || "image",
+        url: fileUrl,
+        tags: req.body.tags || [],
+        category: req.body.category || "showreel", // Default to showreel
+        isActive: true,
+        isFeatured: false,
+        sortOrder: 0,
+        viewCount: 0,
+        uploadedBy: req.admin._id, // Set by auth middleware
+        metadata: { 
+          uploadSource: "url", // Changed to valid enum value
+          quality: "medium"
         },
+        seo: { 
+          keywords: req.body.keywords || [],
+          altText: req.body.title // Use title as alt text
+        }
       });
-    } catch (error) {
-      console.error("Get media error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error",
+
+      await media.save();
+
+      return res.status(201).json({
+        success: true,
+        message: "Media created successfully (URL only)",
+        data: { media },
       });
     }
+  } catch (error) {
+    console.error("Error creating media:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Server error", error: error.message });
   }
-);
+});
 
-// @route   GET /api/media/:id
-// @desc    Get single media item
-// @access  Public
-router.get("/:id", optionalAuth, async (req, res) => {
+// @desc    Get all media items
+// @route   GET /api/media
+// @access  Private (admin)
+router.get("/", verifyToken, requireAdmin, async (req, res) => {
   try {
-    const media = await Media.findById(req.params.id).populate(
-      "uploadedBy",
-      "username"
-    );
+    const media = await Media.find()
+      .sort({ createdAt: -1 }) // Most recent first
+      .populate('uploadedBy', 'username email'); // Get admin details if needed
 
-    if (!media) {
-      return res.status(404).json({
-        success: false,
-        message: "Media not found",
-      });
-    }
-
-    // Increment view count
-    await media.incrementViews();
-
-    res.json({
+    res.status(200).json({
       success: true,
-      data: { media },
+      data: media,
+      message: "Media items retrieved successfully"
     });
   } catch (error) {
-    console.error("Get media by ID error:", error);
+    console.error("Error fetching media:", error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "Failed to fetch media items",
+      error: error.message
     });
   }
 });
 
-// @route   POST /api/media
-// @desc    Create new media
-// @access  Private (Admin only)
-router.post(
-  "/",
-  [
-    body("title")
-      .trim()
-      .notEmpty()
-      .withMessage("Title is required")
-      .isLength({ max: 100 }),
-    body("description").optional().trim().isLength({ max: 500 }),
-    body("type")
-      .isIn(["image", "video"])
-      .withMessage("Type must be image or video"),
-    body("category")
-      .optional()
-      .isIn(["showreel", "portfolio", "demo", "tutorial", "behind-scenes"]),
-    body("tags").optional().isArray().withMessage("Tags must be an array"),
-    body("url")
-      .optional({ checkFalsy: true })
-      .custom((value) => {
-        if (value.startsWith("blob:")) return true; // ✅ allow browser blob URLs
-        try {
-          new URL(value);
-          return true;
-        } catch {
-          throw new Error("Invalid URL format");
-        }
-      }),
-  ],
-  verifyToken,
-  requireAdmin,
-  upload.single("file"),
-  handleFileUpload,
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          success: false,
-          message: "Validation failed",
-          errors: errors.array(),
-        });
-      }
-
-      const {
-        title,
-        description,
-        type,
-        category = "showreel",
-        tags = [],
-        url,
-      } = req.body;
-
-      // Use uploaded file URL or provided URL
-      let mediaUrl = url;
-      let mediaData = {};
-
-      if (req.uploadResult) {
-        // File was uploaded
-        mediaUrl = req.uploadResult.url;
-        mediaData = {
-          cloudinaryPublicId: req.uploadResult.publicId,
-          fileSize: req.uploadResult.fileSize,
-          dimensions: {
-            width: req.uploadResult.width,
-            height: req.uploadResult.height,
-          },
-          duration: req.uploadResult.duration,
-          mimeType: `${req.uploadResult.resourceType}/${req.uploadResult.format}`,
-          metadata: {
-            originalName: req.file?.originalname,
-            uploadSource: "file-upload",
-          },
-        };
-
-        // Generate thumbnail for videos
-        if (type === "video" && req.uploadResult.publicId) {
-          mediaData.thumbnailUrl = await generateVideoThumbnail(
-            req.uploadResult.publicId
-          );
-        }
-      } else if (!url) {
-        return res.status(400).json({
-          success: false,
-          message: "Either file upload or URL is required",
-        });
-      } else {
-        mediaData.metadata = { uploadSource: "url" };
-      }
-
-      // Create new media
-      const newMedia = new Media({
-        title,
-        description,
-        type,
-        url: mediaUrl,
-        category,
-        tags: Array.isArray(tags) ? tags : [],
-        uploadedBy: req.admin._id,
-        ...mediaData,
-      });
-
-      await newMedia.save();
-
-      // Populate uploadedBy field for response
-      await newMedia.populate("uploadedBy", "username");
-
-      res.status(201).json({
-        success: true,
-        message: "Media created successfully",
-        data: { media: newMedia },
-      });
-    } catch (error) {
-      console.error("Create media error:", error);
-
-      // If file was uploaded but media creation failed, clean up
-      if (req.uploadResult?.publicId) {
-        try {
-          await deleteFromCloudinary(req.uploadResult.publicId);
-        } catch (cleanupError) {
-          console.error("Error cleaning up uploaded file:", cleanupError);
-        }
-      }
-
-      res.status(500).json({
-        success: false,
-        message: "Internal server error",
-      });
-    }
-  }
-);
-
-// @route   PUT /api/media/:id
-// @desc    Update media
-// @access  Private (Admin only)
-router.put(
-  "/:id",
-  [
-    body("title")
-      .optional()
-      .trim()
-      .notEmpty()
-      .withMessage("Title cannot be empty")
-      .isLength({ max: 100 }),
-    body("description").optional().trim().isLength({ max: 500 }),
-    body("category")
-      .optional()
-      .isIn(["showreel", "portfolio", "demo", "tutorial", "behind-scenes"]),
-    body("tags").optional().isArray().withMessage("Tags must be an array"),
-    body("isFeatured").optional().isBoolean(),
-    body("sortOrder").optional().isInt({ min: 0 }),
-  ],
-  verifyToken,
-  requireAdmin,
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          success: false,
-          message: "Validation failed",
-          errors: errors.array(),
-        });
-      }
-
-      const mediaId = req.params.id;
-      const updateData = { ...req.body, updatedAt: Date.now() };
-
-      // Find and update media
-      const media = await Media.findByIdAndUpdate(mediaId, updateData, {
-        new: true,
-        runValidators: true,
-      }).populate("uploadedBy", "username");
-
-      if (!media) {
-        return res.status(404).json({
-          success: false,
-          message: "Media not found",
-        });
-      }
-
-      res.json({
-        success: true,
-        message: "Media updated successfully",
-        data: { media },
-      });
-    } catch (error) {
-      console.error("Update media error:", error);
-      res.status(500).json({
-        success: false,
-        message: "Internal server error",
-      });
-    }
-  }
-);
-
+// @desc    Delete a media item
 // @route   DELETE /api/media/:id
-// @desc    Delete media
-// @access  Private (Admin only)
+// @access  Private (admin)
 router.delete("/:id", verifyToken, requireAdmin, async (req, res) => {
   try {
     const media = await Media.findById(req.params.id);
-
+    
     if (!media) {
       return res.status(404).json({
         success: false,
-        message: "Media not found",
+        message: "Media not found"
       });
     }
 
-    // Delete file from Cloudinary if it exists
+    // Delete from Cloudinary if it was uploaded there
     if (media.cloudinaryPublicId) {
       try {
-        await deleteFromCloudinary(media.cloudinaryPublicId);
-        console.log("File deleted from Cloudinary:", media.cloudinaryPublicId);
-      } catch (error) {
-        console.error("Error deleting file from Cloudinary:", error);
-        // Continue with deletion even if Cloudinary cleanup fails
+        await cloudinary.uploader.destroy(media.cloudinaryPublicId);
+      } catch (cloudinaryError) {
+        console.error("Cloudinary deletion error:", cloudinaryError);
+        // Continue with DB deletion even if Cloudinary fails
       }
     }
 
-    // Delete media from database
-    await Media.findByIdAndDelete(req.params.id);
+    // Delete from database
+    await media.deleteOne();
 
-    res.json({
+    res.status(200).json({
       success: true,
-      message: "Media deleted successfully",
+      message: "Media deleted successfully"
     });
   } catch (error) {
-    console.error("Delete media error:", error);
+    console.error("Error deleting media:", error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
-    });
-  }
-});
-
-// @route   POST /api/media/:id/click
-// @desc    Track media click
-// @access  Public
-router.post("/:id/click", async (req, res) => {
-  try {
-    const media = await Media.findById(req.params.id);
-
-    if (!media) {
-      return res.status(404).json({
-        success: false,
-        message: "Media not found",
-      });
-    }
-
-    // Increment click count
-    await media.incrementClicks();
-
-    res.json({
-      success: true,
-      message: "Click tracked",
-    });
-  } catch (error) {
-    console.error("Track click error:", error);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
-  }
-});
-
-// @route   GET /api/media/stats/overview
-// @desc    Get media statistics
-// @access  Private (Admin only)
-router.get("/stats/overview", verifyToken, requireAdmin, async (req, res) => {
-  try {
-    const stats = await Media.getStats();
-
-    res.json({
-      success: true,
-      data: { stats: stats[0] || {} },
-    });
-  } catch (error) {
-    console.error("Get media stats error:", error);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
+      message: "Failed to delete media",
+      error: error.message
     });
   }
 });
