@@ -289,10 +289,6 @@ const MediaUploadModal = ({
                           maxHeight: "250px",
                           objectFit: "contain",
                         }}
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            "https://via.placeholder.com/400x240/e9ecef/6c757d?text=Invalid+Image+URL";
-                        }}
                       />
                     ) : (
                       <video

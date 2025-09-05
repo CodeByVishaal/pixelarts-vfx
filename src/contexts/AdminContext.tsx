@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 
 interface MediaItem {
   _id: string;
@@ -18,19 +19,42 @@ interface MediaItem {
   isActive: boolean;
   category: string;
   tags: string[];
+  fileSize?: number;
+  duration?: number;
+  thumbnailUrl?: string;
+}
+
+interface AdminUser {
+  _id: string;
+  username: string;
+  email: string;
+  role: string;
+  isActive: boolean;
+  lastLogin?: string;
+}
+
+interface LoginResponse {
+  success: boolean;
+  message: string;
+  data: {
+    admin: AdminUser;
+    token: string;
+  };
 }
 
 interface AdminContextType {
   isAuthenticated: boolean;
   mediaItems: MediaItem[];
+  currentAdmin: AdminUser | null;
   token: string | null;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
-  addMediaItem: (item: FormData) => Promise<void>;
-  updateMediaItem: (id: string, item: Partial<MediaItem>) => Promise<void>;
+  addMediaItem: (formData: FormData | any) => Promise<void>;
+  updateMediaItem: (id: string, item: any) => Promise<void>;
   deleteMediaItem: (id: string) => Promise<void>;
   loading: boolean;
   error: string | null;
+  refreshMediaItems: () => Promise<void>;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
@@ -47,77 +71,85 @@ interface AdminProviderProps {
   children: ReactNode;
 }
 
-const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL =
+  import.meta.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 export const AdminProvider = ({ children }: AdminProviderProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [mediaItems, setMediaItems] = useState<MediaItem[]>([]);
+  const [currentAdmin, setCurrentAdmin] = useState<AdminUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Initialize auth state and fetch data
+  // Initialize auth state on mount
   useEffect(() => {
+    initializeAuth();
+  }, []);
+
+  const initializeAuth = async () => {
     const savedToken = localStorage.getItem("admin_token");
     if (savedToken) {
       setToken(savedToken);
-      setIsAuthenticated(true);
-      // Verify token and fetch media
-      fetchMediaItems(savedToken);
+      try {
+        // Verify token with backend
+        const response = await fetch(`${API_BASE_URL}/auth/me`, {
+          headers: {
+            Authorization: `Bearer ${savedToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setCurrentAdmin(data.data.admin);
+          setIsAuthenticated(true);
+          await fetchMediaItems(savedToken);
+        } else {
+          // Token is invalid
+          localStorage.removeItem("admin_token");
+          setToken(null);
+        }
+      } catch (error) {
+        console.error("Token verification failed:", error);
+        localStorage.removeItem("admin_token");
+        setToken(null);
+      }
     }
-  }, []);
-
-  // API helper function
-  const apiCall = async (endpoint: string, options: RequestInit = {}) => {
-    const url = `${API_BASE_URL}${endpoint}`;
-    const config: RequestInit = {
-      ...options,
-      headers: {
-        'Content-Type': 'application/json',
-        ...(token && { Authorization: `Bearer ${token}` }),
-        ...options.headers,
-      },
-    };
-
-    const response = await fetch(url, config);
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'API request failed');
-    }
-
-    return data;
   };
 
-  // Fetch media items
+  // Fetch media items from backend
   const fetchMediaItems = async (authToken?: string) => {
     try {
       setLoading(true);
       const currentToken = authToken || token;
-      
+
       const response = await fetch(`${API_BASE_URL}/media`, {
         headers: {
           ...(currentToken && { Authorization: `Bearer ${currentToken}` }),
         },
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         // Transform backend data to match frontend interface
         const transformedItems = data.data.media.map((item: any) => ({
           ...item,
           id: item._id,
-          uploadDate: item.createdAt.split('T')[0], // Format date
+          uploadDate: new Date(item.createdAt).toLocaleDateString(),
         }));
         setMediaItems(transformedItems);
       }
     } catch (error) {
-      console.error('Error fetching media:', error);
-      setError('Failed to fetch media items');
+      console.error("Error fetching media:", error);
+      setError("Failed to fetch media items");
     } finally {
       setLoading(false);
     }
+  };
+
+  const refreshMediaItems = async () => {
+    await fetchMediaItems();
   };
 
   const login = async (
@@ -129,65 +161,86 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
       setError(null);
 
       const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
+      const data: LoginResponse = await response.json();
 
       if (data.success) {
-        const { token: authToken } = data.data;
+        const { admin, token: authToken } = data.data;
+        setCurrentAdmin(admin);
         setToken(authToken);
         setIsAuthenticated(true);
         localStorage.setItem("admin_token", authToken);
-        
+
         // Fetch media items after successful login
         await fetchMediaItems(authToken);
         return true;
       } else {
-        setError(data.message || 'Login failed');
+        setError(data.message || "Login failed");
         return false;
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      setError('Login failed. Please try again.');
+    } catch (error: any) {
+      console.error("Login error:", error);
+      setError(error.message || "Network error. Please try again.");
       return false;
     } finally {
       setLoading(false);
     }
   };
 
-  const logout = () => {
-    setIsAuthenticated(false);
-    setToken(null);
-    setMediaItems([]);
-    localStorage.removeItem("admin_token");
-    
-    // Optional: Call backend logout endpoint
-    if (token) {
-      fetch(`${API_BASE_URL}/auth/logout`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).catch(console.error);
+  const logout = async () => {
+    try {
+      // Call backend logout endpoint
+      if (token) {
+        await fetch(`${API_BASE_URL}/auth/logout`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      // Clear local state regardless of backend call success
+      setIsAuthenticated(false);
+      setCurrentAdmin(null);
+      setToken(null);
+      setMediaItems([]);
+      setError(null);
+      localStorage.removeItem("admin_token");
     }
   };
 
-  const addMediaItem = async (formData: FormData) => {
+  const addMediaItem = async (mediaData: FormData | any) => {
     try {
       setLoading(true);
       setError(null);
 
+      let body: FormData | string;
+      let headers: Record<string, string> = {
+        Authorization: `Bearer ${token}`,
+      };
+
+      if (mediaData instanceof FormData) {
+        // File upload
+        body = mediaData;
+        // Don't set Content-Type for FormData - let browser set it with boundary
+      } else {
+        // URL-based upload
+        headers["Content-Type"] = "application/json";
+        body = JSON.stringify(mediaData);
+      }
+
       const response = await fetch(`${API_BASE_URL}/media`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData, // Send FormData directly for file uploads
+        method: "POST",
+        headers,
+        body,
       });
 
       const data = await response.json();
@@ -196,44 +249,58 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
         const newItem = {
           ...data.data.media,
           id: data.data.media._id,
-          uploadDate: data.data.media.createdAt.split('T')[0],
+          uploadDate: new Date(data.data.media.createdAt).toLocaleDateString(),
         };
-        setMediaItems(prev => [newItem, ...prev]);
+        setMediaItems((prev) => [newItem, ...prev]);
+        toast.success("Media uploaded successfully!");
       } else {
         throw new Error(data.message);
       }
-    } catch (error) {
-      console.error('Error adding media:', error);
-      setError('Failed to add media item');
+    } catch (error: any) {
+      console.error("Error adding media:", error);
+      const errorMessage = error.message || "Failed to add media item";
+      setError(errorMessage);
+      toast.error(errorMessage);
       throw error;
     } finally {
       setLoading(false);
     }
   };
 
-  const updateMediaItem = async (id: string, updatedItem: Partial<MediaItem>) => {
+  const updateMediaItem = async (id: string, updatedItem: any) => {
     try {
       setLoading(true);
       setError(null);
 
-      const data = await apiCall(`/media/${id}`, {
-        method: 'PUT',
+      const response = await fetch(`${API_BASE_URL}/media/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(updatedItem),
       });
+
+      const data = await response.json();
 
       if (data.success) {
         const updated = {
           ...data.data.media,
           id: data.data.media._id,
-          uploadDate: data.data.media.createdAt.split('T')[0],
+          uploadDate: new Date(data.data.media.createdAt).toLocaleDateString(),
         };
-        setMediaItems(prev =>
-          prev.map(item => (item.id === id ? updated : item))
+        setMediaItems((prev) =>
+          prev.map((item) => (item.id === id ? updated : item))
         );
+        toast.success("Media updated successfully!");
+      } else {
+        throw new Error(data.message);
       }
-    } catch (error) {
-      console.error('Error updating media:', error);
-      setError('Failed to update media item');
+    } catch (error: any) {
+      console.error("Error updating media:", error);
+      const errorMessage = error.message || "Failed to update media item";
+      setError(errorMessage);
+      toast.error(errorMessage);
       throw error;
     } finally {
       setLoading(false);
@@ -245,14 +312,26 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
       setLoading(true);
       setError(null);
 
-      await apiCall(`/media/${id}`, {
-        method: 'DELETE',
+      const response = await fetch(`${API_BASE_URL}/media/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
 
-      setMediaItems(prev => prev.filter(item => item.id !== id));
-    } catch (error) {
-      console.error('Error deleting media:', error);
-      setError('Failed to delete media item');
+      const data = await response.json();
+
+      if (data.success) {
+        setMediaItems((prev) => prev.filter((item) => item.id !== id));
+        toast.success("Media deleted successfully!");
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error: any) {
+      console.error("Error deleting media:", error);
+      const errorMessage = error.message || "Failed to delete media item";
+      setError(errorMessage);
+      toast.error(errorMessage);
       throw error;
     } finally {
       setLoading(false);
@@ -262,6 +341,7 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
   const value: AdminContextType = {
     isAuthenticated,
     mediaItems,
+    currentAdmin,
     token,
     login,
     logout,
@@ -270,6 +350,7 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     deleteMediaItem,
     loading,
     error,
+    refreshMediaItems,
   };
 
   return (

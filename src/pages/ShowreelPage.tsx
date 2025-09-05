@@ -164,10 +164,6 @@ const ShowreelPage = () => {
                               objectFit: "cover",
                               transition: "transform 0.3s ease",
                             }}
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).src =
-                                "https://via.placeholder.com/400x240/667eea/ffffff?text=VFX+Project";
-                            }}
                           />
                         ) : (
                           <div
