@@ -28,9 +28,10 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
       ref={containerRef}
       className="position-relative w-100 mx-auto rounded shadow"
       style={{
-        width: "100%", // full responsive width
-        height: height === "auto" ? "100%" : height, // dynamic height
-        aspectRatio: "16 / 9", // keeps proportions on resize
+        width: "100%", // take full width of its grid cell
+        maxWidth: "400px", // 👈 limit width so two can fit side-by-side
+        height: height === "auto" ? "250px" : height, // 👈 default height reduced
+        aspectRatio: "16 / 9",
         overflow: "hidden",
         userSelect: "none",
       }}
