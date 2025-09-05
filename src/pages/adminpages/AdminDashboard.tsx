@@ -15,6 +15,7 @@ interface DashboardStats {
 
 const AdminDashboard = () => {
   const {
+    //@ts-ignore
     currentAdmin,
     mediaItems,
     addMediaItem,
@@ -25,6 +26,7 @@ const AdminDashboard = () => {
   } = useAdmin();
 
   // Theme state
+  //@ts-ignore
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const saved = localStorage.getItem("darkMode");
     return saved ? JSON.parse(saved) : true;
