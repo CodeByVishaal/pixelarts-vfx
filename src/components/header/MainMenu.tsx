@@ -14,7 +14,7 @@ const MainMenu = ({ navbarPlacement }: DataType) => {
 
   return (
     <>
-      <ul
+    <div style={{marginLeft:'150px'}}><ul
         className={`nav navbar-nav ${navbarPlacement ? navbarPlacement : ""}`}
         data-in="fadeInDown"
         data-out="fadeOutUp"
@@ -47,7 +47,8 @@ const MainMenu = ({ navbarPlacement }: DataType) => {
           <Link to="/contact-us">Contact</Link>
         </li>
       </ul>
-
+</div>
+      
       <ModalVideo
         channel="youtube"
         isOpen={isOpen}

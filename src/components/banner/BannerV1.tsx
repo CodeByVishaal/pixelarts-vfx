@@ -29,7 +29,7 @@ const BannerV1 = () => {
           playsInline
           onError={handleVideoError}
         >
-          <source src="/assets/video/LogoAnimation.m4v" type="video/mp4" />
+          <source src="/assets/video/hero animation.m4v" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

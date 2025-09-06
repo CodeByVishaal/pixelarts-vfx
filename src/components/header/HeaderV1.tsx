@@ -72,7 +72,17 @@ const HeaderV1 = () => {
               closeInfoBar={closeInfoBar}
               isInfoOpen={isInfoOpen}
             />
+            <div className="attr-right">
+              <div className="attr-nav flex">
+                <ul>
+                  <li className="button">
+                    <Link to="/contact-us">Get in touch</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
+          
           <div
             className={`overlay-screen ${isOpen ? "opened" : ""}`}
             onClick={closeMenu}
