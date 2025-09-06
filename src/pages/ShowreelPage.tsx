@@ -286,6 +286,8 @@ const ShowreelPage = () => {
                       src={selectedMedia}
                       controls
                       autoPlay
+                      controlsList="nodownload noremoteplayback noplaybackrate" // ✅ disable download, remote playback, speed change
+                      disablePictureInPicture // ✅ removes PiP option
                       style={{
                         width: "100%",
                         height: "auto",

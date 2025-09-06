@@ -335,6 +335,8 @@ const AIGenerationPage = () => {
                       src={selectedMedia}
                       controls
                       autoPlay
+                      controlsList="nodownload noremoteplayback noplaybackrate" // ✅ disable download, remote playback, speed change
+                      disablePictureInPicture
                       style={{
                         width: "100%",
                         height: "auto",
