@@ -12,7 +12,12 @@ const ShowreelPage = () => {
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
 
-  const filteredItems = mediaItems.filter(
+  // Filter items that have category 'ai-generation'
+  const showReelItems = mediaItems.filter(
+    (item) => item.category === "showreel"
+  );
+
+  const filteredItems = showReelItems.filter(
     (item) => filter === "all" || item.type === filter
   );
 
@@ -73,13 +78,6 @@ const ShowreelPage = () => {
                         }}
                       >
                         {filterType === "all" ? "All Media" : `${filterType}s`}
-                        <span className="badge bg-light text-dark ms-2">
-                          {filterType === "all"
-                            ? mediaItems.length
-                            : mediaItems.filter(
-                                (item) => item.type === filterType
-                              ).length}
-                        </span>
                       </button>
                     ))}
                   </div>
@@ -252,7 +250,7 @@ const ShowreelPage = () => {
                           }}
                         >
                           {item.description ||
-                            "Creative visual effects project showcasing our expertise in digital artistry."}
+                            "Creative visual effects project showcasing our expertise in vfx artistry."}
                         </p>
                         <div className="d-flex justify-content-between align-items-center">
                           <small className="text-muted">
@@ -265,21 +263,6 @@ const ShowreelPage = () => {
                               }
                             )}
                           </small>
-                          <div className="d-flex align-items-center gap-2">
-                            <span
-                              style={{
-                                background:
-                                  "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                                color: "white",
-                                padding: "4px 8px",
-                                borderRadius: "12px",
-                                fontSize: "12px",
-                                fontWeight: "500",
-                              }}
-                            >
-                              {index + 1}
-                            </span>
-                          </div>
                         </div>
                       </div>
                     </div>

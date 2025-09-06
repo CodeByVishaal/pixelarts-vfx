@@ -112,15 +112,8 @@ const AIGenerationPage = () => {
                         }}
                       >
                         {filterType === "all"
-                          ? "All AI Content"
+                          ? "All Media"
                           : `AI ${filterType}s`}
-                        <span className="badge bg-light text-dark ms-2">
-                          {filterType === "all"
-                            ? aiGenerationItems.length
-                            : aiGenerationItems.filter(
-                                (item) => item.type === filterType
-                              ).length}
-                        </span>
                       </button>
                     ))}
                   </div>
@@ -320,33 +313,6 @@ const AIGenerationPage = () => {
                           {item.description ||
                             "AI-generated visual content showcasing the latest in artificial intelligence creativity."}
                         </p>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <small className="text-muted">
-                            {new Date(item.uploadDate).toLocaleDateString(
-                              "en-US",
-                              {
-                                year: "numeric",
-                                month: "short",
-                                day: "numeric",
-                              }
-                            )}
-                          </small>
-                          <div className="d-flex align-items-center gap-2">
-                            <span
-                              style={{
-                                background:
-                                  "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
-                                color: "white",
-                                padding: "4px 8px",
-                                borderRadius: "12px",
-                                fontSize: "12px",
-                                fontWeight: "500",
-                              }}
-                            >
-                              #{index + 1}
-                            </span>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
