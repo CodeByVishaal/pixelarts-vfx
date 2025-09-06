@@ -28,5 +28,42 @@
         "number": "05",
         "title": "Matchmove",
         "thumb": "MatchMove.jpeg"
+    },
+    {
+        "id": 6,
+        "number": "06",
+        "title": "Pre-Visualisation",
+        "thumb": "pre-vis.png"
+    },
+    {
+        "id": 7,
+        "number": "07",
+        "title": "Color Grading",
+        "thumb": "color_grading.png"
+    },
+    {
+        "id": 8,
+        "number": "08",
+        "title": "2D",
+        "thumb": "Cosmetic_Fixes.png"
+    },
+    {
+        "id": 9,
+        "number": "09",
+        "title": "3D",
+        "thumb": "Rotoscope.png"
+    },
+    {
+        "id": 10,
+        "number": "10",
+        "title": "Concept Art",
+        "thumb": "Compositing.png"
+    },
+    {
+        "id": 11,
+        "number": "11",
+        "title": "VFX Supervision",
+        "thumb": "Paintprep.jpeg"
     }
+    
 ]

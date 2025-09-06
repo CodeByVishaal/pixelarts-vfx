@@ -8,6 +8,7 @@ interface DataType {
 }
 
 const SingleServiceV5 = ({ service }: { service: DataType }) => {
+  //@ts-ignore
   const { number, title, thumb } = service;
 
   const { handleMouseMove, handleMouseLeave } = useHoverEffect();
@@ -21,7 +22,6 @@ const SingleServiceV5 = ({ service }: { service: DataType }) => {
           onMouseLeave={handleMouseLeave}
         >
           <div className="item-content">
-            <span>{number}</span>
             <h2>{title}</h2>
           </div>
           <div className="image-hover-wrapper">

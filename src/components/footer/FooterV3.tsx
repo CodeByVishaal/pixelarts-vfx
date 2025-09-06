@@ -24,7 +24,7 @@ const FooterV3 = () => {
                     </li>
                     <li>
                       <h4>Canada</h4>
-                    <p>500 rue Puget, Laval H7K1C5, Canada</p>
+                      <p>500 rue Puget, Laval H7K1C5, Canada</p>
                     </li>
                   </ul>
                 </div>
@@ -66,7 +66,7 @@ const FooterV3 = () => {
                 </div>
                 <div className="col-lg-6 text-end">
                   <p>
-                    Copyright &copy; {new Date().getFullYear()} Dixor. All
+                    Copyright &copy; {new Date().getFullYear()} PixelArts. All
                     Rights Reserved
                   </p>
                 </div>
