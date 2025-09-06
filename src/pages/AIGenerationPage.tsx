@@ -150,24 +150,19 @@ const AIGenerationPage = () => {
                         boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
                         transition: "all 0.3s ease",
                         cursor: "pointer",
-                        border: "2px solid transparent",
                       }}
                       onClick={() => openModal(item.url)}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLElement).style.transform =
                           "translateY(-10px)";
                         (e.currentTarget as HTMLElement).style.boxShadow =
-                          "0 20px 40px rgba(156, 87, 233, 0.4)"; // purple glow
-                        (e.currentTarget as HTMLElement).style.borderColor =
-                          "#9C57E9"; // purple border
+                          "0 20px 40px rgba(0,0,0,0.15)";
                       }}
                       onMouseLeave={(e) => {
                         (e.currentTarget as HTMLElement).style.transform =
                           "translateY(0)";
                         (e.currentTarget as HTMLElement).style.boxShadow =
                           "0 10px 30px rgba(0,0,0,0.1)";
-                        (e.currentTarget as HTMLElement).style.borderColor =
-                          "transparent";
                       }}
                     >
                       <div
@@ -202,7 +197,7 @@ const AIGenerationPage = () => {
                               width: "100%",
                               height: "100%",
                               background:
-                                "linear-gradient(135deg, #FFFFFF 100%)",
+                                "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -228,7 +223,23 @@ const AIGenerationPage = () => {
                           </div>
                         )}
 
-                        {/* AI Badge */}
+                        {/* Hover Overlay (same as Showreel) */}
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background:
+                              "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%)",
+                            opacity: 0,
+                            transition: "opacity 0.3s ease",
+                          }}
+                          className="hover-overlay"
+                        ></div>
+
+                        {/* Badges (keep yours) */}
                         <span
                           className="badge position-absolute"
                           style={{
@@ -245,7 +256,6 @@ const AIGenerationPage = () => {
                           🤖 AI GENERATED
                         </span>
 
-                        {/* Media Type Badge */}
                         <span
                           className={`badge position-absolute ${
                             item.type === "image" ? "bg-success" : "bg-info"
@@ -261,22 +271,6 @@ const AIGenerationPage = () => {
                         >
                           {item.type.toUpperCase()}
                         </span>
-
-                        {/* Hover Overlay */}
-                        <div
-                          style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            background:
-                              "linear-gradient(to bottom, transparent 0%, #A352DE 100%)",
-                            opacity: 0,
-                            transition: "opacity 0.3s ease",
-                          }}
-                          className="hover-overlay"
-                        ></div>
                       </div>
 
                       <div
