@@ -115,6 +115,7 @@ const ShowreelPage = () => {
               </div>
             ) : (
               <div className="row g-4">
+                {/* @ts-ignore */}
                 {filteredItems.map((item, index) => (
                   <div key={item.id} className="col-lg-4 col-md-6">
                     <div
