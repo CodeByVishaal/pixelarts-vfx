@@ -18,7 +18,10 @@ const HeaderV7 = () => {
             isMenuSticky ? "sticked" : "no-background"
           } ${isOpen ? "navbar-responsive" : ""} `}
         >
-          <div className="container d-flex justify-content-between align-items-center">
+          <div
+            className="container d-flex justify-content-between align-items-center"
+            style={{ marginLeft: "80px" }}
+          >
             <div className="navbar-header">
               <button
                 type="button"
@@ -68,7 +71,9 @@ const HeaderV7 = () => {
               <div className="attr-nav flex">
                 <ul>
                   <li className="button">
-                    <Link style={{borderRadius:'50px'}} to="/contact-us">Get in touch</Link>
+                    <Link style={{ borderRadius: "50px" }} to="/contact-us">
+                      Get in touch
+                    </Link>
                   </li>
                 </ul>
               </div>

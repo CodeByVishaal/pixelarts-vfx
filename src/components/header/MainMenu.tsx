@@ -14,41 +14,47 @@ const MainMenu = ({ navbarPlacement }: DataType) => {
 
   return (
     <>
-    <div style={{marginLeft:'150px'}}><ul
-        className={`nav navbar-nav ${navbarPlacement ? navbarPlacement : ""}`}
-        data-in="fadeInDown"
-        data-out="fadeOutUp"
-      >
-        <li className="megamenu-fw megamenu-style-two column-three">
-          <Link to="/" className="">
-            Home
-          </Link>
-        </li>
-        <li className="dropdown">
-          <Link to="/about-us">About Us</Link>
-        </li>
-        <li className="">
-          <Link to="/project" className="">
-            Projects
-          </Link>
-        </li>
-        <li className="">
-          <Link to="/services" className="">
-            Services
-          </Link>
-        </li>
-        <li>
-          <Link to="/showreel" className="">
-            Showreel
-          </Link>
-        </li>
+      <div style={{ marginLeft: "50px" }}>
+        <ul
+          className={`nav navbar-nav ${navbarPlacement ? navbarPlacement : ""}`}
+          data-in="fadeInDown"
+          data-out="fadeOutUp"
+        >
+          <li className="megamenu-fw megamenu-style-two column-three">
+            <Link to="/" className="">
+              Home
+            </Link>
+          </li>
+          <li className="dropdown">
+            <Link to="/about-us">About Us</Link>
+          </li>
+          <li className="">
+            <Link to="/project" className="">
+              Projects
+            </Link>
+          </li>
+          <li className="">
+            <Link to="/services" className="">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link to="/showreel" className="">
+              Showreel
+            </Link>
+          </li>
+          <li>
+            <Link to="/ai-generation" className="">
+              AI Gallery
+            </Link>
+          </li>
 
-        <li>
-          <Link to="/contact-us">Contact</Link>
-        </li>
-      </ul>
-</div>
-      
+          <li>
+            <Link to="/contact-us">Contact</Link>
+          </li>
+        </ul>
+      </div>
+
       <ModalVideo
         channel="youtube"
         isOpen={isOpen}
