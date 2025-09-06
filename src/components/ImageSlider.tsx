@@ -1,4 +1,8 @@
 import React from "react";
+import left_twod from "../../public/assets/img/portfolio/2D_left.png";
+import right_twod from "../../public/assets/img/portfolio/2D_right.png";
+import cg_left from "../../public/assets/img/portfolio/cg_left.png";
+import cg_right from "../../public/assets/img/portfolio/cg_right.jpeg";
 import ImageCompare from "./ImageCompare";
 
 const ImageSlider: React.FC = () => {
@@ -49,6 +53,22 @@ const ImageSlider: React.FC = () => {
             height="250px"
           />
           <p className="text-white mt-3 text-center">Matchmove</p>
+        </div>
+        <div className="col-md-6 col-12">
+          <ImageCompare
+            leftImage={cg_left}
+            rightImage={cg_right}
+            height="250px"
+          />
+          <p className="text-white mt-3 text-center">Color Grading</p>
+        </div>
+        <div className="col-md-6 col-12">
+          <ImageCompare
+            leftImage={left_twod}
+            rightImage={right_twod}
+            height="250px"
+          />
+          <p className="text-white mt-3 text-center">2D</p>
         </div>
       </div>
     </div>

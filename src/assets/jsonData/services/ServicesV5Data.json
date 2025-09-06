@@ -45,7 +45,7 @@
         "id": 8,
         "number": "08",
         "title": "2D",
-        "thumb": "Cosmetic_Fixes.png"
+        "thumb": "2D.png"
     },
     {
         "id": 9,
@@ -63,7 +63,7 @@
         "id": 11,
         "number": "11",
         "title": "VFX Supervision",
-        "thumb": "Paintprep.jpeg"
+        "thumb": "vfx_supervision.png"
     }
     
 ]
