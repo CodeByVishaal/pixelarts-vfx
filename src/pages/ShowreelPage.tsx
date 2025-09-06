@@ -218,11 +218,18 @@ const ShowreelPage = () => {
                         </span>
                       </div>
 
-                      <div className="card-body" style={{ padding: "1.5rem" }}>
+                      <div
+                        className="card-body"
+                        style={{
+                          padding: "1.5rem",
+                          backgroundColor: "#242526", // dark card bottom
+                          borderTop: "1px solid #3a3b3c", // subtle divider
+                        }}
+                      >
                         <h5
                           className="card-title mb-2"
                           style={{
-                            color: "#333",
+                            color: "#fff", // white title
                             fontWeight: "600",
                             fontSize: "1.1rem",
                           }}
@@ -230,17 +237,18 @@ const ShowreelPage = () => {
                           {item.title}
                         </h5>
                         <p
-                          className="card-text text-muted mb-3"
+                          className="card-text mb-3"
                           style={{
                             fontSize: "14px",
                             lineHeight: "1.5",
+                            color: "#e0e0e0", // brighter gray for visibility
                           }}
                         >
                           {item.description ||
-                            "Creative visual effects project showcasing our expertise in vfx artistry."}
+                            "Creative visual effects project showcasing our expertise in VFX artistry."}
                         </p>
                         <div className="d-flex justify-content-between align-items-center">
-                          <small className="text-muted">
+                          <small style={{ color: "#b0b0b0" }}>
                             {new Date(item.uploadDate).toLocaleDateString(
                               "en-US",
                               {

@@ -104,10 +104,10 @@ const AIGenerationPage = () => {
                           textTransform: "capitalize",
                           background:
                             filter === filterType
-                              ? "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)"
+                              ? "linear-gradient(135deg, #9C57E9 0%, #9C57E9 100%)"
                               : "transparent",
-                          border: "2px solid #ff6b6b",
-                          color: filter === filterType ? "#ffffff" : "#ff6b6b",
+                          border: "2px solid #9C57E9",
+                          color: filter === filterType ? "#ffffff" : "#9C57E9",
                         }}
                       >
                         {filterType === "all"
@@ -157,9 +157,9 @@ const AIGenerationPage = () => {
                         (e.currentTarget as HTMLElement).style.transform =
                           "translateY(-10px)";
                         (e.currentTarget as HTMLElement).style.boxShadow =
-                          "0 20px 40px rgba(255, 107, 107, 0.3)";
+                          "0 20px 40px rgba(156, 87, 233, 0.4)"; // purple glow
                         (e.currentTarget as HTMLElement).style.borderColor =
-                          "#ff6b6b";
+                          "#9C57E9"; // purple border
                       }}
                       onMouseLeave={(e) => {
                         (e.currentTarget as HTMLElement).style.transform =
@@ -202,7 +202,7 @@ const AIGenerationPage = () => {
                               width: "100%",
                               height: "100%",
                               background:
-                                "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
+                                "linear-gradient(135deg, #FFFFFF 100%)",
                               display: "flex",
                               alignItems: "center",
                               justifyContent: "center",
@@ -237,8 +237,7 @@ const AIGenerationPage = () => {
                             fontSize: "11px",
                             padding: "6px 10px",
                             borderRadius: "15px",
-                            background:
-                              "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
+                            background: "linear-gradient(135deg, #A352DE 100%)",
                             color: "#ffffff",
                             fontWeight: "600",
                           }}
@@ -252,6 +251,7 @@ const AIGenerationPage = () => {
                             item.type === "image" ? "bg-success" : "bg-info"
                           }`}
                           style={{
+                            backgroundColor: "black",
                             top: "15px",
                             right: "15px",
                             fontSize: "12px",
@@ -271,7 +271,7 @@ const AIGenerationPage = () => {
                             right: 0,
                             bottom: 0,
                             background:
-                              "linear-gradient(to bottom, transparent 0%, rgba(255, 107, 107, 0.8) 100%)",
+                              "linear-gradient(to bottom, transparent 0%, #A352DE 100%)",
                             opacity: 0,
                             transition: "opacity 0.3s ease",
                           }}
@@ -279,11 +279,18 @@ const AIGenerationPage = () => {
                         ></div>
                       </div>
 
-                      <div className="card-body" style={{ padding: "1.5rem" }}>
+                      <div
+                        className="card-body"
+                        style={{
+                          padding: "1.5rem",
+                          backgroundColor: "#242526", // dark background instead of white
+                          color: "#ffffff",
+                        }}
+                      >
                         <h5
                           className="card-title mb-2"
                           style={{
-                            color: "#333",
+                            color: "#FFFFFF",
                             fontWeight: "600",
                             fontSize: "1.1rem",
                           }}
@@ -291,10 +298,11 @@ const AIGenerationPage = () => {
                           {item.title}
                         </h5>
                         <p
-                          className="card-text text-muted mb-3"
+                          className="card-text mb-3"
                           style={{
                             fontSize: "14px",
                             lineHeight: "1.5",
+                            color: "#cccccc", // softer gray for description
                           }}
                         >
                           {item.description ||
