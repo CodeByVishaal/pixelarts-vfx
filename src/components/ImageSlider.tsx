@@ -1,8 +1,4 @@
 import React from "react";
-import left_twod from "../../public/assets/img/portfolio/2D_left.png";
-import right_twod from "../../public/assets/img/portfolio/2D_right.png";
-import cg_left from "../../public/assets/img/portfolio/cg_left.png";
-import cg_right from "../../public/assets/img/portfolio/cg_right.jpeg";
 import ImageCompare from "./ImageCompare";
 
 const ImageSlider: React.FC = () => {
@@ -14,7 +10,7 @@ const ImageSlider: React.FC = () => {
           <ImageCompare
             leftImage="https://feathervfx.com/assets/images/services/ROTO_OUT.jpg"
             rightImage="https://feathervfx.com/assets/images/services/ROTO_IN.jpg"
-            height="250px"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Rotoscope</p>
         </div>
@@ -23,7 +19,7 @@ const ImageSlider: React.FC = () => {
           <ImageCompare
             leftImage="https://feathervfx.com/assets/images/services/PP-IN.jpeg"
             rightImage="https://feathervfx.com/assets/images/services/PP-OUT.jpeg"
-            height="250px"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Paint Prep</p>
         </div>
@@ -32,7 +28,7 @@ const ImageSlider: React.FC = () => {
           <ImageCompare
             leftImage="https://feathervfx.com/assets/images/services/COS_OUT.jpg"
             rightImage="https://feathervfx.com/assets/images/services/COS_IN.jpg"
-            height="250px"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Cosmetic Fix</p>
         </div>
@@ -41,7 +37,7 @@ const ImageSlider: React.FC = () => {
           <ImageCompare
             leftImage="https://feathervfx.com/assets/images/services/MM_IN.jpg"
             rightImage="https://feathervfx.com/assets/images/services/MM_OUT.jpg"
-            height="250px"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Compositing</p>
         </div>
@@ -50,25 +46,33 @@ const ImageSlider: React.FC = () => {
           <ImageCompare
             leftImage="https://feathervfx.com/assets/images/services/COMP_OUT.jpeg"
             rightImage="https://feathervfx.com/assets/images/services/COMP_IN.jpeg"
-            height="250px"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Matchmove</p>
         </div>
         <div className="col-md-6 col-12">
           <ImageCompare
-            leftImage={cg_left}
-            rightImage={cg_right}
-            height="250px"
+            leftImage="assets/img/portfolio/2D_left.png"
+            rightImage="assets/img/portfolio/2D_right.png"
+            height="450px"
+          />
+          <p className="text-white mt-3 text-center">2D</p>
+        </div>
+        <div className="col-md-6 col-12">
+          <ImageCompare
+            leftImage="assets/img/portfolio/cg_left.png"
+            rightImage="assets/img/portfolio/cg_right.jpeg"
+            height="450px"
           />
           <p className="text-white mt-3 text-center">Color Grading</p>
         </div>
         <div className="col-md-6 col-12">
           <ImageCompare
-            leftImage={left_twod}
-            rightImage={right_twod}
-            height="250px"
+            leftImage="assets/img/portfolio/3D_left.png"
+            rightImage="assets/img/portfolio/3D_right.png"
+            height="450px"
           />
-          <p className="text-white mt-3 text-center">2D</p>
+          <p className="text-white mt-3 text-center">3D</p>
         </div>
       </div>
     </div>
