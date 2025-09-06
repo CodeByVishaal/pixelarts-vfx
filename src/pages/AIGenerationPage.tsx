@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 import DarkClass from "../components/classes/DarkClass";
 import LayoutV1 from "../components/layouts/LayoutV1";
@@ -135,19 +134,6 @@ const AIGenerationPage = () => {
                       Check back later for amazing AI-generated visual effects
                       content!
                     </p>
-                    <Link
-                      to="/"
-                      className="btn btn-primary"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)",
-                        border: "none",
-                        borderRadius: "25px",
-                        padding: "12px 30px",
-                      }}
-                    >
-                      Back to Home
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -320,40 +306,6 @@ const AIGenerationPage = () => {
                 ))}
               </div>
             )}
-
-            {/* Back to Home Button */}
-            <div className="row mt-5">
-              <div className="col-12 text-center">
-                <Link
-                  to="/"
-                  className="btn btn-outline-primary btn-lg me-3"
-                  style={{
-                    borderRadius: "25px",
-                    padding: "12px 40px",
-                    fontWeight: "500",
-                    borderWidth: "2px",
-                    borderColor: "#ff6b6b",
-                    color: "#ff6b6b",
-                  }}
-                >
-                  ← Back to Home
-                </Link>
-                <Link
-                  to="/showreel"
-                  className="btn btn-primary btn-lg"
-                  style={{
-                    borderRadius: "25px",
-                    padding: "12px 40px",
-                    fontWeight: "500",
-                    background:
-                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    border: "none",
-                  }}
-                >
-                  View Showreel
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
 

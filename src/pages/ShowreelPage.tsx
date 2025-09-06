@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import Breadcrumb from "../components/breadcrumb/Breadcrumb";
 import DarkClass from "../components/classes/DarkClass";
 import LayoutV1 from "../components/layouts/LayoutV1";
@@ -97,19 +96,6 @@ const ShowreelPage = () => {
                     <p className="mb-4" style={{ color: "#cac3c3" }}>
                       Check back later for amazing visual effects content!
                     </p>
-                    <Link
-                      to="/"
-                      className="btn btn-primary"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                        border: "none",
-                        borderRadius: "25px",
-                        padding: "12px 30px",
-                      }}
-                    >
-                      Back to Home
-                    </Link>
                   </div>
                 </div>
               </div>
