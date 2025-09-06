@@ -49,7 +49,7 @@ const ContactForm = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-12">
-                        <button type="submit" name="submit" id="submit">
+                        <button style={{borderRadius:'50px'}} type="submit" name="submit" id="submit">
                             <i className="fa fa-paper-plane" /> Get in Touch
                         </button>
                     </div>

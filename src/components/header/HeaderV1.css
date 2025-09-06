@@ -1,0 +1,123 @@
+.navbar {
+  padding: 20px 0;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.navbar.sticked {
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  padding: 15px 0;
+}
+
+.container-full {
+  width: 100%;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.navbar-header {
+  flex: 0 0 auto;
+}
+
+.main-menu-wrapper {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right {
+  flex: 0 0 auto;
+}
+
+.btn-get-touch {
+  background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+  color: #fff;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.btn-get-touch:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+  background: linear-gradient(135deg, #CC0000 0%, #FF0000 100%);
+}
+
+@media (max-width: 991px) {
+  .container-full {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .main-menu-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background: #111;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .show .main-menu-wrapper {
+    transform: translateX(0);
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+}
+
+/* Ensure proper centering of menu items */
+.navbar-center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Menu items styling */
+.navbar-nav {
+  display: flex;
+  gap: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar-nav > li > a {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px 15px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  position: relative;
+}
+
+.navbar-nav > li > a:hover {
+  color: #FF0000;
+}
+
+.navbar-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #FF0000;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar-nav > li > a:hover::after {
+  width: 70%;
+}

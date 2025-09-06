@@ -76,7 +76,7 @@ const HeaderV1 = () => {
               <div className="attr-nav flex">
                 <ul>
                   <li className="button">
-                    <Link to="/contact-us">Get in touch</Link>
+                    <Link style={{borderRadius:'50px'}} to="/contact-us">Get in touch</Link>
                   </li>
                 </ul>
               </div>
