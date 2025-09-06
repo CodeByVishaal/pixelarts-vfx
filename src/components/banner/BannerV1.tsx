@@ -1,34 +1,53 @@
+import { useState, useEffect } from 'react';
+import './BannerV1.css';
+
 const BannerV1 = () => {
+  const [videoError, setVideoError] = useState(false);
+
+  const handleVideoError = () => {
+    setVideoError(true);
+    console.log('Video failed to load');
+  };
+
+  useEffect(() => {
+    // Reset video error state when component mounts
+    setVideoError(false);
+  }, []);
+
   return (
-    <>
-      <div className="banner-style-one-area bg-cover">
+    <div className={`banner-style-one-area ${videoError ? 'video-error' : ''}`}>
+      {/* Video overlay for better text visibility */}
+      <div className="video-overlay"></div>
+
+      {/* Video container */}
+      <div className="video-container">
         <video
           className="background-video"
           autoPlay
           loop
           muted
           playsInline
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            transform: "translate(-50%, -50%)",
-            zIndex: 0,
-          }}
+          onError={handleVideoError}
         >
           <source src="/assets/video/LogoAnimation.m4v" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
 
+        {/* Fallback background in case video fails */}
+        <div 
+          className="video-fallback"
+          style={{ backgroundImage: 'url(/assets/img/banner/banner-bg.jpg)' }}
+        ></div>
+      </div>
+
+      {/* Banner content */}
+      <div className="banner-content">
         <div className="container">
           <div className="row">
             <div className="col-xl-7">
               <div className="banner-style-one-heading">
                 <div className="banner-title">
                   <h2 className="title-left split-text"></h2>
-
                   <h2 className="title-right split-text"></h2>
                 </div>
               </div>
@@ -36,7 +55,7 @@ const BannerV1 = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,0 +1,192 @@
+.banner-style-one-area {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000; /* Fallback color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-container {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-video {
+  position: absolute;
+  width: auto;
+  height: auto;
+  object-fit: cover; /* Changed to cover for better filling */
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8); /* Added scale for better fit */
+  background-color: #000;
+}
+
+/* Mobile Devices (Portrait) */
+@media screen and (max-width: 767px) {
+  .banner-style-one-area {
+    height: 45vh; /* Even more reduced viewport height */
+    min-height: 310px;
+  }
+  
+  .video-container {
+    height: 45vh;
+  }
+  
+  .background-video {
+    transform: translate(-50%, 0%) scale(0.18); /* Moved to top */
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    position: absolute;
+    top: 25%; /* Adjusted top position */
+    left: 50%;
+  }
+
+  .about-style-one-area.bg-cover.default-padding {
+    padding: 40px 0px !important;
+  }
+}
+
+/* Mobile Devices (Landscape) */
+@media screen and (max-height: 500px) {
+  .banner-style-one-area {
+    height: 90vh;
+  }
+  
+  .video-container {
+    height: 90vh;
+  }
+  
+  .background-video {
+    transform: translate(-50%, -50%) scale(0.2); /* Even smaller scale for landscape */
+    width: auto;
+    height: auto;
+    min-width: 100%;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .banner-style-one-area {
+    height: 100vh;
+  }
+  
+  .background-video {
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+/* Ensure proper centering on all devices */
+@media screen and (min-width: 1025px) {
+  .banner-style-one-area {
+    height: 100vh;
+  }
+  
+  .background-video {
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+  }
+}
+
+/* Handle ultra-wide screens */
+@media screen and (min-aspect-ratio: 16/9) {
+  .background-video {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+/* Handle tall screens */
+@media screen and (max-aspect-ratio: 16/9) {
+  .background-video {
+    height: 100%;
+    width: auto;
+    min-width: 100vw;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+}
+
+/* Tablet-specific adjustments */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .background-video {
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 375px) {
+  .banner-style-one-area {
+    height: 40vh; /* Further reduced height */
+  }
+  .video-container {
+    height: 40vh;
+  }
+  .background-video {
+    transform: translate(-50%, 0%) scale(0.15); /* Moved to top */
+    min-width: 100%;
+    top: 25%; /* Adjusted top position */
+  }
+}
+
+/* Banner content styles */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  color: #fff;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Video overlay for better text visibility */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+/* Fallback styles when video fails to load */
+.video-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+.video-error .video-fallback {
+  display: block;
+}
+
+.video-error .background-video {
+  display: none;
+}

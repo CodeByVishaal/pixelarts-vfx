@@ -52,7 +52,7 @@ const AboutV1 = ({ lightMode }: DataType) => {
             </div>
             <div className="col-lg-8 offset-lg-1">
               <div
-                className="about-style-one-info text-scroll-animation"
+                className="about-style-one-info text-scroll-animation responsive-padding"
                 ref={containerRef}
               >
                 <p className="text">

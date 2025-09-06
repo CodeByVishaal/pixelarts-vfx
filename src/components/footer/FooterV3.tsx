@@ -23,10 +23,8 @@ const FooterV3 = () => {
                       <p>13, Tyler crescent Tarneit Vic-3029 Melbourne </p>
                     </li>
                     <li>
-                      <h4>Dubai</h4>
-                      <p>
-                        Sheikh Mohammed bin Salah, #234 B - Downtown - Dubai
-                      </p>
+                      <h4>Canada</h4>
+                    <p>500 rue Puget, Laval H7K1C5, Canada</p>
                     </li>
                   </ul>
                 </div>
