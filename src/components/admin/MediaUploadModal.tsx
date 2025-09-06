@@ -26,7 +26,6 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string>("");
-  //@ts-ignore
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +45,6 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
   }, [editingItem]);
 
   const handleFileUpload = (file: File) => {
-    // Validate file type
     const validImageTypes = [
       "image/jpeg",
       "image/jpg",
@@ -67,7 +65,6 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
       return;
     }
 
-    // Check file size (10MB limit)
     const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
       toast.error("File size too large. Maximum size is 10MB.");
@@ -283,10 +280,10 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                 <label
                   style={{
                     display: "block",
-                    color: "#ffffff",
+                    fontSize: "16px",
                     fontWeight: "500",
                     marginBottom: "12px",
-                    fontSize: "16px",
+                    color: "#fff",
                   }}
                 >
                   Upload Method
@@ -560,10 +557,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                   }}
                 >
                   <option value="showreel">🎭 Showreel</option>
-                  <option value="portfolio">💼 Portfolio</option>
-                  <option value="demo">🚀 Demo</option>
-                  <option value="tutorial">📚 Tutorial</option>
-                  <option value="behind-scenes">🎬 Behind Scenes</option>
+                  <option value="ai-generation">🤖 AI Generation</option>
                 </select>
               </div>
             </div>
@@ -631,40 +625,97 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                   color: "#ffffff",
                   fontSize: "14px",
                   resize: "vertical",
+                  fontFamily: "inherit",
+                }}
+              />
+            </div>
+
+            {/* Tags */}
+            <div style={{ marginBottom: "24px" }}>
+              <label
+                style={{
+                  display: "block",
+                  color: "#ffffff",
+                  fontWeight: "500",
+                  marginBottom: "8px",
+                }}
+              >
+                Tags
+              </label>
+              <input
+                type="text"
+                placeholder="vfx, animation, 3d (comma separated)"
+                value={formData.tags}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, tags: e.target.value }))
+                }
+                style={{
+                  width: "100%",
+                  padding: "12px 16px",
+                  borderRadius: "12px",
+                  border: "1px solid #444",
+                  backgroundColor: "#333",
+                  color: "#ffffff",
+                  fontSize: "14px",
                 }}
               />
             </div>
           </div>
 
-          {/* Footer (already completed above) */}
-          {/* ... */}
+          {/* Footer */}
+          <div
+            className="modal-footer"
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              padding: "16px 24px 24px",
+              gap: "12px",
+            }}
+          >
+            <button
+              type="button"
+              onClick={handleClose}
+              disabled={uploading}
+              style={{
+                backgroundColor: "#333",
+                color: "#fff",
+                padding: "10px 20px",
+                borderRadius: "10px",
+                border: "1px solid #444",
+                cursor: "pointer",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#444")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "#333")
+              }
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={uploading}
+              style={{
+                backgroundColor: uploading ? "#555" : "#667eea",
+                color: "#fff",
+                padding: "10px 20px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: uploading ? "not-allowed" : "pointer",
+                fontWeight: "600",
+                transition: "all 0.2s",
+              }}
+            >
+              {uploading
+                ? "⏳ Uploading..."
+                : editingItem
+                ? "💾 Save Changes"
+                : "🚀 Upload"}
+            </button>
+          </div>
         </form>
-
-        {/* Scrollbar and spinner styles (already present) */}
-        <style>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-
-        .modal-content::-webkit-scrollbar {
-          width: 8px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-          background: #333;
-          border-radius: 4px;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb {
-          background: #667eea;
-          border-radius: 4px;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb:hover {
-          background: #5a6fd8;
-        }
-      `}</style>
       </div>
     </div>
   );
