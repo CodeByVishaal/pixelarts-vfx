@@ -13,6 +13,7 @@ import AdminDashboard from "./pages/adminpages/AdminDashboard";
 import AdminLogin from "./pages/adminpages/AdminLogin";
 import ShowreelPage from "./pages/ShowreelPage";
 import ProtectedRoute from "./ProtectedRoute";
+import AIGenerationPage from "./pages/AIGenerationPage";
 
 const Routers = () => {
   return (
@@ -25,6 +26,7 @@ const Routers = () => {
           <Route path="/contact-us" element={<ContactUsPage />}></Route>
           <Route path="/services" element={<Services4Page />}></Route>
           <Route path="/showreel" element={<ShowreelPage />}></Route>
+          <Route path="/ai-generation" element={<AIGenerationPage />}></Route>
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />}></Route>
           <Route
