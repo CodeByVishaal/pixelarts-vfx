@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Navigate } from "react-router-dom";
 import { useAdmin } from "../../contexts/AdminContext";
+import "./AdminLogin.css"; // 👈 add this line
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -11,7 +12,6 @@ const AdminLogin = () => {
   const [error, setError] = useState("");
   const { login, isAuthenticated, loading } = useAdmin();
 
-  // Redirect if already authenticated
   if (isAuthenticated) {
     return <Navigate to="/admin/dashboard" replace />;
   }
@@ -45,7 +45,7 @@ const AdminLogin = () => {
         className="admin-login-container"
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          background: "#141414",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -55,85 +55,73 @@ const AdminLogin = () => {
         <div
           className="login-card"
           style={{
-            background: "rgba(255, 255, 255, 0.95)",
-            backdropFilter: "blur(10px)",
-            borderRadius: "20px",
+            background: "#1E1E1E",
+            borderRadius: "15px",
             padding: "40px",
-            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
             width: "100%",
             maxWidth: "400px",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
           }}
         >
           <div className="text-center mb-4">
             <h2
               style={{
-                color: "#333",
-                fontWeight: "700",
-                marginBottom: "10px",
+                color: "#ffffff",
+                fontWeight: "600",
+                fontSize: "24px",
+                marginBottom: "8px",
               }}
             >
               Admin Dashboard
             </h2>
-            <p style={{ color: "#666", marginBottom: "30px" }}>
+            <p style={{ color: "#808080", fontSize: "14px" }}>
               Sign in to manage your media content
             </p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label
-                htmlFor="username"
-                className="form-label"
-                style={{ color: "#333", fontWeight: "500" }}
-              >
-                Username
-              </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control white-placeholder"
                 id="username"
                 name="username"
+                placeholder="Username"
                 value={credentials.username}
                 onChange={handleInputChange}
                 required
                 style={{
                   padding: "12px 16px",
-                  borderRadius: "10px",
-                  border: "2px solid #e1e5e9",
-                  fontSize: "16px",
-                  transition: "all 0.3s ease",
+                  borderRadius: "8px",
+                  border: "1px solid #2D2D2D",
+                  fontSize: "14px",
+                  background: "#2D2D2D",
+                  color: "#ffffff",
+                  width: "100%",
+                  marginBottom: "16px",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#667eea")}
-                onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
               />
             </div>
 
             <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="form-label"
-                style={{ color: "#333", fontWeight: "500" }}
-              >
-                Password
-              </label>
               <input
                 type="password"
-                className="form-control"
+                className="form-control white-placeholder"
                 id="password"
                 name="password"
+                placeholder="Password"
                 value={credentials.password}
                 onChange={handleInputChange}
                 required
                 style={{
                   padding: "12px 16px",
-                  borderRadius: "10px",
-                  border: "2px solid #e1e5e9",
-                  fontSize: "16px",
-                  transition: "all 0.3s ease",
+                  borderRadius: "8px",
+                  border: "1px solid #2D2D2D",
+                  fontSize: "14px",
+                  background: "#2D2D2D",
+                  color: "#ffffff",
+                  width: "100%",
                 }}
-                onFocus={(e) => (e.target.style.borderColor = "#667eea")}
-                onBlur={(e) => (e.target.style.borderColor = "#e1e5e9")}
               />
             </div>
 
@@ -141,11 +129,13 @@ const AdminLogin = () => {
               <div
                 className="alert alert-danger"
                 style={{
-                  borderRadius: "10px",
+                  borderRadius: "8px",
                   padding: "12px 16px",
-                  backgroundColor: "#fee",
-                  border: "1px solid #fcc",
-                  color: "#c33",
+                  backgroundColor: "rgba(255, 59, 48, 0.1)",
+                  border: "1px solid rgba(255, 59, 48, 0.2)",
+                  color: "#ff3b30",
+                  marginBottom: "16px",
+                  fontSize: "14px",
                 }}
               >
                 {error}
@@ -157,29 +147,15 @@ const AdminLogin = () => {
               disabled={loading}
               className="btn w-100"
               style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                background: "#974FEE",
                 border: "none",
-                borderRadius: "10px",
+                borderRadius: "8px",
                 padding: "12px",
-                fontSize: "16px",
+                fontSize: "14px",
                 fontWeight: "600",
                 color: "white",
-                transition: "all 0.3s ease",
-                transform: loading ? "scale(0.98)" : "scale(1)",
-              }}
-              onMouseEnter={(e) => {
-                if (!loading) {
-                  (e.target as HTMLElement).style.transform =
-                    "translateY(-2px)";
-                  (e.target as HTMLElement).style.boxShadow =
-                    "0 10px 25px rgba(102, 126, 234, 0.4)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!loading) {
-                  (e.target as HTMLElement).style.transform = "translateY(0)";
-                  (e.target as HTMLElement).style.boxShadow = "none";
-                }
+                transition: "all 0.2s ease",
+                opacity: loading ? 0.7 : 1,
               }}
             >
               {loading ? (
@@ -196,11 +172,6 @@ const AdminLogin = () => {
               )}
             </button>
           </form>
-
-          <div
-            className="text-center mt-4"
-            style={{ color: "#666", fontSize: "14px" }}
-          ></div>
         </div>
       </div>
     </>

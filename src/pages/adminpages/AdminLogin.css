@@ -1,0 +1,5 @@
+.white-placeholder::placeholder {
+  color: #ffffff;
+  opacity: 1; /* ensures full white */
+}
+

@@ -332,6 +332,52 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.topbar-actions {
+  display: flex;
+  gap: 12px; /* equal spacing */
+}
+
+.btn-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff !important; /* keep text white always */
+  text-decoration: none !important; /* no underline */
+  border: none;
+  cursor: pointer;
+  min-width: 120px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Base color (purple theme) */
+.btn-green,
+.btn-pink,
+.btn-blue {
+  background-color: #6a0dad;
+}
+
+.btn-red{
+  background-color: #E30513;
+}
+
+/* Hover effect */
+.btn-topbar:hover {
+  background-color: #000000; /* black background */
+  color: #ffffff !important; /* force white text */
+  transform: translateY(-2px);
+}
+
+.btn-topbar i {
+  font-size: 14px;
+  color: #ffffff !important; /* keep icons white too */
+}
+
+
 
 .stat-card:nth-child(4) .icon {
   background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);

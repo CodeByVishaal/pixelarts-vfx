@@ -251,42 +251,36 @@ const AdminDashboard = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
+
             <div className="topbar-actions">
               <Link
                 to="/showreel"
-                className="btn-showreel"
+                className="btn-topbar btn-green"
                 title="View Showreel"
               >
                 <i className="fas fa-film"></i>
                 <span>Showreel</span>
               </Link>
+
               <Link
                 to="/ai-generation"
-                className="btn btn-info btn-sm"
-                style={{
-                  borderRadius: "8px",
-                  padding: "8px 16px",
-                  backgroundColor: "#ff6b6b",
-                  color: "white",
-                  textDecoration: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                }}
+                className="btn-topbar btn-pink"
                 title="View AI Generation"
               >
                 <i className="fas fa-robot"></i>
                 <span>AI Gallery</span>
               </Link>
+
               <button
-                className="btn-add"
+                className="btn-topbar btn-blue"
                 onClick={() => setIsUploadModalOpen(true)}
               >
                 <i className="fas fa-plus"></i>
                 <span>Add Media</span>
               </button>
+
               <button
-                className="btn-logout"
+                className="btn-topbar btn-red"
                 onClick={handleLogout}
                 title="Logout"
               >
