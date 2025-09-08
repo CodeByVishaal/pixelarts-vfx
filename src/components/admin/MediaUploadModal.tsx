@@ -65,7 +65,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
       return;
     }
 
-    const maxSize = 10 * 1024 * 1024;
+    const maxSize = 30 * 1024 * 1024;
     if (file.size > maxSize) {
       toast.error("File size too large. Maximum size is 10MB.");
       return;

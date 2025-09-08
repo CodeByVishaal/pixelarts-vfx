@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { useState } from "react";
 import { toast } from "react-toastify";
 
 interface FormEventHandler {
@@ -6,35 +7,38 @@ interface FormEventHandler {
 }
 
 const ContactForm = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleForm: FormEventHandler = async (event) => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
 
-    const formData = {
-      name: (form.name as any).value,
-      email: (form.email as any).value,
-      phone: (form.phone as any).value,
-      comments: (form.comments as any).value,
+    const data = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      comments: formData.get("comments"),
     };
 
     try {
-      const response = await fetch(
-        `${import.meta.env.REACT_APP_API_URL || "http://localhost:5000"}/api/contact`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+      setLoading(true);
+      const response = await fetch("http://localhost:5000/api/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
       if (response.ok) {
         toast.success("Thanks For Your Email!");
         form.reset();
       } else {
-        toast.error("Failed to send message. Please try again.");
+        toast.error("Failed to send email. Try again.");
       }
-    } catch (err) {
-      toast.error("Error sending message. Check your connection.");
+    } catch (error) {
+      toast.error("Error sending email.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,6 +61,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col-lg-6">
             <div className="form-group">
@@ -72,6 +77,7 @@ const ContactForm = () => {
               <span className="alert-error" />
             </div>
           </div>
+
           <div className="col-lg-6">
             <div className="form-group">
               <input
@@ -87,6 +93,7 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col-lg-12">
             <div className="form-group comments">
@@ -101,10 +108,22 @@ const ContactForm = () => {
             </div>
           </div>
         </div>
+
         <div className="row">
           <div className="col-lg-12">
-            <button style={{ borderRadius: "50px" }} type="submit" name="submit" id="submit">
-              <i className="fa fa-paper-plane" /> Get in Touch
+            <button
+              style={{ borderRadius: "50px" }}
+              type="submit"
+              name="submit"
+              id="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <i className="fa fa-spinner fa-spin" />
+              ) : (
+                <i className="fa fa-paper-plane" />
+              )}{" "}
+              {loading ? "Sending..." : "Get in Touch"}
             </button>
           </div>
         </div>
