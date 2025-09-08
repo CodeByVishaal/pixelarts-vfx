@@ -118,7 +118,7 @@ const WhyChooseV1 = ({ sectionClass }: DataType) => {
                     <div className="award-item">
                       <div className="fun-fact">
                         <div className="h2 timer text-purple">
-                          <CountUp end={19} enableScrollSpy />+
+                          <CountUp end={50} enableScrollSpy />+
                         </div>
                       </div>
                       <h4>Movies </h4>
@@ -146,10 +146,10 @@ const WhyChooseV1 = ({ sectionClass }: DataType) => {
                     <div className="award-item">
                       <div className="fun-fact">
                         <div className="h2 timer text-purple">
-                          <CountUp end={100} enableScrollSpy />+
+                          <CountUp end={10000} enableScrollSpy />+
                         </div>
                       </div>
-                      <h4>Hours of Dedication</h4>
+                      <h4>Hours</h4>
                     </div>
                   </Animate>
                 </div>

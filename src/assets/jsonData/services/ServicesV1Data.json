@@ -3,8 +3,8 @@
         "id": 1,
         "icon": "1.png",
         "iconLight": "23.png",
-        "title": "Rotoscope",
-        "text": "Isolating characters or objects frame by frame for clean compositing.",
+        "title": "Color Grading",
+        "text": "Painting the scene with colors and tones that create a specific mood or feeling.",
         "activeClass": ""
     },
     {
@@ -19,8 +19,8 @@
         "id": 3,
         "icon": "3.png",
         "iconLight": "25.png",
-        "title": "Matchmove",
-        "text": "Recreating real-world camera motion in 3D for seamless VFX integration.",
+        "title": "Rotoscope",
+        "text": "Isolating characters or objects frame by frame for clean compositing.",
         "activeClass": ""
     },
     {
