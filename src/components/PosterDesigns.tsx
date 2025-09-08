@@ -91,7 +91,7 @@ const PosterDesign: React.FC = () => {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      <h2 className="text-3xl font-bold text-white mb-8">Poster Designs</h2>
+      <h2 className="text-3xl font-bold text-white mb-8">Posters</h2>
 
       {/* Grid */}
       <div className="gallery-grid">

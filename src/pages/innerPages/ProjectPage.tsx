@@ -17,8 +17,8 @@ const ProjectPage = () => {
       <LayoutV1>
         <Breadcrumb title="Our Projects" breadCrumb="Projects" />
         <MovieGallery />
-        <PosterDesign />
         <SeriesGallery />
+        <PosterDesign />
         <DarkClass />
         <ThemeDark />
       </LayoutV1>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../assets/css/gallery.css";
 
 const images = [
@@ -15,10 +15,11 @@ const images = [
 ];
 
 const SeriesGallery: React.FC = () => {
-  const [selected, setSelected] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
   const galleryRef = useRef<HTMLDivElement | null>(null);
 
+  // Fade-in section on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -31,13 +32,25 @@ const SeriesGallery: React.FC = () => {
       },
       { threshold: 0.2 }
     );
-
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
-
+    if (galleryRef.current) observer.observe(galleryRef.current);
     return () => observer.disconnect();
   }, []);
+
+  // Keyboard nav
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (currentIndex === null) return;
+      if (e.key === "ArrowRight") {
+        setCurrentIndex((i) => ((i ?? 0) + 1) % images.length);
+      } else if (e.key === "ArrowLeft") {
+        setCurrentIndex((i) => (i === 0 ? images.length - 1 : (i ?? 0) - 1));
+      } else if (e.key === "Escape") {
+        setCurrentIndex(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [currentIndex]);
 
   return (
     <div
@@ -46,42 +59,66 @@ const SeriesGallery: React.FC = () => {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      {/* Title */}
-      <h2 className="text-3xl font-bold text-white mb-8">
-        Web Series Projects
-      </h2>
+      <h2 className="text-3xl font-bold text-white mb-8">Web Series</h2>
 
-      {/* Gallery Grid */}
-      <div className="gallery-grid gap-6 px-6">
+      {/* Grid */}
+      <div className="gallery-grid">
         {images.map((src, idx) => (
           <div
-            className="thumb transform transition-transform duration-700 hover:scale-105 flex justify-center"
             key={idx}
+            className="thumb relative overflow-hidden rounded-lg"
+            onClick={() => setCurrentIndex(idx)}
           >
             <img
               src={src}
               alt={`Gallery ${idx}`}
-              className="rounded-lg shadow-lg max-h-60 w-auto object-contain cursor-pointer"
-              onClick={() => setSelected(src)}
+              className="zoom rounded-lg shadow-lg cursor-pointer"
             />
+            {/* Hover overlay with fade */}
+            <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
           </div>
         ))}
       </div>
 
       {/* Modal */}
-      {selected && (
-        <div
-          className="modal fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={() => setSelected(null)}
-        >
-          <span className="close absolute top-4 right-6 text-4xl text-white cursor-pointer">
+      {currentIndex !== null && (
+        <div className="modal" onClick={() => setCurrentIndex(null)}>
+          {/* Close */}
+          <span className="close" onClick={() => setCurrentIndex(null)}>
             &times;
           </span>
+
+          {/* Prev */}
+          <button
+            className="absolute left-6 top-1/2 -translate-y-1/2 bg-danger text-white text-5xl z-50 hover:text-gray-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex(
+                currentIndex === 0 ? images.length - 1 : currentIndex - 1
+              );
+            }}
+          >
+            &#10094;
+          </button>
+
+          {/* Image */}
           <img
-            className="modal-content max-w-[80%] max-h-[80vh] w-auto h-auto object-contain rounded-lg shadow-xl"
-            src={selected}
+            src={images[currentIndex]}
             alt="Preview"
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
           />
+
+          {/* Next */}
+          <button
+            className="absolute right-6 top-1/2 bg-danger -translate-y-1/2 text-white text-5xl z-50 hover:text-gray-300"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCurrentIndex((currentIndex + 1) % images.length);
+            }}
+          >
+            &#10095;
+          </button>
         </div>
       )}
     </div>
