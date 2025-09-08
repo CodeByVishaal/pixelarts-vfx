@@ -21,7 +21,7 @@ const ProjectIdeaV1 = () => {
                 </div>
                 <div className="info">
                   <h4>Phone</h4>
-                  <a className="phone-link">+4733378901</a> <br />
+                  <a className="phone-link">+61 432247973</a> <br />
                 </div>
               </li>
               <li>

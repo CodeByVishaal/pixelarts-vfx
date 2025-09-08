@@ -20,7 +20,7 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                     className="regular-img object-scale-down"
                     src={logoLight}
                     alt="Image Not Found"
-                    style={{ width: "120px", height: "80px" }}
+                    style={{ width: "150px", height: "80px" }}
                   />
                   <img
                     className="light-img"
@@ -30,18 +30,18 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                 </div>
                 <ul className="address-list">
                   <li>
-                    <h4>Australia</h4>
+                    <h4 className="widget-title">Australia</h4>
                     <p>13, Tyler crescent Tarneit Vic-3029 Melbourne </p>
                   </li>
                   <li>
-                    <h4>Canada</h4>
+                    <h4 className="widget-title">Canada</h4>
                     <p>500 rue Puget, Laval H7K1C5, Canada</p>
                   </li>
                 </ul>
                 <div className="footer-contact">
                   <ul>
                     <li>
-                      <a href="mailto:pixelartswebsite@gmail.com">
+                      <a style={{fontSize:"26px"}} className="widget-title"  href="mailto:pixelartswebsite@gmail.com">
                         pixelartswebsite@gmail.com
                       </a>
                     </li>

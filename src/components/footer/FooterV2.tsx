@@ -30,18 +30,18 @@ const FooterV2 = ({ sectionClass }: DataType) => {
                 </div>
                 <ul className="address-list">
                   <li>
-                    <h4>Australia</h4>
+                    <h4 className="widget-title">Australia</h4>
                     <p>13, Tyler crescent Tarneit Vic-3029 Melbourne </p>
                   </li>
                   <li>
-                    <h4>Canada</h4>
+                    <h4 className="widget-title">Canada</h4>
                     <p>500 rue Puget, Laval H7K1C5, Canada</p>
                   </li>
                 </ul>
                 <div className="footer-contact">
                   <ul>
                     <li>
-                      <a href="mailto:someone@example.com">
+                      <a  className="widget-title"  href="mailto:someone@example.com">
                         pixelartswebsite@gmail.com
                       </a>
                     </li>
