@@ -17,22 +17,22 @@ const ContactV1 = ({ sectionClass }: DataType) => {
                   <ul className="contact-address">
                     <li>
                       <a className="phone-link" href="tel:+4733378901">
-                        <i className="fas fa-user-headset" /> +61 432247973
+                        <i className="fas fa-user-headset" /> +91 7299055355
                       </a>
                     </li>
                     <li>
                       <div className="info">
                         <h4>Location</h4>
                         <p>
-                          13, Tyler crescent Tarneit Vic-3029 Melbourne
-                          Australia
+                          Pixel arts No 23, Thiru valluvar salai, Alwarthiru
+                          Nagar, Chennai 87, India
                         </p>
                       </div>
                     </li>
                     <li>
                       <div className="info">
                         <h4>Official Email</h4>
-                        <a  href="mailto:pixelartswebsite@gmail.com">
+                        <a href="mailto:pixelartswebsite@gmail.com">
                           pixelartswebsite@gmail.com
                         </a>
                       </div>

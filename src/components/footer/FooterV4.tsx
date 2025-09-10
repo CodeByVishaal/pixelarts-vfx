@@ -37,13 +37,30 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                     <h4 className="widget-title">Canada</h4>
                     <p>500 rue Puget, Laval H7K1C5, Canada</p>
                   </li>
+                  <li>
+                    <h4 className="widget-title">India</h4>
+                    <p>
+                      No 23,Thiru valluvar salai Thiru Nagar Alwarthiru Nagar
+                      Chennai 87
+                    </p>
+                  </li>
                 </ul>
                 <div className="footer-contact">
                   <ul>
                     <li>
-                      <a style={{fontSize:"26px"}} className="widget-title"  href="mailto:pixelartswebsite@gmail.com">
+                      <a
+                        style={{ fontSize: "26px" }}
+                        className="widget-title"
+                        href="mailto:pixelartswebsite@gmail.com"
+                      >
                         pixelartswebsite@gmail.com
                       </a>
+                    </li>
+                    <li>
+                      <a href="tel:+4733378901">+91 7299055355</a>
+                    </li>
+                    <li>
+                      <a href="tel:+4733378901">+1 7786889740</a>
                     </li>
                     <li>
                       <a href="tel:+4733378901">+61 432247973</a>
