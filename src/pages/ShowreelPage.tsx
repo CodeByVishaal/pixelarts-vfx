@@ -11,7 +11,6 @@ const ShowreelPage = () => {
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
 
-  // Filter items that have category 'ai-generation'
   const showReelItems = mediaItems.filter(
     (item) => item.category === "showreel"
   );
@@ -102,7 +101,7 @@ const ShowreelPage = () => {
             ) : (
               <div className="row g-4">
                 {/* @ts-ignore */}
-                {filteredItems.map((item, index) => (
+                {filteredItems.map((item) => (
                   <div key={item.id} className="col-lg-4 col-md-6">
                     <div
                       className="card border-0 h-100"
@@ -151,38 +150,21 @@ const ShowreelPage = () => {
                             }}
                           />
                         ) : (
-                          <div
+                          <video
+                            src={item.url}
+                            muted
+                            playsInline
+                            preload="metadata"
                             style={{
                               position: "absolute",
                               top: 0,
                               left: 0,
                               width: "100%",
                               height: "100%",
-                              background:
-                                "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "center",
-                              color: "white",
+                              objectFit: "cover",
+                              transition: "transform 0.3s ease",
                             }}
-                          >
-                            <div className="text-center">
-                              <div
-                                style={{
-                                  fontSize: "3rem",
-                                  marginBottom: "10px",
-                                }}
-                              >
-                                ▶️
-                              </div>
-                              <h6
-                                className="mb-0"
-                                style={{ fontWeight: "600" }}
-                              >
-                                Play Video
-                              </h6>
-                            </div>
-                          </div>
+                          />
                         )}
 
                         {/* Overlay */}
@@ -222,14 +204,14 @@ const ShowreelPage = () => {
                         className="card-body"
                         style={{
                           padding: "1.5rem",
-                          backgroundColor: "#242526", // dark card bottom
-                          borderTop: "1px solid #3a3b3c", // subtle divider
+                          backgroundColor: "#242526",
+                          borderTop: "1px solid #3a3b3c",
                         }}
                       >
                         <h5
                           className="card-title mb-2"
                           style={{
-                            color: "#fff", // white title
+                            color: "#fff",
                             fontWeight: "600",
                             fontSize: "1.1rem",
                           }}
@@ -241,7 +223,7 @@ const ShowreelPage = () => {
                           style={{
                             fontSize: "14px",
                             lineHeight: "1.5",
-                            color: "#e0e0e0", // brighter gray for visibility
+                            color: "#e0e0e0",
                           }}
                         >
                           {item.description ||
@@ -294,8 +276,8 @@ const ShowreelPage = () => {
                       src={selectedMedia}
                       controls
                       autoPlay
-                      controlsList="nodownload noremoteplayback noplaybackrate" // ✅ disable download, remote playback, speed change
-                      disablePictureInPicture // ✅ removes PiP option
+                      controlsList="nodownload noremoteplayback noplaybackrate"
+                      disablePictureInPicture
                       style={{
                         width: "100%",
                         height: "auto",
@@ -328,7 +310,8 @@ const ShowreelPage = () => {
         .card:hover .hover-overlay {
           opacity: 1 !important;
         }
-        .card:hover img {
+        .card:hover img, 
+        .card:hover video {
           transform: scale(1.05);
         }
       `}</style>

@@ -335,15 +335,17 @@ const AIGenerationPage = () => {
                   selectedMedia.includes("video") ? (
                     <video
                       src={selectedMedia}
-                      controls
-                      autoPlay
-                      controlsList="nodownload noremoteplayback noplaybackrate" // ✅ disable download, remote playback, speed change
-                      disablePictureInPicture
+                      muted
+                      playsInline
+                      preload="metadata"
                       style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
                         width: "100%",
-                        height: "auto",
-                        maxHeight: "80vh",
-                        borderRadius: "10px",
+                        height: "100%",
+                        objectFit: "cover",
+                        transition: "transform 0.3s ease",
                       }}
                     />
                   ) : (
