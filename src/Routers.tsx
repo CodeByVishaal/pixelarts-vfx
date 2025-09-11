@@ -11,9 +11,10 @@ import Services4Page from "./pages/servicesPages/Services4Page";
 import { AdminProvider } from "./contexts/AdminContext";
 import AdminDashboard from "./pages/adminpages/AdminDashboard";
 import AdminLogin from "./pages/adminpages/AdminLogin";
+import ChangePassword from "./pages/adminpages/ChangePassword";
+import AIGenerationPage from "./pages/AIGenerationPage";
 import ShowreelPage from "./pages/ShowreelPage";
 import ProtectedRoute from "./ProtectedRoute";
-import AIGenerationPage from "./pages/AIGenerationPage";
 
 const Routers = () => {
   return (
@@ -29,11 +30,21 @@ const Routers = () => {
           <Route path="/ai-generation" element={<AIGenerationPage />}></Route>
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />}></Route>
+
           <Route
             path="/admin/dashboard"
             element={
               <ProtectedRoute>
                 <AdminDashboard />
+              </ProtectedRoute>
+            }
+          ></Route>
+
+          <Route
+            path="/admin/change-password"
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
               </ProtectedRoute>
             }
           ></Route>

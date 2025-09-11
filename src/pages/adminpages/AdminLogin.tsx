@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Navigate } from "react-router-dom";
 import { useAdmin } from "../../contexts/AdminContext";
-import "./AdminLogin.css"; // 👈 add this line
+import "./AdminLogin.css";
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({

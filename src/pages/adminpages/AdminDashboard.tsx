@@ -254,6 +254,15 @@ const AdminDashboard = () => {
 
             <div className="topbar-actions">
               <Link
+                to="/admin/change-password"
+                className="btn-topbar btn-green"
+                title="Change Password"
+              >
+                <i className="fas fa-film"></i>
+                <span>Change Password</span>
+              </Link>
+
+              <Link
                 to="/showreel"
                 className="btn-topbar btn-green"
                 title="View Showreel"

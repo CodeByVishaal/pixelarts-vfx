@@ -334,7 +334,9 @@
 }
 .topbar-actions {
   display: flex;
-  gap: 12px; /* equal spacing */
+  flex-wrap: wrap;       /* ✅ allows buttons to wrap instead of overflow */
+  gap: 12px;
+  justify-content: flex-end; /* keep them aligned to the right */
 }
 
 .btn-topbar {
@@ -342,17 +344,20 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 10px 18px;
+  padding: 8px 14px;     /* ✅ slightly smaller padding */
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff !important; /* keep text white always */
-  text-decoration: none !important; /* no underline */
+  color: #ffffff !important;
+  text-decoration: none !important;
   border: none;
   cursor: pointer;
-  min-width: 120px;
   transition: all 0.2s ease-in-out;
+  white-space: nowrap;   /* ✅ prevent text from breaking */
+  flex: 0 1 auto;        /* ✅ let buttons shrink if needed */
+  min-width: unset;      /* ✅ remove forced 120px width */
 }
+
 
 /* Base color (purple theme) */
 .btn-green,
@@ -624,9 +629,13 @@
     width: 100%;
   }
   
-  .topbar-actions {
-    width: 100%;
-    justify-content: space-between;
+ .topbar-actions {
+    justify-content: center; /* ✅ center buttons on mobile */
+  }
+
+  .btn-topbar {
+    flex: 1 1 45%;  /* ✅ two buttons per row on very small screens */
+    min-width: 0;
   }
   
   .stats-grid {
