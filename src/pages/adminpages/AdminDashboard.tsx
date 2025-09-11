@@ -258,7 +258,7 @@ const AdminDashboard = () => {
                 className="btn-topbar btn-green"
                 title="Change Password"
               >
-                <i className="fas fa-film"></i>
+                <i className="fas fa-key"></i>
                 <span>Change Password</span>
               </Link>
 
