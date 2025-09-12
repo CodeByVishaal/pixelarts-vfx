@@ -4,7 +4,7 @@ import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
 import DarkClass from "../../components/classes/DarkClass";
 import ClientsV1 from "../../components/clients/ClientsV1";
 import LayoutV1 from "../../components/layouts/LayoutV1";
-import ThemeDark from "../../components/switcher/ThemeDark";
+import ServicesV2 from "../../components/services/ServicesV2";
 import TestimonialV3 from "../../components/testimonial/TestimonialV3";
 
 const AboutUsPage = () => {
@@ -16,11 +16,11 @@ const AboutUsPage = () => {
 
       <LayoutV1>
         <Breadcrumb title="About Company" breadCrumb="About" />
-        <AboutV6 sectionClass="bg-gray default-padding" />
+        <AboutV6 />
         <ClientsV1 sectionClass="bg-gray" />
-        <TestimonialV3 />
+        <ServicesV2 />
+        <TestimonialV3 sectionClass="bg-gray" />
         <DarkClass />
-        <ThemeDark />
       </LayoutV1>
     </>
   );

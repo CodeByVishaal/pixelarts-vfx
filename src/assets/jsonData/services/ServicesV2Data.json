@@ -2,31 +2,111 @@
     {
         "id": 1,
         "activeClass": "active",
-        "icon": "17.png",
-        "subTitle": "Connection",
-        "title": "Perfect UI/UX Designing",
-        "text": "Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
-        "listData": ["Information architecture", "Digital Designer", "Interaction design"],
+        "icon": "5.png",
+        "subTitle": "Precision Masking",
+        "title": "Rotoscope",
+        "text": "Rotoscoping involves creating detailed mattes to isolate subjects or elements in live-action footage. It's a vital process for seamless compositing in VFX pipelines.",
+        "listData": ["Manual & AI-assisted rotoscoping", "Motion blur handling", "Silhouette extraction"],
         "illustration": "2.png"
     },
     {
         "id": 2,
         "activeClass": "",
-        "icon": "18.png",
-        "subTitle": "Collaboration",
-        "title": "Social Media Marketing",
-        "text": "Regular indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
-        "listData": ["Content marketing", "Affiliate marketing", "Search engine optimization"],
+        "icon": "6.png",
+        "subTitle": "Cleanup & Restoration",
+        "title": "Paint Prep",
+        "text": "Paint Prep is the process of removing unwanted elements like rigs, markers, and wires. It ensures the footage is clean and ready for advanced VFX integration.",
+        "listData": ["Wire/rig removal", "Marker cleanup", "Frame reconstruction"],
         "illustration": "3.png"
     },
     {
         "id": 3,
         "activeClass": "",
-        "icon": "19.png",
-        "subTitle": "Innovations",
-        "title": "Branding & Stationery",
-        "text": "Continue indulged speaking the was out horrible for domestic position. Seeing rather her you not esteem men settle genius excuse. Deal say over you age from. Comparison new.",
-        "listData": ["Product branding", "Retail branding", "Service branding"],
+        "icon": "7.png",
+        "subTitle": "Digital Retouching",
+        "title": "Cosmetic Fixes",
+        "text": "Cosmetic Fixes enhance on-screen appearances by digitally correcting skin, wardrobe, and makeup while preserving the natural look of the performance.",
+        "listData": ["Skin smoothing", "Wardrobe fixes", "Makeup consistency corrections"],
         "illustration": "4.png"
+    },
+    {
+        "id": 4,
+        "activeClass": "",
+        "icon": "8.png",
+        "subTitle": "Scene Integration",
+        "title": "Compositing",
+        "text": "Compositing merges all visual elements—live-action, CGI, and effects—into a single seamless shot. It's where the magic of VFX truly comes together.",
+        "listData": ["Green screen keying", "Multi-layer integration", "Lighting & shadow matching"],
+        "illustration": "5.png"
+    },
+    {
+        "id": 5,
+        "activeClass": "",
+        "icon": "21.png",
+        "subTitle": "Camera & Object Tracking",
+        "title": "Matchmove",
+        "text": "Matchmoving is the process of tracking camera or object motion in live footage, allowing CGI elements to be placed realistically within a scene.",
+        "listData": ["3D camera tracking", "Object tracking", "Scene scale calibration"],
+        "illustration": "6.png"
+    },
+    {
+        "id": 6,
+        "activeClass": "",
+        "icon": "22.png",
+        "subTitle": "Shot Planning",
+        "title": "Pre-Visualisation",
+        "text": "Pre-visualisation helps directors and VFX teams plan complex scenes ahead of production using 3D animation, storyboards, and virtual cameras.",
+        "listData": ["Storyboard animation", "Virtual camera setup", "Scene layout blocking"],
+        "illustration": "7.png"
+    },
+    {
+        "id": 7,
+        "activeClass": "",
+        "icon": "20.png",
+        "subTitle": "Visual Enhancement",
+        "title": "Color Grading",
+        "text": "Color Grading enhances the visual tone of a film, establishing mood and continuity. It balances exposure, contrast, and color to achieve cinematic quality.",
+        "listData": ["Color correction", "Mood enhancement", "Look matching across shots"],
+        "illustration": "8.png"
+    },
+    {
+        "id": 8,
+        "activeClass": "",
+        "icon": "12.png",
+        "subTitle": "Layer-Based Effects",
+        "title": "2D",
+        "text": "2D visual effects include screen replacements, particle effects, and graphic elements composited directly onto the footage without 3D interaction.",
+        "listData": ["Screen replacements", "2D tracking & integration", "Motion graphics overlays"],
+        "illustration": "9.png"
+    },
+    {
+        "id": 9,
+        "activeClass": "",
+        "icon": "13.png",
+        "subTitle": "Three-Dimensional Assets",
+        "title": "3D",
+        "text": "3D VFX covers the creation and animation of digital models, environments, and effects integrated seamlessly with live-action footage.",
+        "listData": ["3D modeling", "Texturing & lighting", "CG integration with footage"],
+        "illustration": "10.png"
+    },
+    {
+        "id": 10,
+        "activeClass": "",
+        "icon": "14.png",
+        "subTitle": "Concept Development",
+        "title": "Concept Art",
+        "text": "Concept Art visualizes key scenes, characters, and environments before production, helping align the creative vision and guide the VFX process.",
+        "listData": ["Scene visualization", "Character design", "Environment exploration"],
+        "illustration": "11.png"
+    },
+    {
+        "id": 11,
+        "activeClass": "",
+        "icon": "15.png",
+        "subTitle": "On-Set Expertise",
+        "title": "VFX Supervision",
+        "text": "VFX Supervision ensures that all visual effects requirements are captured on set, coordinating between the production and post-production teams.",
+        "listData": ["On-set consultation", "Shot planning for VFX", "Quality control & review"],
+        "illustration": "12.png"
     }
 ]
