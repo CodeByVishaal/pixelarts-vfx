@@ -225,22 +225,55 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
+        {/* Header Section - Moved to top and adjusted padding */}
         <div
           className="modal-header"
           style={{
-            padding: "24px 24px 0",
-            borderBottom: "none",
+            padding: "24px",
+            borderBottom: "1px solid #333",
+            position: "sticky",
+            top: 0,
+            backgroundColor: "#1a1a1a",
+            zIndex: 10,
           }}
         >
           <div
             style={{
+              position: "relative",
               display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              flexDirection: "column",
+              width: "100%",
             }}
           >
-            <div>
+            <button
+              onClick={handleClose}
+              style={{
+                position: "absolute", // Add this
+                right: 0, // Add this
+                top: 0, // Add this
+                background: "none",
+                border: "none",
+                color: "#888",
+                fontSize: "24px",
+                cursor: "pointer",
+                padding: "8px",
+                borderRadius: "8px",
+                transition: "all 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#ffffff";
+                e.currentTarget.style.backgroundColor = "#333";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "#888";
+                e.currentTarget.style.backgroundColor = "transparent";
+              }}
+            >
+              ✕
+            </button>
+            <div style={{ paddingRight: "40px" }}>
+              {" "}
+              {/* Add padding to prevent text overlap */}
               <h3
                 style={{
                   margin: 0,
@@ -263,33 +296,11 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                   : "Add new content to your portfolio"}
               </p>
             </div>
-            <button
-              onClick={handleClose}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#888",
-                fontSize: "24px",
-                cursor: "pointer",
-                padding: "8px",
-                borderRadius: "8px",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = "#ffffff";
-                e.currentTarget.style.backgroundColor = "#333";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = "#888";
-                e.currentTarget.style.backgroundColor = "transparent";
-              }}
-            >
-              ✕
-            </button>
           </div>
         </div>
 
         <form onSubmit={handleSubmit}>
+          {/* Main Content Section - Adjusted padding */}
           <div className="modal-body" style={{ padding: "24px" }}>
             {/* Upload Mode Toggle */}
             {!editingItem && (
@@ -703,8 +714,10 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                   style={{ color: "#fff", marginTop: "4px", fontWeight: "500" }}
                 >
                   {getCategoryIcon(formData.category)}{" "}
-                  {formData.category.charAt(0).toUpperCase() +
-                    formData.category.slice(1)}{" "}
+                  {formData.category === "ai-generation"
+                    ? "AI Gallery"
+                    : formData.category.charAt(0).toUpperCase() +
+                      formData.category.slice(1)}{" "}
                   Section
                 </div>
               </div>
@@ -713,12 +726,15 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
 
           {/* Footer */}
           <div
-            className="modal-footer"
+            className="modal-footer gap-4"
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              padding: "16px 24px 24px",
-              gap: "12px",
+              padding: "16px 24px",
+              borderTop: "1px solid #333",
+              position: "sticky",
+              bottom: 0,
+              backgroundColor: "#1a1a1a",
             }}
           >
             <button
