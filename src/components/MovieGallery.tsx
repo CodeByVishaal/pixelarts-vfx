@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import "../assets/css/gallery.css";
+import React, { useEffect, useRef, useState } from "react";
 
-const images = [
+import "../assets/css/gallery.css";
+import { useAdmin } from "../contexts/AdminContext";
+
+// Static images as fallback
+const staticImages = [
   "/assets/img/movieposters/1.jpg",
   "/assets/img/movieposters/2.jpg",
   "/assets/img/movieposters/3.jpg",
@@ -26,10 +29,37 @@ const images = [
   "/assets/img/movieposters/19.jpg",
 ];
 
+interface MediaItem {
+  _id: string;
+  id: string;
+  type: "image" | "video";
+  url: string;
+  title: string;
+  description?: string;
+  thumbnailUrl?: string;
+  category: string;
+  isActive: boolean;
+}
+
 const MovieGallery: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [visible, setVisible] = useState(false);
+  const [allImages, setAllImages] = useState<(string | MediaItem)[]>([]);
   const galleryRef = useRef<HTMLDivElement | null>(null);
+  const { mediaItems } = useAdmin();
+
+  // Combine static images with admin-uploaded movie content
+  useEffect(() => {
+    // Get active movie media items from admin
+    const movieMediaItems = mediaItems.filter(
+      (item: MediaItem) =>
+        item.category === "movies" && item.isActive && item.type === "image" // Movies section typically shows poster images
+    );
+
+    // Combine admin content with static images
+    const combinedImages = [...movieMediaItems, ...staticImages];
+    setAllImages(combinedImages);
+  }, [mediaItems]);
 
   // Fade-in section on scroll
   useEffect(() => {
@@ -53,16 +83,31 @@ const MovieGallery: React.FC = () => {
     const onKey = (e: KeyboardEvent) => {
       if (currentIndex === null) return;
       if (e.key === "ArrowRight") {
-        setCurrentIndex((i) => ((i ?? 0) + 1) % images.length);
+        setCurrentIndex((i) => ((i ?? 0) + 1) % allImages.length);
       } else if (e.key === "ArrowLeft") {
-        setCurrentIndex((i) => (i === 0 ? images.length - 1 : (i ?? 0) - 1));
+        setCurrentIndex((i) => (i === 0 ? allImages.length - 1 : (i ?? 0) - 1));
       } else if (e.key === "Escape") {
         setCurrentIndex(null);
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [currentIndex]);
+  }, [currentIndex, allImages.length]);
+
+  const getImageUrl = (item: string | MediaItem): string => {
+    return typeof item === "string" ? item : item.url;
+  };
+
+  const getImageAlt = (item: string | MediaItem, index: number): string => {
+    if (typeof item === "string") {
+      return `Movie Gallery ${index}`;
+    }
+    return item.title || `Movie Gallery ${index}`;
+  };
+
+  const isAdminContent = (item: string | MediaItem): boolean => {
+    return typeof item !== "string";
+  };
 
   return (
     <div
@@ -75,19 +120,63 @@ const MovieGallery: React.FC = () => {
 
       {/* Grid */}
       <div className="gallery-grid">
-        {images.map((src, idx) => (
+        {allImages.map((item, idx) => (
           <div
-            key={idx}
+            key={typeof item === "string" ? `static-${idx}` : item._id}
             className="thumb relative overflow-hidden rounded-lg"
             onClick={() => setCurrentIndex(idx)}
           >
             <img
-              src={src}
-              alt={`Gallery ${idx}`}
+              src={getImageUrl(item)}
+              alt={getImageAlt(item, idx)}
               className="zoom rounded-lg shadow-lg cursor-pointer"
             />
+
+            {/* Admin Content Badge
+            {isAdminContent(item) && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "8px",
+                  right: "8px",
+                  padding: "4px 8px",
+                  borderRadius: "12px",
+                  fontSize: "10px",
+                  fontWeight: "600",
+                  color: "white",
+                  background:
+                    "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+                }}
+              >
+                NEW
+              </div>
+            )} */}
+
             {/* Hover overlay with fade */}
             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+            {/* Title overlay for admin content */}
+            {isAdminContent(item) && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "0",
+                  left: "0",
+                  right: "0",
+                  background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
+                  color: "white",
+                  padding: "20px 12px 12px",
+                  fontSize: "12px",
+                  fontWeight: "500",
+                  opacity: "0",
+                  transition: "opacity 0.3s",
+                }}
+                className="hover-title"
+              >
+                {(item as MediaItem).title}
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -106,7 +195,7 @@ const MovieGallery: React.FC = () => {
             onClick={(e) => {
               e.stopPropagation();
               setCurrentIndex(
-                currentIndex === 0 ? images.length - 1 : currentIndex - 1
+                currentIndex === 0 ? allImages.length - 1 : currentIndex - 1
               );
             }}
           >
@@ -115,18 +204,45 @@ const MovieGallery: React.FC = () => {
 
           {/* Image */}
           <img
-            src={images[currentIndex]}
+            src={getImageUrl(allImages[currentIndex])}
             alt="Preview"
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
           />
+
+          {/* Image Info for Admin Content */}
+          {isAdminContent(allImages[currentIndex]) && (
+            <div
+              style={{
+                position: "absolute",
+                bottom: "20px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "rgba(0,0,0,0.8)",
+                color: "white",
+                padding: "12px 20px",
+                borderRadius: "8px",
+                textAlign: "center",
+                maxWidth: "80%",
+              }}
+            >
+              <h4 style={{ margin: "0 0 8px 0", fontSize: "16px" }}>
+                {(allImages[currentIndex] as MediaItem).title}
+              </h4>
+              {(allImages[currentIndex] as MediaItem).description && (
+                <p style={{ margin: "0", fontSize: "12px", opacity: "0.8" }}>
+                  {(allImages[currentIndex] as MediaItem).description}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Next */}
           <button
             className="absolute right-6 top-1/2 bg-danger -translate-y-1/2 text-white text-5xl z-50 hover:text-gray-300"
             onClick={(e) => {
               e.stopPropagation();
-              setCurrentIndex((currentIndex + 1) % images.length);
+              setCurrentIndex((currentIndex + 1) % allImages.length);
             }}
           >
             &#10095;

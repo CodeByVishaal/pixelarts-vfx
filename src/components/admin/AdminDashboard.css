@@ -571,6 +571,124 @@
   color: #777;
 }
 
+/* Top bar styles */
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .dashboard-topbar {
+  background-color: #242526;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar {
+  flex: 0 1 400px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f5f5f5;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-actions, 
+.bottom-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-topbar {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+/* Button colors */
+.btn-green { background-color: #10B981; }
+.btn-pink { background-color: #8838e4; }
+.btn-blue { background-color: #3B82F6; }
+.btn-red { background-color: #EF4444; }
+
+/* Hover states */
+/* .btn-green:hover { background-color: #059669; }
+.btn-pink:hover { background-color: #DB2777; }
+.btn-blue:hover { background-color: #2563EB; }
+.btn-red:hover { background-color: #DC2626; } */
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .dashboard-topbar {
+    flex-wrap: wrap;
+  }
+  
+  .search-bar {
+    flex: 1 1 100%;
+    order: -1;
+  }
+  
+  .topbar-actions {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-actions,
+  .bottom-actions {
+    flex-wrap: wrap;
+  }
+  
+  .btn-topbar {
+    min-width: auto;
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-topbar {
+    padding: 1rem;
+  }
+  
+  .topbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .top-actions,
+  .bottom-actions {
+    flex-direction: column;
+  }
+  
+  .btn-topbar {
+    width: 100%;
+  }
+}
+
 /* Responsive design */
 @media (max-width: 1024px) {
   .dashboard-sidebar {

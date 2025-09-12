@@ -65,9 +65,9 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
       return;
     }
 
-    const maxSize = 150 * 1024 * 1024;
+    const maxSize = 100 * 1024 * 1024;
     if (file.size > maxSize) {
-      toast.error("File size too large. Maximum size is 150MB.");
+      toast.error("File size too large. Maximum size is 90MB.");
       return;
     }
 
@@ -174,6 +174,23 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
     onClose();
   };
 
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "showreel":
+        return "🎭";
+      case "ai-generation":
+        return "🤖";
+      case "movies":
+        return "🎬";
+      case "series":
+        return "📺";
+      case "posters":
+        return "🎨";
+      default:
+        return "📁";
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -243,7 +260,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
               >
                 {editingItem
                   ? "Update your media content"
-                  : "Add new content to your showreel"}
+                  : "Add new content to your portfolio"}
               </p>
             </div>
             <button
@@ -388,7 +405,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                 >
                   {selectedFile
                     ? selectedFile.name
-                    : "Supports images and videos (Max 10MB)"}
+                    : "Supports images and videos (Max 150MB)"}
                 </p>
                 <input
                   ref={fileInputRef}
@@ -556,8 +573,15 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                     fontSize: "14px",
                   }}
                 >
-                  <option value="showreel">🎭 Showreel</option>
-                  <option value="ai-generation">🤖 AI Generation</option>
+                  <optgroup label="Main Categories">
+                    <option value="showreel">🎭 Showreel</option>
+                    <option value="ai-generation">🤖 AI Generation</option>
+                  </optgroup>
+                  <optgroup label="Project Categories">
+                    <option value="movies">🎬 Movies</option>
+                    <option value="series">📺 Series</option>
+                    <option value="posters">🎨 Posters</option>
+                  </optgroup>
                 </select>
               </div>
             </div>
@@ -660,6 +684,31 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                 }}
               />
             </div>
+
+            {/* Category Preview */}
+            {formData.category && (
+              <div
+                style={{
+                  padding: "12px 16px",
+                  backgroundColor: "#2a2a2a",
+                  borderRadius: "8px",
+                  marginBottom: "20px",
+                  border: "1px solid #444",
+                }}
+              >
+                <small style={{ color: "#888", fontSize: "12px" }}>
+                  This media will appear in:
+                </small>
+                <div
+                  style={{ color: "#fff", marginTop: "4px", fontWeight: "500" }}
+                >
+                  {getCategoryIcon(formData.category)}{" "}
+                  {formData.category.charAt(0).toUpperCase() +
+                    formData.category.slice(1)}{" "}
+                  Section
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Footer */}

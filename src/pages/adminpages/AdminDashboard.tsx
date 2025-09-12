@@ -14,6 +14,9 @@ interface DashboardStats {
   recentUploads: number;
   showreelCount: number;
   aiGenerationCount: number;
+  moviesCount: number;
+  seriesCount: number;
+  postersCount: number;
 }
 
 const AdminDashboard = () => {
@@ -46,7 +49,7 @@ const AdminDashboard = () => {
   const [editingItem, setEditingItem] = useState<any>(null);
   const [filter, setFilter] = useState<"all" | "image" | "video">("all");
   const [categoryFilter, setCategoryFilter] = useState<
-    "all" | "showreel" | "ai-generation"
+    "all" | "showreel" | "ai-generation" | "movies" | "series" | "posters"
   >("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [stats, setStats] = useState<DashboardStats>({
@@ -57,6 +60,9 @@ const AdminDashboard = () => {
     recentUploads: 0,
     showreelCount: 0,
     aiGenerationCount: 0,
+    moviesCount: 0,
+    seriesCount: 0,
+    postersCount: 0,
   });
 
   // Calculate stats whenever mediaItems change
@@ -76,6 +82,12 @@ const AdminDashboard = () => {
       aiGenerationCount: mediaItems.filter(
         (item) => item.category === "ai-generation"
       ).length,
+      moviesCount: mediaItems.filter((item) => item.category === "movies")
+        .length,
+      seriesCount: mediaItems.filter((item) => item.category === "series")
+        .length,
+      postersCount: mediaItems.filter((item) => item.category === "posters")
+        .length,
     };
     setStats(newStats);
   }, [mediaItems]);
@@ -159,6 +171,40 @@ const AdminDashboard = () => {
     return matchesTypeFilter && matchesCategoryFilter && matchesSearch;
   });
 
+  const getCategoryIcon = (category: string) => {
+    switch (category) {
+      case "showreel":
+        return "🎭";
+      case "ai-generation":
+        return "🤖";
+      case "movies":
+        return "🎬";
+      case "series":
+        return "📺";
+      case "posters":
+        return "🎨";
+      default:
+        return "📁";
+    }
+  };
+
+  const getCategoryColor = (category: string) => {
+    switch (category) {
+      case "showreel":
+        return "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+      case "ai-generation":
+        return "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)";
+      case "movies":
+        return "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)";
+      case "series":
+        return "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)";
+      case "posters":
+        return "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)";
+      default:
+        return "#6c757d";
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -197,6 +243,26 @@ const AdminDashboard = () => {
               <i className="fas fa-photo-video"></i>
               <span>All Media</span>
             </button>
+
+            {/* Main Categories */}
+            <div
+              style={{
+                borderTop: "1px solid #333",
+                margin: "0.5rem 0",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <small
+                style={{
+                  color: "#888",
+                  padding: "0 1rem",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                }}
+              >
+                Main Categories
+              </small>
+            </div>
             <button
               className={`nav-item ${
                 categoryFilter === "showreel" ? "active" : ""
@@ -215,6 +281,73 @@ const AdminDashboard = () => {
               <i className="fas fa-robot"></i>
               <span>AI Generation</span>
             </button>
+
+            {/* Project Categories */}
+            <div
+              style={{
+                borderTop: "1px solid #333",
+                margin: "0.5rem 0",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <small
+                style={{
+                  color: "#888",
+                  padding: "0 1rem",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                }}
+              >
+                Project Categories
+              </small>
+            </div>
+            <button
+              className={`nav-item ${
+                categoryFilter === "movies" ? "active" : ""
+              }`}
+              onClick={() => setCategoryFilter("movies")}
+            >
+              <i className="fas fa-film"></i>
+              <span>Movies</span>
+            </button>
+            <button
+              className={`nav-item ${
+                categoryFilter === "series" ? "active" : ""
+              }`}
+              onClick={() => setCategoryFilter("series")}
+            >
+              <i className="fas fa-tv"></i>
+              <span>Series</span>
+            </button>
+            <button
+              className={`nav-item ${
+                categoryFilter === "posters" ? "active" : ""
+              }`}
+              onClick={() => setCategoryFilter("posters")}
+            >
+              <i className="fas fa-palette"></i>
+              <span>Posters</span>
+            </button>
+
+            {/* Type Filters */}
+            <div
+              style={{
+                borderTop: "1px solid #333",
+                margin: "0.5rem 0",
+                paddingTop: "0.5rem",
+              }}
+            >
+              <small
+                style={{
+                  color: "#888",
+                  padding: "0 1rem",
+                  fontSize: "10px",
+                  textTransform: "uppercase",
+                }}
+              >
+                Type Filters
+              </small>
+            </div>
             <button
               className={`nav-item ${filter === "image" ? "active" : ""}`}
               onClick={() => {
@@ -253,73 +386,323 @@ const AdminDashboard = () => {
             </div>
 
             <div className="topbar-actions">
-              <Link
-                to="/admin/change-password"
-                className="btn-topbar btn-green"
-                title="Change Password"
-              >
-                <i className="fas fa-key"></i>
-                <span>Change Password</span>
-              </Link>
+              {/* ✅ Top Group */}
+              <div className="top-actions">
+                <Link
+                  to="/admin/change-password"
+                  className="btn-topbar btn-green"
+                >
+                  <i className="fas fa-key"></i>
+                  <span>Change Password</span>
+                </Link>
 
-              <Link
-                to="/showreel"
-                className="btn-topbar btn-green"
-                title="View Showreel"
-              >
-                <i className="fas fa-film"></i>
-                <span>Showreel</span>
-              </Link>
+                <Link to="/showreel" className="btn-topbar btn-green">
+                  <i className="fas fa-film"></i>
+                  <span>Showreel</span>
+                </Link>
 
-              <Link
-                to="/ai-generation"
-                className="btn-topbar btn-pink"
-                title="View AI Generation"
-              >
-                <i className="fas fa-robot"></i>
-                <span>AI Gallery</span>
-              </Link>
+                <Link to="/ai-generation" className="btn-topbar btn-pink">
+                  <i className="fas fa-robot"></i>
+                  <span>AI Gallery</span>
+                </Link>
+              </div>
 
-              <button
-                className="btn-topbar btn-blue"
-                onClick={() => setIsUploadModalOpen(true)}
-              >
-                <i className="fas fa-plus"></i>
-                <span>Add Media</span>
-              </button>
+              {/* ✅ Bottom Group */}
+              <div className="bottom-actions">
+                <Link to="/project" className="btn-topbar btn-blue">
+                  <i className="fas fa-project-diagram"></i>
+                  <span>Projects</span>
+                </Link>
 
-              <button
-                className="btn-topbar btn-red"
-                onClick={handleLogout}
-                title="Logout"
-              >
-                <i className="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-              </button>
+                <button
+                  className="btn-topbar btn-blue"
+                  onClick={() => setIsUploadModalOpen(true)}
+                >
+                  <i className="fas fa-plus"></i>
+                  <span>Add Media</span>
+                </button>
+
+                <button className="btn-topbar btn-red" onClick={handleLogout}>
+                  <i className="fas fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
             </div>
           </div>
 
           {/* Stats Grid */}
-          <div className="stats-grid">
-            <div className="stat-card">
-              <div className="icon">📁</div>
-              <h3>{stats.totalMedia}</h3>
-              <p>Total Media</p>
+          <div
+            className="stats-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+              gap: "16px",
+              marginBottom: "2rem",
+            }}
+          >
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#8e52ff",
+                }}
+              >
+                <i className="fas fa-database"></i>
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.totalMedia}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Total Media
+              </p>
             </div>
-            <div className="stat-card">
-              <div className="icon">🎭</div>
-              <h3>{stats.showreelCount}</h3>
-              <p>Showreel</p>
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#667eea",
+                }}
+              >
+                🎭
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.showreelCount}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Showreel
+              </p>
             </div>
-            <div className="stat-card">
-              <div className="icon">🤖</div>
-              <h3>{stats.aiGenerationCount}</h3>
-              <p>AI Generated</p>
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#ff6b6b",
+                }}
+              >
+                🤖
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.aiGenerationCount}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                AI Generated
+              </p>
             </div>
-            <div className="stat-card">
-              <div className="icon">📈</div>
-              <h3>{stats.recentUploads}</h3>
-              <p>This Week</p>
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#f093fb",
+                }}
+              >
+                🎬
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.moviesCount}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Movies
+              </p>
+            </div>
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#4facfe",
+                }}
+              >
+                📺
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.seriesCount}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Series
+              </p>
+            </div>
+            <div
+              className="stat-card"
+              style={{
+                backgroundColor: isDarkMode ? "#2a2a2a" : "#ffffff",
+                border: isDarkMode ? "1px solid #404040" : "1px solid #e1e5e9",
+                borderRadius: "12px",
+                padding: "16px",
+                textAlign: "center",
+                transition: "transform 0.2s, box-shadow 0.2s",
+                cursor: "pointer",
+              }}
+            >
+              <div
+                className="icon"
+                style={{
+                  fontSize: "24px",
+                  marginBottom: "8px",
+                  color: "#43e97b",
+                }}
+              >
+                🎨
+              </div>
+              <h3
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  margin: "4px 0",
+                  color: isDarkMode ? "#ffffff" : "#1a1a1a",
+                }}
+              >
+                {stats.postersCount}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: "12px",
+                  color: isDarkMode ? "#888" : "#666",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.5px",
+                }}
+              >
+                Posters
+              </p>
             </div>
           </div>
 
@@ -349,17 +732,16 @@ const AdminDashboard = () => {
                     style={{
                       marginLeft: "1rem",
                       padding: "4px 12px",
-                      backgroundColor:
-                        categoryFilter === "showreel" ? "#667eea" : "#ff6b6b",
+                      background: getCategoryColor(categoryFilter),
                       color: "white",
                       borderRadius: "15px",
                       fontSize: "12px",
                       fontWeight: "500",
                     }}
                   >
-                    {categoryFilter === "showreel"
-                      ? "🎭 Showreel"
-                      : "🤖 AI Generation"}
+                    {getCategoryIcon(categoryFilter)}{" "}
+                    {categoryFilter.charAt(0).toUpperCase() +
+                      categoryFilter.slice(1)}
                   </span>
                 )}
               </div>
@@ -395,23 +777,13 @@ const AdminDashboard = () => {
               </div>
             ) : filteredItems.length === 0 ? (
               <div className="empty-state">
-                <div className="icon">
-                  {categoryFilter === "showreel"
-                    ? "🎭"
-                    : categoryFilter === "ai-generation"
-                    ? "🤖"
-                    : "📁"}
-                </div>
+                <div className="icon">{getCategoryIcon(categoryFilter)}</div>
                 <h4>No media found</h4>
                 <p>
                   {searchTerm
                     ? "Try adjusting your search terms or filters."
                     : categoryFilter !== "all"
-                    ? `No ${
-                        categoryFilter === "showreel"
-                          ? "showreel"
-                          : "AI generation"
-                      } content yet. Upload some media to get started.`
+                    ? `No ${categoryFilter} content yet. Upload some media to get started.`
                     : "Try uploading some media or adjust your filters."}
                 </p>
               </div>
@@ -435,16 +807,11 @@ const AdminDashboard = () => {
                         fontSize: "10px",
                         fontWeight: "600",
                         color: "white",
-                        background:
-                          item.category === "showreel"
-                            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-                            : item.category === "ai-generation"
-                            ? "linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)"
-                            : "#6c757d",
+                        background: getCategoryColor(item.category),
                       }}
                     >
-                      {item.category === "showreel" && "🎭 SHOWREEL"}
-                      {item.category === "ai-generation" && "🤖 AI GENERATION"}
+                      {getCategoryIcon(item.category)}{" "}
+                      {item.category.toUpperCase()}
                     </div>
                   </div>
                   <div className="media-info">
