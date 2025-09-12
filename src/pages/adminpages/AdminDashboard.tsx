@@ -396,7 +396,23 @@ const AdminDashboard = () => {
                   <span>Change Password</span>
                 </Link>
 
-                <Link to="/showreel" className="btn-topbar btn-green">
+                <button
+                  className="btn-topbar btn-blue"
+                  onClick={() => setIsUploadModalOpen(true)}
+                >
+                  <i className="fas fa-plus"></i>
+                  <span>Add Media</span>
+                </button>
+                <button className="btn-topbar btn-red" onClick={handleLogout}>
+                  <i className="fas fa-sign-out-alt"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
+
+              {/* ✅ Bottom Group */}
+
+              <div className="bottom-actions">
+                <Link to="/showreel" className="btn-topbar btn-pink">
                   <i className="fas fa-film"></i>
                   <span>Showreel</span>
                 </Link>
@@ -405,27 +421,11 @@ const AdminDashboard = () => {
                   <i className="fas fa-robot"></i>
                   <span>AI Gallery</span>
                 </Link>
-              </div>
 
-              {/* ✅ Bottom Group */}
-              <div className="bottom-actions">
-                <Link to="/project" className="btn-topbar btn-blue">
+                <Link to="/project" className="btn-topbar btn-pink">
                   <i className="fas fa-project-diagram"></i>
                   <span>Projects</span>
                 </Link>
-
-                <button
-                  className="btn-topbar btn-blue"
-                  onClick={() => setIsUploadModalOpen(true)}
-                >
-                  <i className="fas fa-plus"></i>
-                  <span>Add Media</span>
-                </button>
-
-                <button className="btn-topbar btn-red" onClick={handleLogout}>
-                  <i className="fas fa-sign-out-alt"></i>
-                  <span>Logout</span>
-                </button>
               </div>
             </div>
           </div>
