@@ -18,7 +18,7 @@ const ServicesV1 = ({ hasTitle, sectionClass }: DataType) => {
   };
 
   const handleMouseLeave = () => {
-    // Do nothing on mouse leave to keep the active item
+    setActiveServiceId(null);
   };
 
   return (
@@ -64,18 +64,20 @@ const ServicesV1 = ({ hasTitle, sectionClass }: DataType) => {
         )}
 
         <div className="container">
-          <div className="services-style-one-items">
+          <div
+            className="services-style-one-items"
+            onMouseLeave={handleMouseLeave}
+          >
             <div className="row">
               {ServicesV1Data.slice(0, 4).map((service) => (
                 <div
                   className="col-xl-3 col-lg-6 col-md-6 single-item project-style-one-area default-padding blurry-shape-left"
                   key={service.id}
                   onMouseEnter={() => handleMouseEnter(service.id)}
-                  onMouseLeave={handleMouseLeave}
                 >
                   <div
                     className={`services-style-one-item ${
-                      activeServiceId === service.id ? "active" : ""
+                      activeServiceId === service.id ? "null" : ""
                     }`}
                   >
                     <div className="icon">

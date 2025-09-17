@@ -30,18 +30,42 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                 </div>
                 <ul className="address-list">
                   <li>
+                    <h4 className="widget-title">Chennai, India</h4>
+                    <p>
+                      No 23,Thiru valluvar salai Thiru Nagar Alwarthiru Nagar
+                      Chennai 600087
+                    </p>
+                    <p>
+                      <a
+                        style={{ fontWeight: "normal" }}
+                        href="tel:+4733378901"
+                      >
+                        +91 7299055355
+                      </a>
+                    </p>
+                  </li>
+                  <li>
                     <h4 className="widget-title">Australia</h4>
                     <p>13, Tyler crescent Tarneit Vic-3029 Melbourne </p>
+                    <p>
+                      <a
+                        style={{ fontWeight: "normal" }}
+                        href="tel:+4733378901"
+                      >
+                        +61 432247973
+                      </a>
+                    </p>
                   </li>
                   <li>
                     <h4 className="widget-title">Canada</h4>
                     <p>500 rue Puget, Laval H7K1C5, Canada</p>
-                  </li>
-                  <li>
-                    <h4 className="widget-title">India</h4>
                     <p>
-                      No 23,Thiru valluvar salai Thiru Nagar Alwarthiru Nagar
-                      Chennai 87
+                      <a
+                        style={{ fontWeight: "normal" }}
+                        href="tel:+4733378901"
+                      >
+                        +1 7786889740
+                      </a>
                     </p>
                   </li>
                 </ul>
@@ -55,15 +79,6 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                       >
                         pixelartswebsite@gmail.com
                       </a>
-                    </li>
-                    <li>
-                      <a href="tel:+4733378901">+91 7299055355</a>
-                    </li>
-                    <li>
-                      <a href="tel:+4733378901">+1 7786889740</a>
-                    </li>
-                    <li>
-                      <a href="tel:+4733378901">+61 432247973</a>
                     </li>
                   </ul>
                 </div>

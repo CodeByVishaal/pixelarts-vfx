@@ -13,14 +13,14 @@
         "iconLight": "24.png",
         "title": "Paint & Prep",
         "text": "Removing rigs, markers, or unwanted elements to prepare shots for final polish.",
-        "activeClass": "active"
+        "activeClass": ""
     },
     {
         "id": 3,
         "icon": "3.png",
         "iconLight": "25.png",
         "title": "Rotoscope",
-        "text": "Isolating characters or objects frame by frame for clean compositing.",
+        "text": "Isolating elements frame-by-frame to create mattes for seamless integration in vfx.",
         "activeClass": ""
     },
     {
@@ -28,7 +28,7 @@
         "icon": "4.png",
         "iconLight": "26.png",
         "title": "Compositing",
-        "text": "Merging multiple layers of ideas into a single cinematic, believable shot.",
+        "text": "Blending multiple visual elements into a single shot for a seamless final result.",
         "activeClass": ""
     }
 ]
