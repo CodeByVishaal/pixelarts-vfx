@@ -35,9 +35,7 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
     updatePosition(e.touches[0].clientX);
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
-    updatePosition(e.touches[0].clientX);
-  };
+  
 
   useEffect(() => {
     if (dragging) {
