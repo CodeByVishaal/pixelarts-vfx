@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface ImageCompareProps {
   leftImage: string;
@@ -23,6 +23,34 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
     setPosition(newX);
   };
 
+  const handleMouseDown = () => setDragging(true);
+  const handleMouseUp = () => setDragging(false);
+  const handleMouseMove = (e: MouseEvent) => {
+    if (dragging) {
+      updatePosition(e.clientX);
+    }
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    updatePosition(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    updatePosition(e.touches[0].clientX);
+  };
+
+  useEffect(() => {
+    if (dragging) {
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, [dragging]); // The effect re-runs when 'dragging' state changes
+
   return (
     <div
       ref={containerRef}
@@ -34,9 +62,8 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
         overflow: "hidden",
         userSelect: "none",
       }}
-      onMouseMove={(e) => dragging && updatePosition(e.clientX)}
-      onMouseUp={() => setDragging(false)}
-      onMouseLeave={() => setDragging(false)}
+      // Removed onMouseMove, onMouseUp, onMouseLeave from here
+      onTouchStart={handleTouchStart}
       onTouchMove={(e) => updatePosition(e.touches[0].clientX)}
     >
       {/* Right Image */}
@@ -86,8 +113,8 @@ const ImageCompare: React.FC<ImageCompareProps> = ({
           boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
           cursor: "grab",
         }}
-        onMouseDown={() => setDragging(true)}
-        onTouchStart={(e) => updatePosition(e.touches[0].clientX)}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
       >
         <span className="fw-bold text-muted">↔</span>
       </div>
