@@ -98,7 +98,7 @@ const ServicesV1 = ({ hasTitle, sectionClass }: DataType) => {
                       />
                     </div>
                     <h4>
-                      <Link to={`/service-details/${service.id}`}>
+                      <Link to={`/services`}>
                         {service.title}
                       </Link>
                     </h4>

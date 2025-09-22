@@ -1,69 +1,74 @@
 [
-    {
-        "id": 1,
-        "number": "01",
-        "title": "Rotoscope",
-        "thumb": "Rotoscope.png"
-    },
-    {
-        "id": 2,
-        "number": "02",
-        "title": "Paint Prep",
-        "thumb": "Paintprep.jpeg"
-    },
-    {
-        "id": 3,
-        "number": "03",
-        "title": "Cosmetic Fixes",
-        "thumb": "Cosmetic_Fixes.png"
-    },
-    {
-        "id": 4,
-        "number": "04",
-        "title": "Compositing",
-        "thumb": "Compositing.png"
-    },
-    {
-        "id": 5,
-        "number": "05",
-        "title": "Matchmove",
-        "thumb": "MatchMove.jpeg"
-    },
-    {
-        "id": 6,
-        "number": "06",
-        "title": "Pre-Visualisation",
-        "thumb": "pre-vis.png"
-    },
-    {
-        "id": 7,
-        "number": "07",
-        "title": "Color Grading",
-        "thumb": "color_grading.png"
-    },
-    {
-        "id": 8,
-        "number": "08",
-        "title": "2D",
-        "thumb": "2D.png"
-    },
-    {
-        "id": 9,
-        "number": "09",
-        "title": "3D",
-        "thumb": "3D.png"
-    },
-    {
-        "id": 10,
-        "number": "10",
-        "title": "Concept Art",
-        "thumb": "vfx_supervision.png"
-    },
-    {
-        "id": 11,
-        "number": "11",
-        "title": "VFX Supervision",
-        "thumb": "Compositing.png"
-    }
-    
+  {
+    "id": 1,
+    "number": "01",
+    "title": "Rotoscope",
+    "thumb": "Rotoscope.png"
+  },
+  {
+    "id": 2,
+    "number": "02",
+    "title": "Paint Prep",
+    "thumb": "Paintprep.jpeg"
+  },
+  {
+    "id": 3,
+    "number": "03",
+    "title": "Cosmetic Fixes",
+    "thumb": "Cosmetic_Fixes.png"
+  },
+  {
+    "id": 4,
+    "number": "04",
+    "title": "Compositing",
+    "thumb": "Compositing.png"
+  },
+  {
+    "id": 5,
+    "number": "05",
+    "title": "Matchmove",
+    "thumb": "MatchMove.jpeg"
+  },
+  {
+    "id": 6,
+    "number": "06",
+    "title": "Pre-Visualisation",
+    "thumb": "pre-vis.png"
+  },
+  {
+    "id": 7,
+    "number": "07",
+    "title": "Color Grading",
+    "thumb": "color_grading.png"
+  },
+  {
+    "id": 8,
+    "number": "08",
+    "title": "2D",
+    "thumb": "2D.png"
+  },
+  {
+    "id": 9,
+    "number": "09",
+    "title": "3D",
+    "thumb": "3D.png"
+  },
+  {
+    "id": 10,
+    "number": "10",
+    "title": "Concept Art",
+    "thumb": "vfx_supervision.png"
+  },
+  {
+    "id": 11,
+    "number": "11",
+    "title": "VFX Supervision",
+    "thumb": "Compositing.png"
+  },
+  {
+    "id": 12,
+    "number": "12",
+    "title": "AI Generation",
+    "thumb": "AIGeneration.png"
+  }
 ]

@@ -108,5 +108,15 @@
         "text": "VFX Supervision ensures that all visual effects requirements are captured on set, coordinating between the production and post-production teams.",
         "listData": ["On-set consultation", "Shot planning for VFX", "Quality control & review"],
         "illustration": "12.png"
+    },
+    {
+        "id": 12,
+        "activeClass": "",
+        "icon": "5.png",
+        "subTitle": " AI-Powered Creativity",
+        "title": "AI Generation",
+        "text": "AI Generation uses cutting-edge artificial intelligence to create realistic and imaginative visual content, streamlining the creative process from concept to final product",
+        "listData": ["AI-driven concept art & design", "Rapid prototyping and iteration", "Real-time asset creation"],
+        "illustration": "13.png"
     }
 ]
