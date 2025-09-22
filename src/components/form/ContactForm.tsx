@@ -13,7 +13,8 @@ const ContactForm = () => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-
+    const BASE_URL =
+      import.meta.env.VITE_API_URL || "http://localhost:5000/api";
     const data = {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -23,7 +24,7 @@ const ContactForm = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:5000/api/send-mail", {
+      const response = await fetch(`${BASE_URL}/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
