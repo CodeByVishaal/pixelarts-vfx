@@ -52,7 +52,7 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                         style={{ fontWeight: "normal" }}
                         href="tel:+4733378901"
                       >
-                        +61 432247973
+                        +91 7299055355
                       </a>
                     </p>
                   </li>
@@ -75,9 +75,9 @@ const FooterV4 = ({ sectionClass }: DataType) => {
                       <a
                         style={{ fontSize: "26px" }}
                         className="widget-title"
-                        href="mailto:pixelartswebsite@gmail.com"
+                        href="mailto:enquiry@pixelartsvfx.com"
                       >
-                        pixelartswebsite@gmail.com
+                        enquiry@pixelartsvfx.com
                       </a>
                     </li>
                   </ul>

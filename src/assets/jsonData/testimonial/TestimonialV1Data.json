@@ -1,23 +1,79 @@
 [
-    {
-        "id": 1,
-        "review": "Pixel Arts turned our raw footage into something truly cinematic. The compositing work was seamless, and every detail felt carefully crafted. They’re our go-to for high-end visuals.",
-        "name": "Arjun R",
-        "designation": "Film Director",
-        "thumb": "testimonial_3.jpg"
-    },
-    {
-        "id": 2,
-        "review": "The team handled rotoscoping and paint-prep flawlessly for our commercial. The turnaround was quick, the quality unmatched, and the final cut looked stunning on screen.",
-        "name": "Meera S",
-        "designation": "Creative Producer",
-        "thumb": "testimonial_1.jpg"
-    },
-    {
-        "id": 3,
-        "review": "What impressed us most was their eye for detail. From matchmove to cosmetic fixes, Pixel Arts elevated our project far beyond expectations. Absolute professionals.",
-        "name": "Sharmika L",
-        "designation": "VFX Supervisor",
-        "thumb": "testimonial_2.jpg"
-    }
+  {
+    "id": 1,
+    "review": "Working with Pixel Arts on Panchamirtham, Aindham Vedham, Vinodhaya Sitham, and Murugesan +2 was a fantastic experience. Their meticulous attention to detail, seamless compositing, and professionalism truly impressed us.",
+    "name": "Abirami Ramanathan",
+    "designation": "Producer",
+    "thumb": "testimonial_1.jpg"
+  },
+  {
+    "id": 2,
+    "review": "Pixel Arts handled Kaadhal, Sandakozhi, Malaikottai, Imsai Arasan 23rd Pulikecei, and Tharai Thappattai with remarkable skill. Their precise VFX, seamless compositing, and dedication to quality enhanced every single frame beautifully.",
+    "name": "G. Saaikumar",
+    "designation": "Editor",
+    "thumb": "testimonial_2.jpg"
+  },
+  {
+    "id": 3,
+    "review": "For Theeyavan, Pixel Arts elevated our visuals to an entirely new level. The VFX, compositing, and cinematic polish were flawless. Their team’s professionalism made the post-production process smooth and enjoyable.",
+    "name": "J. B. Kathir",
+    "designation": "Director",
+    "thumb": "testimonial_3.jpg"
+  },
+  {
+    "id": 4,
+    "review": "Collaborating with Pixel Arts for ZEE5 content was an absolute pleasure. They refined every shot, ensured cinematic quality, and their attention to detail significantly enhanced the overall storytelling and visual appeal.",
+    "name": "Kaushik Lakshminarasimhan",
+    "designation": "South Head (Content), ZEE5",
+    "thumb": "testimonial_4.jpg"
+  },
+  {
+    "id": 5,
+    "review": "Pixel Arts contributed tremendously to Raattinam and Ettuthikkum Madhayaanai. Their VFX, compositing, and eye for detail ensured every scene looked polished, professional, and visually stunning on screen.",
+    "name": "K. S. Thangasamy",
+    "designation": "Director, Actor",
+    "thumb": "testimonial_5.jpg"
+  },
+  {
+    "id": 6,
+    "review": "Working on Pistha with Pixel Arts was incredible. Their seamless VFX, careful compositing, and cinematic enhancements made every scene look amazing. Their professionalism made post-production completely stress-free for us.",
+    "name": "M. Ramesh Bharathi",
+    "designation": "Director",
+    "thumb": "testimonial_6.jpg"
+  },
+  {
+    "id": 7,
+    "review": "Pixel Arts worked on Yaaradi Nee Mohini, Kutty, Mathil, and Thiruchitrambalam with remarkable precision. Their detailed VFX and polished compositing brought every scene to life exactly as we envisioned.",
+    "name": "Mithran R. Jawahar",
+    "designation": "Director",
+    "thumb": "testimonial_7.jpg"
+  },
+  {
+    "id": 8,
+    "review": "Gajaana’s production was elevated by Pixel Arts’ expertise. They handled VFX, compositing, and cinematic detail flawlessly, delivering visuals that enhanced the story and exceeded our expectations in every way.",
+    "name": "Prabadish Samz",
+    "designation": "Producer, Director",
+    "thumb": "testimonial_8.jpg"
+  },
+  {
+    "id": 9,
+    "review": "Pixel Arts transformed Seruppugal Jaakirathai into something truly cinematic. Their attention to detail, seamless VFX, and creative compositing ensured every shot looked perfect and exceeded our expectations.",
+    "name": "Rajesh Soosairaj",
+    "designation": "Director",
+    "thumb": "testimonial_9.jpg"
+  },
+  {
+    "id": 10,
+    "review": "Pixel Arts worked on Mathil and Seruppugal Jaakirathai with exceptional skill. Their VFX, compositing, and cinematic polish enhanced the storytelling, making every scene look highly professional and visually stunning.",
+    "name": "Singa Sankaran",
+    "designation": "Producer",
+    "thumb": "testimonial_10.jpg"
+  },
+  {
+  "id": 11,
+  "review": "Working with Pixel Arts on Rathnam, Kaduvetty, Saraku, and Mark Antony was fantastic. Their VFX, compositing, and cinematic polish elevated every scene beyond our expectations, truly professional work.",
+  "name": "K. L. Kannan",
+  "designation": "Director",
+  "thumb": "testimonial_11.jpg"
+}
 ]
