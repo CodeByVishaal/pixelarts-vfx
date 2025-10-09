@@ -121,10 +121,8 @@ const AdminDashboard = () => {
   const handleDeleteMedia = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this media?")) {
       try {
-        const success = await deleteMediaItem(id);
-        if (success) {
-          toast.success("Media deleted successfully!");
-        }
+        await deleteMediaItem(id);
+        toast.success("Media deleted successfully!");
       } catch (error: any) {
         toast.error(
           error.message || "Failed to delete media. Please try again."
@@ -829,6 +827,7 @@ const AdminDashboard = () => {
                       {new Date(item.uploadDate).toLocaleDateString()}
                     </div>
                     <div className="media-actions">
+                      
                       <button
                         className="btn-edit"
                         onClick={() => openEditModal(item)}
@@ -841,6 +840,24 @@ const AdminDashboard = () => {
                       >
                         <i className="fas fa-trash"></i> Delete
                       </button>
+                      {item.isHeroImage && (
+  <div
+    style={{
+      position: "absolute",
+      top: "8px",
+      right: "8px",
+      padding: "4px 8px",
+      borderRadius: "12px",
+      fontSize: "10px",
+      fontWeight: "600",
+      color: "white",
+      background: "linear-gradient(135deg, #ffd700 0%, #ffed4e 100%)",
+      boxShadow: "0 2px 8px rgba(255, 215, 0, 0.3)"
+    }}
+  >
+    ⭐ HERO IMAGE
+  </div>
+)}
                     </div>
                   </div>
                 </div>
@@ -864,3 +881,5 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+

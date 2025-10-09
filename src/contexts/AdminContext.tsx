@@ -8,6 +8,7 @@ import {
 import { toast } from "react-toastify";
 
 interface MediaItem {
+  [x: string]: any;
   _id: string;
   id: string;
   type: "image" | "video";
@@ -52,6 +53,8 @@ interface AdminContextType {
   addMediaItem: (formData: FormData | any) => Promise<void>;
   updateMediaItem: (id: string, item: any) => Promise<void>;
   deleteMediaItem: (id: string) => Promise<boolean>;
+  setHeroImage: (mediaId: string) => Promise<boolean>;
+  getHeroImage: () => Promise<any>;
   loading: boolean;
   error: string | null;
   refreshMediaItems: () => Promise<void>;
@@ -368,6 +371,40 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     }
   };
 
+  const setHeroImage = async (mediaId: string): Promise<boolean> => {
+    try {
+      const currentToken = token || localStorage.getItem("admin_token");
+      const response = await fetch(`${API_BASE_URL}/media/hero-image`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${currentToken}`,
+        },
+        body: JSON.stringify({ mediaId }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        return true;
+      }
+      throw new Error(data.message || "Failed to set hero image");
+    } catch (error) {
+      console.error("Error setting hero image:", error);
+      throw error;
+    }
+  };
+
+  const getHeroImage = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/media/hero-image`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error getting hero image:", error);
+      return null;
+    }
+  };
+
   const value: AdminContextType = {
     isAuthenticated,
     mediaItems,
@@ -378,6 +415,8 @@ export const AdminProvider = ({ children }: AdminProviderProps) => {
     addMediaItem,
     updateMediaItem,
     deleteMediaItem,
+    setHeroImage,
+    getHeroImage,
     loading,
     error,
     refreshMediaItems,

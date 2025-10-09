@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import Animate from "../animation/Animate";
 import petta from "/assets/img/gallery/petta.jpg";
@@ -7,6 +8,38 @@ interface DataType {
 }
 
 const WhyChooseV1 = ({ sectionClass }: DataType) => {
+  const [heroImage, setHeroImage] = useState(petta);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch the hero image from backend
+    const fetchHeroImage = async () => {
+      try {
+        setLoading(true);
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const response = await fetch(`${API_BASE_URL}/media/hero-image`);
+        const data = await response.json();
+        
+        console.log('Hero image response:', data); // Debug log
+        
+        if (data.success && data.image && data.image.url) {
+          setHeroImage(data.image.url);
+          console.log('Hero image set to:', data.image.url); // Debug log
+        } else {
+          console.log('No hero image found, using default');
+          // Keep default image
+        }
+      } catch (error) {
+        console.error('Error fetching hero image:', error);
+        // Keep default image on error
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchHeroImage();
+  }, []);
+
   return (
     <>
       <div className={`${sectionClass ? sectionClass : ""}`}>
@@ -14,14 +47,32 @@ const WhyChooseV1 = ({ sectionClass }: DataType) => {
           <div className="row align-center">
             <div className="col-lg-5">
               <div className="thumb-style-one">
-                <img src={petta} alt="Image Not Found" />
+                {loading ? (
+                  <div style={{ 
+                    width: '100%', 
+                    height: '400px', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center',
+                    background: '#f0f0f0'
+                  }}>
+                    <p>Loading...</p>
+                  </div>
+                ) : (
+                  <img 
+                    src={heroImage} 
+                    alt="Why Choose Pixel Arts" 
+                    onError={(e) => {
+                      console.error('Image failed to load, using fallback');
+                      e.currentTarget.src = petta;
+                    }}
+                  />
+                )}
               </div>
             </div>
             <div className="col-lg-7">
               <div className="choose-us-style-one">
                 <div className="pl-80 pl-md-0 pl-xs-0 pt-120">
-                  {" "}
-                  {/* Added pt-120 class */}
                   <h4 className="sub-title">Why Choose Pixel Arts?</h4>
                   <h2 className="title">Why Not?</h2>
                   <div

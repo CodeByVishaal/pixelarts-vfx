@@ -22,6 +22,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
     description: editingItem?.description || "",
     category: editingItem?.category || "showreel",
     tags: editingItem?.tags?.join(", ") || "",
+    isHeroImage: editingItem?.isHeroImage || false, // Added this line
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
@@ -38,6 +39,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
         description: editingItem.description || "",
         category: editingItem.category || "showreel",
         tags: editingItem.tags?.join(", ") || "",
+        isHeroImage: editingItem.isHeroImage || false, // Added this line
       });
       setPreviewUrl(editingItem.url || "");
       setSelectedFile(null);
@@ -124,6 +126,13 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
         return;
       }
 
+      // Validate hero image can only be set for images
+      if (formData.isHeroImage && formData.type !== "image") {
+        toast.error("Only images can be set as hero image");
+        setFormData(prev => ({ ...prev, isHeroImage: false }));
+        return;
+      }
+
       const data = new FormData();
 
       if (uploadMode === "file" && selectedFile) {
@@ -136,6 +145,8 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
       data.append("description", formData.description);
       data.append("type", formData.type);
       data.append("category", formData.category);
+      data.append("isHeroImage", formData.isHeroImage.toString()); 
+      // Added this line
 
       if (formData.tags.trim()) {
         const tagsArray = formData.tags
@@ -166,6 +177,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
       description: "",
       category: "showreel",
       tags: "",
+      isHeroImage: false, // Added this line
     });
     setSelectedFile(null);
     setPreviewUrl("");
@@ -225,7 +237,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header Section - Moved to top and adjusted padding */}
+        {/* Header Section */}
         <div
           className="modal-header"
           style={{
@@ -248,9 +260,9 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
             <button
               onClick={handleClose}
               style={{
-                position: "absolute", // Add this
-                right: 0, // Add this
-                top: 0, // Add this
+                position: "absolute",
+                right: 0,
+                top: 0,
                 background: "none",
                 border: "none",
                 color: "#888",
@@ -272,8 +284,6 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
               ✕
             </button>
             <div style={{ paddingRight: "40px" }}>
-              {" "}
-              {/* Add padding to prevent text overlap */}
               <h3
                 style={{
                   margin: 0,
@@ -300,7 +310,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
         </div>
 
         <form onSubmit={handleSubmit}>
-          {/* Main Content Section - Adjusted padding */}
+          {/* Main Content Section */}
           <div className="modal-body" style={{ padding: "24px" }}>
             {/* Upload Mode Toggle */}
             {!editingItem && (
@@ -537,7 +547,12 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                 <select
                   value={formData.type}
                   onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, type: e.target.value }))
+                    setFormData((prev) => ({ 
+                      ...prev, 
+                      type: e.target.value,
+                      // Reset isHeroImage if changing to video
+                      isHeroImage: e.target.value === "video" ? false : prev.isHeroImage
+                    }))
                   }
                   style={{
                     width: "100%",
@@ -596,6 +611,57 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                 </select>
               </div>
             </div>
+
+            {/* Hero Image Checkbox - Only show for images */}
+            {formData.type === "image" && (
+              <div className="form-group" style={{ marginBottom: "20px" }}>
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    cursor: "pointer",
+                    padding: "12px",
+                    backgroundColor: "#2a2a2a",
+                    borderRadius: "8px",
+                    border: "1px solid #444",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="isHeroImage"
+                    checked={formData.isHeroImage}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        isHeroImage: e.target.checked,
+                      })
+                    }
+                    style={{ 
+                      width: "18px", 
+                      height: "18px", 
+                      cursor: "pointer",
+                      accentColor: "#667eea"
+                    }}
+                  />
+                  <div style={{ flex: 1 }}>
+                    <span style={{ fontSize: "14px", fontWeight: "500", color: "#fff" }}>
+                      ⭐ Set as Hero Image
+                    </span>
+                    <small
+                      style={{
+                        display: "block",
+                        marginTop: "4px",
+                        color: "#888",
+                        fontSize: "12px",
+                      }}
+                    >
+                      This image will appear in the "Why Choose Pixel Arts?" section on the homepage
+                    </small>
+                  </div>
+                </label>
+              </div>
+            )}
 
             {/* Title */}
             <div style={{ marginBottom: "20px" }}>
