@@ -646,7 +646,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                   />
                   <div style={{ flex: 1 }}>
                     <span style={{ fontSize: "14px", fontWeight: "500", color: "#fff" }}>
-                      ⭐ Set as Hero Image
+                      Set "Why Choose Pixel Arts?" section image
                     </span>
                     <small
                       style={{
