@@ -607,6 +607,7 @@ const MediaUploadModal: React.FC<MediaUploadModalProps> = ({
                     <option value="movies">🎬 Movies</option>
                     <option value="series">📺 Series</option>
                     <option value="posters">🎨 Posters</option>
+                    <option value="hero-image">⭐ Hero Image</option>
                   </optgroup>
                 </select>
               </div>
